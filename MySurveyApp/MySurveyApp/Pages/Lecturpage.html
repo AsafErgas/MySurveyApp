@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <style>
+        .activ {
+            color: black;
+            background-color: azure;
+        }
+
+        .container-fluid {
+            background-color: lightblue;
+        }
+
+        body {
+            background-color: lightblue;
+        }
+
+        .container {
+            background-color: azure;
+        }
+
+        li {
+            background-color: azure;
+        }
+
+        #photo1 {
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+
+
+    <script>
+
+        $(document).ready(function () {
+            loadSettings();
+          
+       
+
+            
+
+            return false;
+
+        });
+
+        var id = "";
+        function loadSettings() {
+            data = JSON.parse(localStorage.getItem('Data'));
+            name = "Welcome " + data[0].Name + " " + data[0].FamilyName;
+            document.getElementById("wel").innerHTML = name;
+            id = data[0].Id;
+            open = 1;
+            ajaxCall("GET", "../api/survey/?lecId=" +id+"&Isopen=" + open , "", getSuccess, error);
+          
+        }
+
+
+        function getSuccess(data) {
+            
+            if (data.length!=0) {
+                try {
+                    tbl = $('#opensurvey').DataTable({
+                        data: data,
+                        pageLength: 5,
+                        columns: [
+
+
+                            {
+                                data: "SurveyId"
+                            },
+                          {
+                                data: "Topic"
+                            },
+
+                            {
+                                data: "Uploaddate"
+                            },
+                              {
+                                  data: "Enddate"
+                              },
+                                {
+                                    data: "Minperson"
+                                },
+                                  {
+                                      data: "Maxperson"
+                                  },
+                                    {
+                                        data: "Details"
+                                    },
+                                      {
+                                          data: "Auther"
+                                      },
+                                      {
+                                          data: "Surveyweight"
+                                      },
+                                      {
+                                          data: "Lecturerid"
+                                      },
+
+                                      {
+                                          data: "Link"
+                                      },
+
+                                      {
+                                          data: "Isopensurvey"
+                                      }
+
+                        ]
+                    });
+
+                }
+
+
+                catch (err) {
+                    alert(err);
+                }
+            }
+            else {
+                str="אין לך שאלונים פתוחים"
+                document.getElementById("opensurvey").innerHTML = str;
+            }
+            
+                
+
+                ajaxCall("GET", "../api/allsurvey/?lecId=" + id , "", getSuccess2, error2);
+            
+
+        }
+        function getSuccess2(data) {
+           
+        
+            
+            try {
+                tbl = $('#allmysurvey').DataTable({
+                    data: data,
+                    pageLength: 5,
+                    columns: [
+
+
+                        {
+                            data: "SurveyId"
+                        },
+                        {
+                            data: "Topic"
+                        },
+
+                        {
+                            data: "Uploaddate"
+                        },
+                          {
+                              data: "Enddate"
+                          },
+                            {
+                                data: "Minperson"
+                            },
+                              {
+                                  data: "Maxperson"
+                              },
+                                {
+                                    data: "Details"
+                                },
+                                  {
+                                      data: "Auther"
+                                  },
+                                  {
+                                      data: "Surveyweight"
+                                  },
+                                  {
+                                      data: "Lecturerid"
+                                  },
+                                  
+                                  {
+                                      data: "Link"
+                                  },
+                                  
+                                  {
+                                      data: "Isopensurvey"
+                                  }
+
+                    ]
+                });
+
+            }
+
+
+                catch (err) {
+                    alert(err);
+                }
+            
+
+        }
+            //this function is activated in case of a failure
+            function error(err) {
+                swal("Error: " + err);
+            }
+       
+            function error2(err) {
+                swal("Error: " + err);
+            }
+     
+      
+
+     
+
+    </script>
+
+</head>
+<body>
+
+
+
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Tinder</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="UploadSurvey.html">סקרים</a></li>
+                <li class="active"><a href="showNew.html">Show</a></li>
+                <li class="active"><a href="landingpage.html">Landing Page</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container">
+        <form id="pForm">
+            <div>
+                <h1 id="wel"> welcome </h1>
+            </div>
+            <div>
+                <h1>:הסקרים הפתוחים שלי</h1>
+                <table id="opensurvey" style="width:100%">
+                    <thead>
+                        <tr id="f">
+                            <th>SurveyId</th>
+                            <th>Topic</th>
+                            <th>uploaddate</th>
+                            <th>enddate</th>
+                            <th>min person</th>
+                            <th>max person</th>
+                            <th>details</th>
+                            <th>auther</th>
+                            <th>weight</th>
+                            <th>lecId</th>
+                            <th>link</th>
+                            <th>is open?</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div>
+                <h1>:כל הסקרים שלי</h1>
+                <table id="allmysurvey" style="width:100%">
+                    <thead>
+                        <tr id="f">
+                            <th>SurveyId</th>
+                            <th>Topic</th>
+                            <th>uploaddate</th>
+                            <th >enddate</th>
+                            <th>min person</th>
+                            <th>max person</th>
+                            <th>details</th>
+                            <th>auther</th>
+                            <th>weight</th>
+                            <th>lecId</th>
+                            <th>link</th>
+                            <th>is open?</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </form>
+
+
+
+
+
+    </div>
+
+
+</body>
+</html>

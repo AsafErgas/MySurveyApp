@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lecturer Log-in</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+  
+    <style>
+        #b{
+               width: 18%;
+               height: 50px;
+        }
+        h1{
+            text-align:center;
+            text-align: center;
+            font-size: 60px;
+            font-weight: 700;
+
+        }
+        #UserName{
+            width:50%;
+                margin-left: 28%;
+        }
+          #Password{
+
+            width:50%;
+                margin-left: 28%;
+        }
+          #pForm{
+
+              text-align:center;
+          }
+          .w{
+
+              font-size:xx-large;
+          }
+          p{
+              text-align:center;
+            font-size: 30px;
+          }
+
+          .activ {
+           color: black;
+           background-color: azure;
+       }
+       .container-fluid{
+           background-color:lightblue;
+       }
+       body{
+           background-color:lightblue;
+       }
+  
+       li{
+ background-color:azure;
+       }
+        
+    </style>
+    <script>
+
+      
+        $(document).ready(function () {
+          
+            
+            $("#pForm").submit(f2);
+        });
+
+        function CheckLect() {
+
+            UserName = $("#UserName").val();
+            Password = $("#Password").val();
+
+            ajaxCall("GET", "../api/lecturers/?UserName=" + UserName + "&Password=" + Password, "", successGetLect, errorGetLect);
+              
+         
+
+        }
+
+   
+
+        function f2() {
+            CheckLect();
+            return false; // the return false will prevent the form from being submitted
+            // hence the page will not reload
+        }
+
+        // this function is activated in case of a success
+        function successGetLect(Data) {
+            if (Data.length == 0) {
+                alert("Incorrect Username or Password, please try again! ");
+                location.reload();
+            }
+            else {
+                for (var i = 0; i < Data.length; i++) {
+                    if ((UserName == Data[i].UserName) && (Password == Data[i].Password)) {
+                        localStorage.setItem('Data', JSON.stringify(Data));
+                        window.location.href = 'Lecturpage.html';
+                    }
+                    else {
+                        alert("Incorrect Username or Password, please try again! ");
+                        location.reload();
+                    }
+
+
+
+                }
+            }
+        }
+
+        // this function is activated in case of a failure
+        function errorGetLect(err) {
+        }
+    </script>
+
+</head>
+<body>
+
+
+
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Tinder</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="insert.html">Add a Person</a></li>
+                <li class="active"><a href="showNew.html">Show</a></li>
+                <li class="active"><a href="landingpage.html">Landing Page</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container">
+        <form id="pForm">
+            <div>
+                <h1>:שלום נא התחבר</h1>
+                
+            </div>
+            <div class="form-group">
+                <label class="w" for="UserName">:שם משתמש</label>
+                <input  type="text" class="form-control" id="UserName" placeholder="User Name" required>
+            </div>
+            <div class="form-group">
+                <label class="w" for="Password">:סיסמא</label>
+                <input  type="password"  class="form-control" id="Password" placeholder="Password" required>
+            </div>
+
+            <!--<button class="btn btn-default" id="add">Add</button>-->
+            <input type="submit" value="Submit BTN" />
+          
+        </form>
+    </div>
+
+
+</body>
+</html>
