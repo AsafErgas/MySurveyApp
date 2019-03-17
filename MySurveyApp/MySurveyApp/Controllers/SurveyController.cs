@@ -40,28 +40,14 @@ namespace MySurveyApp.Controllers
             s.insertsurvey();
 
         }
-        //[HttpGet]
-        //[Route("api/lecturers")]
-        //public IEnumerable<Lecturer> Get(string UserName, string Password)
-        //{
-        //    Lecturer s2 = new Lecturer();
-        //    List<Lecturer> LL = s2.Login(UserName, Password);
-        //    return LL;
-        //}
 
+        [HttpPut]
+        [Route("api/editsurvey")]
+        public void Put([FromBody]Survey s, string sid)
+        {
+            s.Editsurvey(sid);
 
-
-        ////1-active 0-non active
-        //[HttpPut]
-        //[Route("api/persons")]
-        //public void Put(int Active, int PersonId)
-        //{
-        //    Person p = new Person();
-        //    p.IsActive(Active, PersonId);
-
-        //}
-
-
-
+        }
+  
     }
 }

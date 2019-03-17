@@ -67,6 +67,12 @@ namespace MySurveyApp.Models
             int numAffected = dbs.insertsurvey(this);
             return numAffected;
         }
+        public int Editsurvey(string sid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.Editsurvey(this,sid);
+            return numAffected;
+        }
 
         //public int insert()
         //{

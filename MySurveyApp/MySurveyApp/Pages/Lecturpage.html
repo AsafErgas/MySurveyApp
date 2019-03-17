@@ -78,8 +78,7 @@
                         data: data,
                         pageLength: 5,
                         columns: [
-
-
+                    
                             {
                                 data: "SurveyId"
                             },
@@ -118,10 +117,19 @@
 
                                       {
                                           data: "Isopensurvey"
-                                      }
+                                      },
+                                              {
+                                                  render: function (data, type, row, meta) {
+                                                      editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
+                                                      return editBtn;
+                                                  }
+                                              }
 
                         ]
                     });
+
+                  
+
 
                 }
 
@@ -141,6 +149,21 @@
             
 
         }
+
+        function buttonEvents() {
+            $(".editBtn").click(function () {
+                row = (this.parentNode).parentNode;
+                var data = tbl.row($(this).parents('tr')).data();
+               
+                localStorage.setItem('s', JSON.stringify(data));
+
+                window.location.href = "editSurvey.html";
+                //row.cells[10].childNodes[0].disabled = false;
+
+            })
+        }
+
+
         function getSuccess2(data) {
            
         
@@ -190,10 +213,19 @@
                                   
                                   {
                                       data: "Isopensurvey"
-                                  }
+                                  },
+                                          {
+                                              render: function (data, type, row, meta) {
+                                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
+                                                  return editBtn;
+                                              }
+                                          }
 
                     ]
                 });
+
+                buttonEvents();
+
 
             }
 
@@ -230,7 +262,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Tinder</a>
             </div>
-            <ul class="nav navbar-nav">
+            <ul  class="nav navbar-nav">
                 <li class="active"><a href="UploadSurvey.html">סקרים</a></li>
                 <li class="active"><a href="showNew.html">Show</a></li>
                 <li class="active"><a href="landingpage.html">Landing Page</a></li>
@@ -263,6 +295,7 @@
                             <th>lecId</th>
                             <th>link</th>
                             <th>is open?</th>
+                            <th></th>
 
                         </tr>
                     </thead>
@@ -285,6 +318,7 @@
                             <th>lecId</th>
                             <th>link</th>
                             <th>is open?</th>
+                            <th> </th>
 
                         </tr>
                     </thead>

@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Survey</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+   
+     <script>
+         $(document).ready(function () {
+             ShowSurvey();
+             $("#pForm").submit(f1);
+             return false;
+         });
+
+         function f1() {
+            Editsurvey();
+             return false;
+         }
+         
+         function Editsurvey() {
+
+             Survey = {
+                 SurveyId: $("#surveyid").val(),
+                 Topic: $("#topic").val(),
+                 Uploaddate: $("#uploaddate").val(),
+                 Enddate: $("#enddate").val(),
+                 Minperson: parseInt($("#minpers").val()),
+                 Maxperson: parseInt($("#maxpers").val()),
+                 Details: $("#details").val(),
+                 Auther: $("#auther").val(),
+                 Surveyweight: parseInt($("#weight").val()),
+                 Lecturerid: $("#lecId").val(),
+                 Link: $("#link").val(),
+                 Isopensurvey: $("input[name='Open']:checked").val()
+
+
+             }
+             sid = Survey.SurveyId;
+
+             ajaxCall("PUT", "../api/editsurvey/?sid=" + sid, JSON.stringify(Survey), success, error);
+         }
+       
+       
+         function success(data) {
+             alert("!הנתונים שונו בהצלחה ונשמרו במערכת");
+         }
+
+         function error(err) {
+             alert("error");
+         }
+
+
+         function ShowSurvey() {
+             s = JSON.parse(localStorage.getItem('s'));
+             $('#sid').html(s.SurveyId);
+             $('#top').html(s.Topic);
+             $('#update').html(s.Uploaddate);
+             $('#endate').html(s.Enddate);
+             $('#min').html(s.Minperson);
+             $('#max').html(s.Maxperson);
+             $('#det').html(s.Details);
+             $('#aut').html(s.Auther);
+             $('#we').html(s.Surveyweight);
+             $('#lec').html(s.Lecturerid);
+             $('#lin').html(s.Link);
+             $("input[name='Open'][value = " + s.Isopensurvey+ "]").prop('checked', true);
+             } 
+
+    </script>
+</head>
+
+<body>
+
+    <form id="pForm">
+        <div>
+
+            <h2>:ערוך שאלון </h2>
+
+            <table>
+                <tr>
+                    <td>:קוד שאלון</td>
+                    <td id="sid"><input type="text" id="surveyid" /></td>
+                </tr>
+                <tr>
+                    <td>:נושא השאלון</td>
+                    <td id="top" >
+                        <input type="text" id="topic" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:תאריך הפצה</td>
+                    <td id="update">
+                        <input type="text" id="uploaddate" />
+                    </td>
+                </tr>
+              >
+                <tr>
+                    <td>:תאריך סיום</td>
+                    <td id="endate">
+                        <input type="text" id="enddate" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:מספר מינמלי של עונים</td>
+                    <td id="min">
+                        <input type="number" id="minpers" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:מספר מקסימלי של עונים</td>
+                    <td id="max">
+                        <input type="number" id="maxpers" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:פירוט קצר על השאלון</td>
+                    <td id="det">
+                        <input type="text" id="details" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:מחבר השאלון</td>
+                    <td id="aut">
+                        <input type="text" id="auther" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:משקל שאלון</td>
+                    <td id="we">
+                        <input type="number" id="weight" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:ת.ז של מחבר הסקר</td>
+                    <td id="lec">
+                        <input type="number" id="lecId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td> :qualtrics קישור הסקר לאתר </td>
+                    <td id="lin">
+                        <input type="text" id="link" />
+                    </td>
+                </tr>
+
+                
+                    
+                <tr>
+                    <td><label id="P" for="Premium">?האם לפתוח סקר לסטודנטים</label></td>
+                    <td id="1" >   <input type="radio" name="Open" value="1"> לפתוח</td>
+                  
+                    <td id="0"><input type="radio" name="Open" value="0"> לא לפתוח</td>
+                    
+                </tr>
+                
+        
+            </table>
+
+
+        </div>
+        <br />
+        <input type="submit" id="b" value="העלה סקר" />
+        </form>
+
+</body>
+</html>

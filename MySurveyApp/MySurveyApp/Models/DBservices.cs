@@ -280,6 +280,83 @@ public class DBservices
     }
     //XXXXXXXXXXXX-INSERT SURVEY APP - END-XXXXXXXXXX
 
+    //XXXXXXXXXXX-EDITSURVEY- START-XXXXXXXXXXXXXXX
+    public int Editsurvey(Survey s,string sid)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommand2(s,sid);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand2(Survey s,string sid)
+    {
+
+       
+        string command = "UPDATE Survey SET surveyId='" + s.SurveyId + "' , topic='" + s.Topic + "' , uploaddate= '" + s.Uploaddate + "' ,enddate='" + s.Enddate + "' , minperson='" + s.Minperson + "' , maxperson='" + s.Maxperson + "' , details='" + s.Details + "' , auther='" + s.Auther + "' , surveyweight='" + s.Surveyweight + "' , lecturerId='" + s.Lecturerid + "' , link='" + s.Link + "' , opensurvey='" + s.Isopensurvey + "' WHERE surveyId=" + sid;
+        return command;
+    }
+
+
+
+
+    //XXXXXXXXXXX-EDITSURVEY- START-XXXXXXXXXXXXXXX
+
 
 
 
