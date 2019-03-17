@@ -11,6 +11,7 @@ namespace MySurveyApp.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            alert("dsa");
 
             return View();
         }
