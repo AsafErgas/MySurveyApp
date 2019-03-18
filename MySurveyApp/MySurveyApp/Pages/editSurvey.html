@@ -25,7 +25,7 @@
          function Editsurvey() {
 
              Survey = {
-                 SurveyId: $("#surveyid").val(),
+                 SurveyId: $("#sid").html(),
                  Topic: $("#topic").val(),
                  Uploaddate: $("#uploaddate").val(),
                  Enddate: $("#enddate").val(),
@@ -58,16 +58,16 @@
          function ShowSurvey() {
              s = JSON.parse(localStorage.getItem('s'));
              $('#sid').html(s.SurveyId);
-             $('#top').html(s.Topic);
-             $('#update').html(s.Uploaddate);
-             $('#endate').html(s.Enddate);
-             $('#min').html(s.Minperson);
-             $('#max').html(s.Maxperson);
-             $('#det').html(s.Details);
-             $('#aut').html(s.Auther);
-             $('#we').html(s.Surveyweight);
-             $('#lec').html(s.Lecturerid);
-             $('#lin').html(s.Link);
+             $('#topic').val(s.Topic);
+             $('#uploaddate').val(s.Uploaddate);
+             $('#enddate').val(s.Enddate);
+             $('#minpers').val(s.Minperson);
+             $('#maxpers').val(s.Maxperson);
+             $('#details').val(s.Details);
+             $('#auther').val(s.Auther);
+             $('#weight').val(s.Surveyweight);
+             $('#lecId').val(s.Lecturerid);
+             $('#link').val(s.Link);
              $("input[name='Open'][value = " + s.Isopensurvey+ "]").prop('checked', true);
              } 
 
@@ -88,13 +88,13 @@
                 </tr>
                 <tr>
                     <td>:נושא השאלון</td>
-                    <td id="top" >
+                    <td >
                         <input type="text" id="topic" />
                     </td>
                 </tr>
                 <tr>
                     <td>:תאריך הפצה</td>
-                    <td id="update">
+                    <td >
                         <input type="text" id="uploaddate" />
                     </td>
                 </tr>
