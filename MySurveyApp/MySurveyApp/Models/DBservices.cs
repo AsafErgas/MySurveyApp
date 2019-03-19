@@ -116,11 +116,11 @@ public class DBservices
                 s.Maxperson = Convert.ToInt32(dr["maxperson"]);
                 s.Details = (string)dr["details"];
                 s.Auther = (string)dr["auther"];
-                s.Surveyweight = Convert.ToInt32(dr["surveyweight"]);
+                s.Surveyweight = Convert.ToInt32(dr["surveyweight"]); 
                 s.Lecturerid = (string)dr["lecturerId"];
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
-
+                s.Currentnumofpers= Convert.ToInt32(dr["currentnumofpers"]);
 
                 lc.Add(s);
             }
@@ -176,6 +176,7 @@ public class DBservices
                 s.Lecturerid = (string)dr["lecturerId"];
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
+                s.Currentnumofpers = Convert.ToInt32(dr["currentnumofpers"]);
 
 
 
@@ -272,8 +273,8 @@ public class DBservices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}',{4},'{5}','{6}','{7}',{8},'{9}','{10}',{11})", s.SurveyId, s.Topic, s.Uploaddate, s.Enddate, s.Minperson.ToString(), s.Maxperson.ToString(), s.Details, s.Auther,s.Surveyweight.ToString(), s.Lecturerid, s.Link, s.Isopensurvey.ToString());
-        String prefix = "INSERT INTO Survey " + "(surveyId, topic, uploaddate, enddate, minperson, maxperson, details,auther, surveyweight,lecturerId, link, opensurvey) ";
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}',{7},{8},{9},'{10}',{11},{12})", s.SurveyId, s.Topic, s.Details, s.Auther, s.Lecturerid, s.Uploaddate, s.Enddate, s.Minperson.ToString(), s.Maxperson.ToString(),  s.Surveyweight.ToString(),  s.Link, s.Isopensurvey.ToString(), s.Currentnumofpers.ToString());
+        String prefix = "INSERT INTO Survey " + "(surveyId, topic,details, auther,lecturerId, uploaddate, enddate, minperson, maxperson, surveyweight, link, opensurvey, currentnumofpers) ";
         command = prefix + sb.ToString();
         return command;
 

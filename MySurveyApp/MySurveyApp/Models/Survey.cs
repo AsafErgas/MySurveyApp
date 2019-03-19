@@ -15,15 +15,16 @@ namespace MySurveyApp.Models
         public int Maxperson { get; set; }
         public string Details { get; set; }
         public string Auther { get; set; }
-        public int Surveyweight { get; set; }
+        public float Surveyweight { get; set; }
         public string Lecturerid { get; set; }
         public string Link { get; set; }
         public int Isopensurvey { get; set; }
+        public int Currentnumofpers { get; set; }
 
 
 
 
-        public Survey(string _surveyid , string _topic, DateTime _upload,DateTime _enddate,int _min,int _max, string _details, string _auther, int _weight , string _lecid, string _link, int _isopen)
+        public Survey(string _surveyid , string _topic, DateTime _upload,DateTime _enddate,int _min,int _max, string _details, string _auther, float _weight , string _lecid, string _link, int _isopen, int _current )
         {
 
             SurveyId = _surveyid;
@@ -38,7 +39,7 @@ namespace MySurveyApp.Models
             Lecturerid = _lecid;
             Link = _link;
             Isopensurvey = _isopen;
-         
+            Currentnumofpers = _current;
         
         }
 
@@ -68,7 +69,7 @@ namespace MySurveyApp.Models
             return numAffected;
         }
         public int Editsurvey(string sid)
-        {
+       {
             DBservices dbs = new DBservices();
             int numAffected = dbs.Editsurvey(this,sid);
             return numAffected;

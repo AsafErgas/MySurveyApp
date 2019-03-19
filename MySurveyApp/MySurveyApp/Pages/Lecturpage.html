@@ -79,51 +79,55 @@
                         pageLength: 5,
                         columns: [
                     
-                            {
-                                data: "SurveyId"
-                            },
-                          {
-                                data: "Topic"
-                            },
+                              {
+                                  data: "SurveyId"
+                              },
+                        {
+                            data: "Topic"
+                        },
 
+                        {
+                            data: "Details"
+                        },
+                          {
+                              data: "Auther"
+                          },
                             {
-                                data: "Uploaddate"
+                                data: "Lecturerid"
                             },
                               {
-                                  data: "Enddate"
+                                  data: "Uploaddate"
                               },
                                 {
-                                    data: "Minperson"
+                                    data: "Enddate"
                                 },
+                                  {
+                                      data: "Minperson"
+                                  },
                                   {
                                       data: "Maxperson"
                                   },
-                                    {
-                                        data: "Details"
-                                    },
-                                      {
-                                          data: "Auther"
-                                      },
-                                      {
-                                          data: "Surveyweight"
-                                      },
-                                      {
-                                          data: "Lecturerid"
-                                      },
+                                  {
+                                      data: "Surveyweight"
+                                  },
 
-                                      {
-                                          data: "Link"
-                                      },
+                                  {
+                                      data: "Link"
+                                  },
 
-                                      {
-                                          data: "Isopensurvey"
-                                      },
-                                              {
-                                                  render: function (data, type, row, meta) {
-                                                      editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
-                                                      return editBtn;
-                                                  }
+                                  {
+                                      data: "Isopensurvey"
+                                  },
+                                   {
+                                       data: "Currentnumofpers"
+                                   },
+                                          {
+                                              render: function (data, type, row, meta) {
+                                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
+                                                  return editBtn;
                                               }
+                                          }
+                                         
 
                         ]
                     });
@@ -183,28 +187,28 @@
                         },
 
                         {
-                            data: "Uploaddate"
+                            data:  "Details"
                         },
                           {
-                              data: "Enddate"
+                              data:  "Auther"
                           },
                             {
-                                data: "Minperson"
+                                data:  "Lecturerid"
                             },
                               {
-                                  data: "Maxperson"
+                                data:  "Uploaddate"
                               },
                                 {
-                                    data: "Details"
+                                 data: "Enddate"
                                 },
                                   {
-                                      data: "Auther"
+                                      data: "Minperson"
+                                  },
+                                  {
+                                      data:  "Maxperson"
                                   },
                                   {
                                       data: "Surveyweight"
-                                  },
-                                  {
-                                      data: "Lecturerid"
                                   },
                                   
                                   {
@@ -214,17 +218,21 @@
                                   {
                                       data: "Isopensurvey"
                                   },
+                                     {
+                                         data: "Currentnumofpers"
+                                     },
                                           {
                                               render: function (data, type, row, meta) {
                                                   editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
                                                   return editBtn;
                                               }
                                           }
+                                       
 
                     ]
                 });
 
-                buttonEvents();
+               
 
 
             }
@@ -285,16 +293,17 @@
                         <tr id="f">
                             <th>SurveyId</th>
                             <th>Topic</th>
-                            <th>uploaddate</th>
+                            <th>details</th>
+                            <th>auther  </th>
+                            <th>lecId </th>
+                            <th> uploaddate</th>
                             <th>enddate</th>
                             <th>min person</th>
                             <th>max person</th>
-                            <th>details</th>
-                            <th>auther</th>
-                            <th>weight</th>
-                            <th>lecId</th>
+                            <th>weight </th>
                             <th>link</th>
                             <th>is open?</th>
+                            <th>Current Number</th>
                             <th></th>
 
                         </tr>
@@ -308,17 +317,18 @@
                         <tr id="f">
                             <th>SurveyId</th>
                             <th>Topic</th>
-                            <th>uploaddate</th>
-                            <th >enddate</th>
+                            <th>details</th>
+                            <th>auther  </th>
+                            <th>lecId </th>
+                            <th> uploaddate</th>
+                            <th>enddate</th>
                             <th>min person</th>
                             <th>max person</th>
-                            <th>details</th>
-                            <th>auther</th>
-                            <th>weight</th>
-                            <th>lecId</th>
+                            <th>weight </th>
                             <th>link</th>
                             <th>is open?</th>
-                            <th> </th>
+                            <th>Current Number</th>
+                            <th></th>
 
                         </tr>
                     </thead>

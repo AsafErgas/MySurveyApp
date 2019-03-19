@@ -26,15 +26,15 @@
                  Topic: $("#topic").val(),
                  Uploaddate: $("#uploaddate").val(),
                  Enddate: $("#enddate").val(),
-                 Minperson: parseInt($("#minpers").val()),
+                 Minperson: $("#minpers").val(),
                  Maxperson: parseInt($("#maxpers").val()),
                  Details: $("#details").val(),
                  Auther: $("#auther").val(),
                  Surveyweight: parseInt($("#weight").val()),
                  Lecturerid: $("#lecId").val(),
                  Link: $("#link").val(),
-                 Isopensurvey: $("input[name='Open']:checked").val()
-
+                 Isopensurvey: $("input[name='Open']:checked").val(),
+                 Currentnumofpers:0
 
              }
 
@@ -78,16 +78,34 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>:תאריך הפצה</td>
+                    <td>:פירוט קצר על השאלון</td>
                     <td>
-                        <input type="text" id="uploaddate" />
+                        <input type="text" id="details" />
                     </td>
                 </tr>
-              >
+                <tr>
+                    <td>:מחבר השאלון</td>
+                    <td>
+                        <input type="text" id="auther" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:ת.ז של מחבר הסקר</td>
+                    <td>
+                        <input type="number" id="lecId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>:תאריך הפצה</td>
+                    <td>
+                        <input type="date" id="uploaddate" />
+                    </td>
+                </tr>
+              
                 <tr>
                     <td>:תאריך סיום</td>
                     <td>
-                        <input type="text" id="enddate" />
+                        <input type="date" id="enddate" />
                     </td>
                 </tr>
                 <tr>
@@ -102,30 +120,14 @@
                         <input type="number" id="maxpers" />
                     </td>
                 </tr>
-                <tr>
-                    <td>:פירוט קצר על השאלון</td>
-                    <td>
-                        <input type="text" id="details" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>:מחבר השאלון</td>
-                    <td>
-                        <input type="text" id="auther" />
-                    </td>
-                </tr>
+               
                 <tr>
                     <td>:משקל שאלון</td>
                     <td>
-                        <input type="number" id="weight" />
+                        <input type="text" id="weight" />
                     </td>
                 </tr>
-                <tr>
-                    <td>:ת.ז של מחבר הסקר</td>
-                    <td>
-                        <input type="number" id="lecId" />
-                    </td>
-                </tr>
+                
                 <tr>
                     <td> :qualtrics קישור הסקר לאתר </td>
                     <td>
@@ -143,7 +145,7 @@
                     
                 </tr>
                
-                </tr>
+               
             </table>
 
 
