@@ -383,6 +383,7 @@ public class DBservices
                 s.Surveyammount = Convert.ToInt32(dr["surveyammount"]);
                 s.Labsammount = Convert.ToInt32(dr["labsammount"]);
                 s.LabId= (string)dr["labId"];
+                s.Sum= Convert.ToInt32(dr["sum"]);
 
 
                 lc.Add(s);

@@ -12,13 +12,14 @@ namespace MySurveyApp.Models
         public float Surveyammount { get; set; }
         public float Labsammount { get; set; }
         public string LabId { get; set; }
+        public float Sum { get; set; }
 
 
 
 
 
 
-        public Status(string _id , string _surveyid,float _sammount ,float _lammount ,string _labid)
+        public Status(string _id , string _surveyid,float _sammount ,float _lammount ,string _labid )
         {
 
             Id = _id;
@@ -26,6 +27,7 @@ namespace MySurveyApp.Models
             Surveyammount = _sammount;
             Labsammount = _lammount;
             LabId = _labid;
+            Sum = Surveyammount + Labsammount;
         
        
         
