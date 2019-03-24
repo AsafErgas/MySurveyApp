@@ -10,17 +10,17 @@ using MySurveyApp.Models;
 namespace MySurveyApp.Controllers
 {
 
-    public class OpenSurveyController : ApiController
+    public class StudentController : ApiController
     {
-        
+
 
 
         //[HttpGet]
-        //[Route("api/opensurvey")]
-        //public IEnumerable<OpenSurvey> Get(string lecId)
+        //[Route("api/allstudent")]
+        //public IEnumerable<Student> Get(string studentId)
         //{
-        //    OpenSurvey o = new OpenSurvey();
-        //    List<OpenSurvey> M = o.ReadOpenSurvey(lecId);
+        //    Student s = new Student();
+        //    List<Student> M = s.Readstudent(studentId);
         //    return M;
         //}
 

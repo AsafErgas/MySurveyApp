@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <style>
+        .activ {
+            color: black;
+            background-color: azure;
+        }
+
+        .container-fluid {
+            background-color: lightblue;
+        }
+
+        body {
+            background-color: lightblue;
+        }
+
+        .container {
+            background-color: azure;
+        }
+
+        li {
+            background-color: azure;
+        }
+
+        #photo1 {
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+
+
+    <script>
+
+        $(document).ready(function () {
+            ajaxCall("GET", "../api/statusstudent", "", getSuccess, error);
+        
+
+            return false;
+
+        });
+
+
+        function getSuccess(data) {
+            cars = data; // keep the cars array in a global variable;
+            try {
+                tbl = $('#statustable').DataTable({
+                    data: data,
+                    pageLength: 5,
+                    columns: [
+                       
+                        {
+                            data: "Id"
+                        },
+                        {
+                            data: "SurveyId"
+                        },
+
+                        {
+                            data: "Surveyammount"
+                        },
+                        {
+                            data: "Labsammount"
+                        },
+                        {
+                            data: "LabId"
+                        },
+                        {
+                            render: function (data, type, row, meta) {
+                                s = row.Surveyammount;
+                                l = row.Labsammount;
+                                sum = s + l;
+                               return s;
+
+                            }
+                        }
+
+
+
+
+                    ]
+                });
+
+            }
+
+            catch (err) {
+                alert(err);
+            }
+
+        }
+
+        // this function is activated in case of a failure
+        function error(err) {
+            swal("Error: " + err);
+        }
+
+
+
+      
+     
+
+    </script>
+
+</head>
+<body>
+
+
+
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Tinder</a>
+            </div>
+            <ul  class="nav navbar-nav">
+                <li class="active"><a href="UploadSurvey.html">סקרים</a></li>
+                <li class="active"><a href="Reportpage.html">דוחות</a></li>
+                <li class="active"><a href="landingpage.html">Landing Page</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container">
+        <form id="pForm">
+            <div>
+                <h1 id="wel"> welcome </h1>
+            </div>
+            <div>
+                <h1>:דוח התקדמות סטודנט</h1>
+                <table id="statustable" style="width:100%">
+                    <thead>
+                        <tr id="f">
+                            <th>ת.ז</th>
+                            <th>מספר ניסוי</th>
+                            <th>שעות ניסוי</th>
+                            <th>שעות מעבדה  </th>
+                            <th>מספר מעבדה  </th>
+                            <th>סה"כ הכל</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div>
+               
+               
+            </div>
+        </form>
+
+
+
+
+
+    </div>
+
+
+</body>
+</html>

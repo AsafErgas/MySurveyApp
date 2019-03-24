@@ -356,12 +356,56 @@ public class DBservices
 
 
 
-    //XXXXXXXXXXX-EDITSURVEY- START-XXXXXXXXXXXXXXX
+    //XXXXXXXXXXX-EDITSURVEY- END-XXXXXXXXXXXXXXX
 
 
+    //XXXXXXXXXXX-READ STATUS- START
+    public List<Status> Readstatus(string conString, string tableName)
+    {
+
+        SqlConnection con = null;
+        List<Status> lc = new List<Status>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName ;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Status s = new Status();
+                s.Id = (string)dr["Id"];
+                s.SurveyId = (string)dr["surveyId"];
+                s.Surveyammount = Convert.ToInt32(dr["surveyammount"]);
+                s.Labsammount = Convert.ToInt32(dr["labsammount"]);
+                s.LabId= (string)dr["labId"];
 
 
+                lc.Add(s);
+            }
 
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXX-READ-STATUS-END-XXXXXXXXXXXXX
 
 
     private SqlCommand CreateCommand(String CommandSTR, SqlConnection con)

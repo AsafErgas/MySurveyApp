@@ -69,7 +69,10 @@
              $('#lecId').val(s.Lecturerid);
              $('#link').val(s.Link);
              $("input[name='Open'][value = " + s.Isopensurvey+ "]").prop('checked', true);
-             } 
+         }
+         function back() {
+             window.location.href = "Lecturpage.html";
+         }
 
     </script>
 </head>
@@ -98,7 +101,7 @@
                         <input type="text" id="uploaddate" />
                     </td>
                 </tr>
-              >
+              
                 <tr>
                     <td>:תאריך סיום</td>
                     <td id="endate">
@@ -164,7 +167,8 @@
 
         </div>
         <br />
-        <input type="submit" id="b" value="העלה סקר" />
+        <input type="submit" id="b" value="ערוך סקר" />
+        <input type="button" onclick="back()" value="חזור לדף מרצה "/>
         </form>
 
 </body>
