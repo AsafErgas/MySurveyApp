@@ -160,11 +160,13 @@
         ::-moz-input-placeholder {
             color: rgba(255,255,255,0.6);
         }
+
     </style>
     <script>
 
         $(document).ready(function () {
 
+            set();
 
             $("#start").click(f2);
         });
@@ -173,13 +175,31 @@
 
             UserName = $("#user").val();
             Password = $("#pass").val();
-
-            ajaxCall("GET", "../api/lecturers/?UserName=" + UserName + "&Password=" + Password, "", successGetLect, errorGetLect);
-
+            if ((UserName == '') || (Password == '')) {
+                alert("must enter all details");
+                restart(UserName, Password);
+            }
+            else {
+                ajaxCall("GET", "../api/lecturers/?UserName=" + UserName + "&Password=" + Password, "", successGetLect, errorGetLect);
+            }
         }
 
-
-
+         
+        function restart(U, P) {
+            User = '';
+            Pass = '';
+            User = U;
+            Pass = P;
+            localStorage.setItem('User', User);
+            localStorage.setItem('Pass', Pass);
+            location.reload();
+        }
+        function set() {
+            UN = localStorage.getItem('User');
+            PS = localStorage.getItem('Pass');
+            $('#user').val(UN);
+            $('#pass').val(PS);
+        }
         function f2() {
             CheckLect();
             return false; // the return false will prevent the form from being submitted
@@ -223,8 +243,8 @@
     <br>
     <form id="pForm">
         <div class="login">
-            <input type="text" id="user" placeholder="שם משתמש" name="user"><br>
-            <input type="password" id="pass" placeholder="סיסמא" name="password"><br>
+            <input type="text" id="user" placeholder="שם משתמש" name="user" required><br>
+            <input type="password" id="pass" placeholder="סיסמא" name="password" required><br>
             <input type="button" id="start" value="התחברות">
         </div>
     </form>
