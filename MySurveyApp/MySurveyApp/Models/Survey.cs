@@ -74,6 +74,13 @@ namespace MySurveyApp.Models
             int numAffected = dbs.Editsurvey(this,sid);
             return numAffected;
         }
+        public int deletesurvey(string sid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.deletesurvey(this, sid);
+            return numAffected;
+        }
+
 
         //public int insert()
         //{

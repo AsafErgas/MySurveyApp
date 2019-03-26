@@ -274,6 +274,9 @@
                 text-shadow: 0 1px 0 rgba(255,255,255,0.2);
                 border-radius: 15px 15px 15px 0px;
             }
+            #dd{
+                color:red;
+            }
 
             .form-style-5 input[type="submit"],
             .form-style-5 input[type="button"] {
@@ -361,6 +364,39 @@
             document.getElementById("sid").disabled = true;
         }
 
+        function deletesurvey() {
+            
+
+
+            Survey = {
+                SurveyId: $("#sid").val(),
+                Topic: $("#topic").val(),
+                Uploaddate: $("#uploaddate").val(),
+                Enddate: $("#enddate").val(),
+                Minperson: parseInt($("#minpers").val()),
+                Maxperson: parseInt($("#maxpers").val()),
+                Details: $("#details").val(),
+                Auther: $("#auther").val(),
+                Surveyweight: parseInt($("#weight").val()),
+                Lecturerid: $("#lecId").val(),
+                Link: $("#link").val(),
+                Isopensurvey: $("option[name='field']:checked").val()
+
+
+            }
+            surId= Survey.SurveyId;
+
+            ajaxCall("PUT", "../api/deletesurvey/?sid=" + surId, JSON.stringify(Survey), deleteSuccess, deleterror);
+
+           
+        }
+        function deleteSuccess(data) {
+            alert("!הסקר נמחק מהמערכת");
+        }
+
+        function deleterror(err) {
+            alert("error");
+        }
     </script>
 </head>
 
@@ -377,9 +413,9 @@
                 <h3> פירוט קצר על השאלון</h3>
                 <textarea id="details" name="field3" placeholder="פירוט קצר על השאלון"></textarea>
                 <h3> תאריך הפצה</h3>
-                <input id="uploaddate" type="text" name="field2" placeholder="תאריך הפצה *">
+                <input id="uploaddate" type="datetime" name="field2" placeholder="תאריך הפצה *">
                 <h3> תאריך סיום</h3>
-                <input id="enddate" type="text" name="field2" placeholder="תאריך סיום *">
+                <input id="enddate" type="datetime" name="field2" placeholder="תאריך סיום *">
                 <h3> מינימום עונים</h3>
                 <input id="minpers" type="text" name="field2" placeholder="מינימום עונים *">
                 <h3> מקסימום עונים</h3>
@@ -406,7 +442,8 @@
                 <legend><span class="number">2</span> לחץ אישור להעלאת הסקר</legend>
 
             </fieldset>
-            <input type="button" onclick="back()" value="חזור לדף מרצה " />
+            <input type="button" onclick="back()" value="חזור לדף מרצה " /><br />
+            <input type="button" id="dd" onclick="deletesurvey()" value="מחק שאלון מהמאגר " /><br />
             <input type="submit" value="אישור" />
         </form>
     </div>

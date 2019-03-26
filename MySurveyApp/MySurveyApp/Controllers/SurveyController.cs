@@ -48,6 +48,14 @@ namespace MySurveyApp.Controllers
             s.Editsurvey(sid);
 
         }
-  
+
+        [HttpPut]
+        [Route("api/deletesurvey")]
+        public void Put2([FromBody]Survey s, string sid)
+        {
+            s.deletesurvey(sid);
+
+        }
+
     }
 }
