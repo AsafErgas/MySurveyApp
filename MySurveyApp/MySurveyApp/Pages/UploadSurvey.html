@@ -148,7 +148,7 @@
                  Maxperson: parseInt($("#maxpers").val()),
                  Details: $("#details").val(),
                  Auther: $("#auther").val(),
-                 Surveyweight: parseInt($("#weight").val()),
+                 Surveyweight: $("#weight").val(),
                  Lecturerid: $("#lecId").val(),
                  Link: $("#link").val(),
                  Isopensurvey: $("#job").val(),
@@ -212,7 +212,7 @@
                 <input id="maxpers" type="text" name="field2" placeholder="מקסימום עונים *">
                 <input id="auther" type="text" name="field2" placeholder="מחבר השאלון *">
                 <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
-                <input id="weight" type="text" name="field2" placeholder="משקל השאלון *">
+                <input id="weight" type="number" step="any" name="field2" placeholder="משקל השאלון *">
                 <input id="link" type="text" name="field2" placeholder="קישור לאתר qualtrics *">
                 <label >האם לפתוח את הסקר לסטודנטים:</label>
                 <select id="job" name="field4">
