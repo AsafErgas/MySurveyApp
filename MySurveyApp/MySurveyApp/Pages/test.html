@@ -11,14 +11,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="/bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <script type="text/javascript" src="/path/to/jquery.js"></script>
+    <script type="text/javascript" src="/path/to/moment.js"></script>
+    <script type="text/javascript" src="/path/to/bootstrap/js/transition.js"></script>
+    <script type="text/javascript" src="/path/to/bootstrap/js/collapse.js"></script>
+    <script type="text/javascript" src="/path/to/bootstrap/dist/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/path/to/bootstrap-datetimepicker.min.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <script src="../Scripts/ajaxCalls.js"></script>
     <style type="text/css">
         .form-style-5 {
             max-width: 500px;
@@ -129,10 +140,12 @@
                 }
     </style>
     <script>
-         $(document).ready(function () {
-             $("#pForm").submit(f1);
-             return false;
-         });
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+
+    </script>
+    <script>
 
          function f1() {
             Addsurvey();
@@ -166,69 +179,32 @@
          function error(err) {
              alert("error");
          }
-         $(function () {
-             $('#datetimepicker1').datetimepicker();
-         });
-         $(function () {
-             $('#datetimepicker2').datetimepicker();
-         });
+
     </script>
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="Lecturpage.html">לדף הבית</a>
-            </div>
 
+    //Modify the Form Fields to suit the needs of your website.
+    <div class="container">
+        
+           
+           
+               
+                   
+                       
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                  
+            
+                 
+            
+           
         </div>
-    </nav>
-    <div class="form-style-5">
-        <form id="pForm">
-            <fieldset>
-                <legend><span class="number">1</span> העלאת שאלון</legend>
-                <input id="surveyid" type="text" name="field1" placeholder="קוד שאלון *">
-                <input id="topic" type="text" name="field2" placeholder="נושא שאלון *">
-                <textarea id="details" name="field3" placeholder="פירוט קצר על השאלון"></textarea>
-
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" id="uploaddate" placeholder="תאריך הפצה *" name="field2" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" id="enddate" placeholder="תאריך סגירת שאלון *" name="field2" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-
-                <!--<input id="uploaddate" type="date" name="field2" placeholder="תאריך הפצה *">-->
-                <!--<input id="enddate" type="datetime" name="field2" placeholder="תאריך סיום *">-->
-                <input id="minpers" type="text" name="field2" placeholder="מינימום עונים *">
-                <input id="maxpers" type="text" name="field2" placeholder="מקסימום עונים *">
-                <input id="auther" type="text" name="field2" placeholder="מחבר השאלון *">
-                <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
-                <input id="weight" type="text" name="field2" placeholder="משקל השאלון *">
-                <input id="link" type="text" name="field2" placeholder="קישור לאתר qualtrics *">
-                <label >האם לפתוח את הסקר לסטודנטים:</label>
-                <select id="job" name="field4">
-
-                    <option value="1">לא לפתוח</option>
-                    <option value="2">לפתוח</option>
-
-                </select>
-            </fieldset>
-            <fieldset>
-                <legend><span class="number">2</span> לחץ אישור להעלאת הסקר</legend>
-
-            </fieldset>
-            <input type="submit" value="אישור" />
-        </form>
-    </div>
-  
+   
 </body>
 </html>

@@ -213,6 +213,7 @@
     <Content Include="Pages\StudentReport.html" />
     <Content Include="Pages\Lecturpage.html" />
     <Content Include="Pages\editSurvey.html" />
+    <Content Include="Pages\test.html" />
     <Content Include="Pages\UploadSurvey.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />
