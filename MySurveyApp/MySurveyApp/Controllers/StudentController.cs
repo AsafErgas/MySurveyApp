@@ -15,14 +15,14 @@ namespace MySurveyApp.Controllers
 
 
 
-        //[HttpGet]
-        //[Route("api/allstudent")]
-        //public IEnumerable<Student> Get(string studentId)
-        //{
-        //    Student s = new Student();
-        //    List<Student> M = s.Readstudent(studentId);
-        //    return M;
-        //}
+        [HttpGet]
+        [Route("api/student")]
+        public int Get()
+        {
+            Student s = new Student();
+          int M = s.Numofstudent();
+            return M;
+        }
 
         //[HttpGet]
         //[Route("api/lecturers")]

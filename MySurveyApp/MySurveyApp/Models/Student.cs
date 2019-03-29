@@ -35,12 +35,12 @@ namespace MySurveyApp.Models
         }
 
 
-        //public List<Student> Readstudent(string studentid)
-        //{
-        //    DBservices dbs = new DBservices();
-        //    List<Student> lc = dbs.Readstudent("PersonStringName", "Student", studentid);
-        //    return lc;
-        //}
+        public int Numofstudent()
+        {
+            DBservices dbs = new DBservices();
+            int lc = dbs.Numofstudent("PersonStringName", "Student");
+            return lc;
+        }
 
         // public List<Survey> ReadAllSurvey(string lecId)
         // {

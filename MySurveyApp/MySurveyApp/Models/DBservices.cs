@@ -116,7 +116,7 @@ public class DBservices
                 s.Maxperson = Convert.ToInt32(dr["maxperson"]);
                 s.Details = (string)dr["details"];
                 s.Auther = (string)dr["auther"];
-                s.Surveyweight = Convert.ToInt32(dr["surveyweight"]); 
+                s.Surveyweight =Convert.ToSingle(dr["surveyweight"]); 
                 s.Lecturerid = (string)dr["lecturerId"];
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
@@ -172,7 +172,7 @@ public class DBservices
                 s.Maxperson = Convert.ToInt32(dr["maxperson"]);
                 s.Details = (string)dr["details"];
                 s.Auther = (string)dr["auther"];
-                s.Surveyweight = Convert.ToInt32(dr["surveyweight"]);
+                s.Surveyweight = Convert.ToSingle(dr["surveyweight"]);
                 s.Lecturerid = (string)dr["lecturerId"];
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
@@ -489,6 +489,53 @@ public class DBservices
         return command;
     }
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-DELETE-SURVEY-END-XXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-GET-NUM-OF STUDENT-START-XXXXXXXXXXXXXXXXXX
+    public int Numofstudent(string conString, string tableName)
+    {
+
+        SqlConnection con = null;
+        int sum = 0;
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+           
+            String selectSTR = "SELECT COUNT(Id) as sum1 FROM " + tableName;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                 sum = Convert.ToInt32(dr["sum1"]);
+              
+             
+
+
+             
+            }
+
+            return sum;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-GET-NUM-OF STUDENT-END-XXXXXXXXXXXXXXXXXX
+
+
 
     private SqlCommand CreateCommand(String CommandSTR, SqlConnection con)
 

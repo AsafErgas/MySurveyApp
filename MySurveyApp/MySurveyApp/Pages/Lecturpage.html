@@ -861,16 +861,24 @@
                             data: "Uploaddate", render: function (data, type, row, meta) {
 
                                 
-                                d = data;
+                                d = data.split('T');
+                                 
 
-                                return d;
+                                return d[0];
 
                             }
                         },
 
-                            {
-                                data: "Enddate"
-                            },
+                              {
+                                  data: "Enddate", render: function (data, type, row, meta) {
+
+
+                                      d = data.split("T");
+
+                                      return d[0];
+
+                                  }
+                              },
                             {
                                 data: "Minperson"
                             },
@@ -963,15 +971,22 @@
                     data: "Uploaddate", render: function (data, type, row, meta) {
 
 
-                        d = data;
+                       d = data.split("T");
 
-                    return d;
+                    return d[0];
 
                 }
             },
-                        {
-                            data: "Enddate"
-                        },
+                         {
+                             data: "Enddate", render: function (data, type, row, meta) {
+
+
+                                 d = data.split("T");
+
+                                 return d[0];
+
+                             }
+                         },
                         {
                             data: "Minperson"
                         },

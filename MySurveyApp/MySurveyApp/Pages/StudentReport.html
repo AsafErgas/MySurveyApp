@@ -44,20 +44,17 @@
         }
     </style>
     <script type="text/javascript">
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+        
+        google.charts.load('current', { 'packages': ['corechart'] });
 
 // Draw the chart and set the chart values
-function drawChart() {
+        function drawChart(x) {
+            didnt = 2;
   var data = google.visualization.arrayToDataTable([
-  ['Task', 'Hours per Day'],
-  ['Work', 8],
-  ['Friends', 2],
-  ['Eat', 2],
-  ['TV', 2],
-  ['Gym', 2],
-  ['Sleep', 8]
+  ['finish', 'num of finishers'],
+  ['didnt finish', didnt],
+  ['finish', count]
+ 
 ]);
 
   // Optional; add a title and set the width and height of the chart
@@ -70,16 +67,17 @@ function drawChart() {
     </script>
 
     <script>
-
+       
         $(document).ready(function () {
             ajaxCall("GET", "../api/statusstudent", "", getSuccess, error);
-        
+          
 
             return false;
 
         });
+   
 
-
+        var count = 0;
         function getSuccess(data) {
     
             // keep the cars array in a global variable;
@@ -115,7 +113,18 @@ function drawChart() {
                         }
                         ,
                         {
-                            data: "Sum"
+                            data: "Sum", render: function (data, type, row, meta) {
+
+
+                                if (row.Sum >= 5) {
+                                    count += 1;
+                                }
+                                else {
+                                    x = data;
+                                }
+                                return x;
+
+                            }
                         }
 
 
@@ -123,8 +132,9 @@ function drawChart() {
 
                     ]
                 });
-
+                ajaxCall("GET", "../api/student", "", getSuccess2, error2);
             }
+
 
             catch (err) {
                 alert(err);
@@ -143,8 +153,16 @@ function drawChart() {
             window.location.href = "Lecturpage.html";
         }
       
-     
-
+        function getSuccess2(data)
+        {
+            x = data;
+            // Load google charts
+            
+            google.charts.setOnLoadCallback(drawChart(x));
+        }
+        function error2(err) {
+            swal("Error: " + err);
+        }
     </script>
 
 </head>
