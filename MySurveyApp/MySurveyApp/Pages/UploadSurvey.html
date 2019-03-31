@@ -160,7 +160,19 @@
 
          }
          function success(data) {
-             alert("!הסקר הועלה בהצלחה למערכת");
+             swal("הוספה בוצעה", "הסקר הועלה בהצלחה למערכת", "success");
+             $("#surveyid").val('');
+             $("#topic").val('');
+             $("#uploaddate").val('');
+             $("#enddate").val('');
+             $("#minpers").val("");
+             $("#maxpers").val('');
+             $("#details").val('');
+             $("#auther").val('');
+             $("#weight").val('');
+             $("#lecId").val('');
+             $("#link").val('');
+           
          }
 
          function error(err) {

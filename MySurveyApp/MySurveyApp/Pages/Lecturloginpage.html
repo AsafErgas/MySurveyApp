@@ -10,10 +10,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
     <script src="js/prefixfree.min.js"></script>
-    <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script> 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
         @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
@@ -178,14 +176,15 @@
             UserName = $("#user").val();
             Password = $("#pass").val();
             if ((UserName == '') || (Password == '')) {
-                alert("must enter all details");
-                restart(UserName, Password);
+                swal("must enter all details");
+                setTimeout(function () { restart(UserName, Password); }, 2000);
+               
             }
             else {
                 ajaxCall("GET", "../api/lecturers/?UserName=" + UserName + "&Password=" + Password, "", successGetLect, errorGetLect);
             }
         }
-
+        
          
         function restart(U, P) {
             User = '';
@@ -202,6 +201,11 @@
             $('#user').val(UN);
             $('#pass').val(PS);
         }
+
+
+      
+
+
         function f2() {
             CheckLect();
             return false; // the return false will prevent the form from being submitted
@@ -211,8 +215,9 @@
         // this function is activated in case of a success
         function successGetLect(Data) {
             if (Data.length == 0) {
-                swal( "Incorrect Username or Password, please try again!");
-                location.reload();
+                swal("LOG-IN EROR! ", "Incorrect Username or Password, please try again!");
+                setTimeout(function () { location.reload(); }, 2000);
+                
             }
             else {
                 for (var i = 0; i < Data.length; i++) {
@@ -222,8 +227,7 @@
                     }
                     else {
                         swal("LOG-IN EROR! ", "Incorrect Username or Password, please try again!");
-                        
-                        location.reload();
+                        setTimeout(function () { location.reload(); }, 2000);
                     }
 
 
