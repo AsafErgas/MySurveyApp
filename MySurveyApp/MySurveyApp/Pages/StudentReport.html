@@ -49,7 +49,7 @@
 
 // Draw the chart and set the chart values
         function drawChart(x) {
-            didnt = 2;
+            didnt = x-count;
   var data = google.visualization.arrayToDataTable([
   ['finish', 'num of finishers'],
   ['didnt finish', didnt],
@@ -79,6 +79,14 @@
 
         var count = 0;
         function getSuccess(data) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                if (data[i].Sum >= 5) {
+                    count+=1
+                }
+            
+            }
     
             // keep the cars array in a global variable;
             try {
@@ -87,7 +95,7 @@
                     pageLength: 5,
                     "rowCallback": function (row, data, index) {
                        
-                            if (data.Sum > 2) {
+                            if (data.Sum >= 5) {
                                 $('td', row).css('background-color', 'Green');
                             }
                         
@@ -113,18 +121,7 @@
                         }
                         ,
                         {
-                            data: "Sum", render: function (data, type, row, meta) {
-
-
-                                if (row.Sum >= 5) {
-                                    count += 1;
-                                }
-                                else {
-                                    x = data;
-                                }
-                                return x;
-
-                            }
+                            data: "Sum"
                         }
 
 
