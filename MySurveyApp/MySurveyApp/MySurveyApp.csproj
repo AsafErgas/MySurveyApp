@@ -210,6 +210,8 @@
     <Content Include="Pages\css\style.css" />
     <Content Include="Pages\js\prefixfree.min.js" />
     <Content Include="Pages\Lecturloginpage.html" />
+    <Content Include="Pages\style.css" />
+    <Content Include="Pages\test.html" />
     <Content Include="Pages\StudentReport.html" />
     <Content Include="Pages\Lecturpage.html" />
     <Content Include="Pages\editSurvey.html" />

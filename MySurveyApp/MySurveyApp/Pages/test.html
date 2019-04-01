@@ -16,20 +16,17 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="http://osvaldas.info/examples/main.js"></script>
-    <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link href="style.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
-    <script>
 
-        $(function () {
-            $('#nav li:has(ul)').doubleTapToGo();
-        });
+    <script>
+  
         $(document).ready(function () {
             loadSettings();
+
+
             return false;
+
         });
 
         var id = "";
@@ -147,7 +144,7 @@
                 localStorage.setItem('s', JSON.stringify(data));
 
                 window.location.href = "editSurvey.html";
-               
+                //row.cells[10].childNodes[0].disabled = false;
 
             })
         }
@@ -263,47 +260,50 @@
 
 </head>
 <body>
-  
-    <nav class="navbar navbar-default navbar-header">
-        <div id="ms">My<span id="ms2">survey</span></div>
-        <nav id="nav" role="navigation">
-        
-            <ul class="clearfix">
 
-                <li>
-                    <a href=""><span>סטודנטים</span></a>
-                    <ul>
+    
+        <nav class="navbar navbar-default navbar-header">
+         
+                <nav id="nav" role="navigation">
 
-                        <li><a href="">רישום סטודנטים למערכת</a></li>
-                        <li><a href="">עריכת רשימת סטודנטים</a></li>
+                        <ul class="clearfix">
+                           
+                             <li>
+                                <a href=""><span>סטודנטים</span></a>
+                                 <ul>
 
-                    </ul>
-                </li>
+                                    <li><a href="">רישום סטודנטים למערכת</a></li>
+                                    <li><a href="">עריכת רשימת סטודנטים</a></li>
 
-                <li>
-                    <a href=""><span>דוחות</span></a>
-                    <ul>
-                        <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
-                        <li><a href="">דו"ח מעבדה</a></li>
-                        <li><a href="">דו"ח שאלון</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">הוספת מעבדה</a>
+                                </ul>
+                            </li>
 
-                </li>
-                <li id="sa">
-                    <a href="UploadSurvey.html">הוספת סקר</a>
+                             <li>
+                                <a href=""><span>דוחות</span></a>
+                                <ul>
+                                    <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
+                                    <li><a href="">דו"ח מעבדה</a></li>
+                                    <li><a href="">דו"ח שאלון</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">הוספת מעבדה</a>
 
-                </li>
+                            </li>
+                            <li id="sa">
+                                <a href="UploadSurvey.html">הוספת סקר</a>
 
-            </ul>
-            <div id="logout">
-                <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
-                <a href="Lecturloginpage.html"> <p id="pp">התנתק מהמערכת</p> </a>
-            </div>
+                            </li>
+                        
+                        </ul> 
+                    <div id="logout">
+                        <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a> 
+                        <a href="Lecturloginpage.html"> <p id="pp">התנתק מהמערכת</p> </a> 
+                    </div>
+                        </nav> 
         </nav>
-    </nav>
+ 
+    
     <div class="container">
         <form id="pForm">
             <div>
