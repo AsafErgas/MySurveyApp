@@ -7,7 +7,7 @@ namespace MySurveyApp.Models
 {
     public class Status
     {
-        public string Id { get; set; }
+        public string Username { get; set; }
         public string SurveyId { get; set; }
         public float Surveyammount { get; set; }
         public float Labsammount { get; set; }
@@ -19,10 +19,10 @@ namespace MySurveyApp.Models
 
 
 
-        public Status(string _id , string _surveyid,float _sammount ,float _lammount ,string _labid )
+        public Status(string _us , string _surveyid,float _sammount ,float _lammount ,string _labid )
         {
 
-            Id = _id;
+            Username = _us;
             SurveyId = _surveyid;
             Surveyammount = _sammount;
             Labsammount = _lammount;

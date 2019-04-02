@@ -54,64 +54,67 @@
                         columns: [
 
                             {
-                                data: "SurveyId"
+                                data: "Currentnumofpers"
                             },
-                            {
-                                data: "Topic"
-                            },
+                         {
+                             data: "Isopensurvey"
+                         },
+                           {
+                               data: "Link"
+                           },
+                              {
+                                  data: "Surveyweight"
+                              },
+                          {
+                              data: "Minperson"
+                          },
 
-                            {
-                                data: "Details"
-                            },
-                            {
-                                data: "Auther"
-                            },
-                            {
-                                data: "Lecturerid"
-                            },
-                          
+                        {
+                            data: "Maxperson"
+                        },
+                         {
+                             data: "Enddate", render: function (data, type, row, meta) {
+
+
+                                 d = data.split("T");
+
+                                 return d[0];
+
+                             }
+                         },
+
                         {
                             data: "Uploaddate", render: function (data, type, row, meta) {
 
-                                
-                                d = data.split('T');
-                                 
+
+                                d = data.split("T");
 
                                 return d[0];
 
                             }
                         },
 
-                              {
-                                  data: "Enddate", render: function (data, type, row, meta) {
+                         {
+                             data: "Lecturerid"
+                         },
 
 
-                                      d = data.split("T");
+                        {
+                            data: "Auther"
+                        },
 
-                                      return d[0];
 
-                                  }
-                              },
-                            {
-                                data: "Minperson"
-                            },
-                            {
-                                data: "Maxperson"
-                            },
-                            {
-                                data: "Surveyweight"
-                            },
+                         {
+                             data: "Details"
+                         },
 
-                            {
-                                data: "Link"
-                            },
 
-                            {
-                                data: "Isopensurvey"
-                            },
-                            {
-                                data: "Currentnumofpers"
-                            }
+                        {
+                            data: "Topic"
+                        },
+                       {
+                           data: "SurveyId"
+                       }
 
 
                         ]
@@ -162,34 +165,32 @@
                     data: data,
                     pageLength: 5,
                     columns: [
-
+                           {
+                               render: function (data, type, row, meta) {
+                                   editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
+                                   return editBtn;
+                               }
+                           },
 
                         {
-                            data: "SurveyId"
+                            data: "Currentnumofpers"
                         },
+                         {
+                             data: "Isopensurvey"
+                         },
+                           {
+                               data: "Link"
+                           },
+                              {
+                                  data: "Surveyweight"
+                              },
+                          {
+                              data: "Minperson"
+                          },
+
                         {
-                            data: "Topic"
+                            data: "Maxperson"
                         },
-
-                        {
-                            data: "Details"
-                        },
-                        {
-                            data: "Auther"
-                        },
-                        {
-                            data: "Lecturerid"
-                        },
-                        {
-                    data: "Uploaddate", render: function (data, type, row, meta) {
-
-
-                       d = data.split("T");
-
-                    return d[0];
-
-                }
-            },
                          {
                              data: "Enddate", render: function (data, type, row, meta) {
 
@@ -200,32 +201,39 @@
 
                              }
                          },
+                       
                         {
-                            data: "Minperson"
-                        },
-                        {
-                            data: "Maxperson"
-                        },
-                        {
-                            data: "Surveyweight"
-                        },
+                    data: "Uploaddate", render: function (data, type, row, meta) {
 
-                        {
-                            data: "Link"
-                        },
 
-                        {
-                            data: "Isopensurvey"
-                        },
-                        {
-                            data: "Currentnumofpers"
-                        },
-                        {
-                            render: function (data, type, row, meta) {
-                                editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
-                                return editBtn;
+                       d = data.split("T");
+
+                    return d[0];
+
                             }
-                        }
+                           },
+                                          
+                         {
+                             data: "Lecturerid"
+                         },
+
+                      
+                        {
+                            data: "Auther"
+                        },
+
+                       
+                         {
+                             data: "Details"
+                         },
+                     
+
+                        {
+                            data: "Topic"
+                        },
+                       {
+                           data: "SurveyId"
+                       }
 
 
                     ]
@@ -266,10 +274,10 @@
   
     <nav class="navbar navbar-default navbar-header">
         <div class="row">
-            <div id="ms"  >My<span id="ms2">survey</span></div>
+            <div id="ms" class="hidden-md hidden-sm hidden-xs" >My<span id="ms2">survey</span></div>
             <nav id="nav" role="navigation">
 
-                <ul class="clearfix">
+                <ul class="clearfix" >
 
                     <li>
                         <a href=""><span>סטודנטים</span></a>
@@ -282,7 +290,7 @@
                     </li>
 
                     <li>
-                        <a href=""><span>דוחות</span></a>
+                        <a href="" ><span>דוחות</span></a>
                         <ul>
                             <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
                             <li><a href="">דו"ח מעבדה</a></li>
@@ -290,8 +298,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">הוספת מעבדה</a>
-
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="existslab.html">צפייה במעבדות</a></li>
+                       
+                        </ul>
                     </li>
                     <li id="sa">
                         <a href="UploadSurvey.html">הוספת סקר</a>
@@ -301,7 +313,7 @@
                 </ul>
                 <div id="logout">
                     <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
-                    <a href="Lecturloginpage.html" class="hidden-md hidden-sm hidden-xs"  <p id="pp">התנתק <br />מהמערכת</p> </a>
+                    <a id="a" href="Lecturloginpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">התנתק <br />מהמערכת</p> </a>
                 </div>
             </nav>
         </div>
@@ -320,20 +332,21 @@
                     <table id="opensurvey" style="width:100%">
                         <thead>
                             <tr id="f">
-                                <th>SurveyId</th>
-                                <th>Topic</th>
-                                <th>details</th>
-                                <th>auther  </th>
-                                <th>lecId </th>
-                                <th> uploaddate</th>
-                                <th>enddate</th>
-                                <th>min person</th>
-                                <th>max person</th>
-                                <th>weight </th>
-                                <th>link</th>
-                                <th>is open?</th>
-                                <th>Current Number</th>
-
+                           
+                                <th>מספר עדכני של עונים על הסקר</th>
+                                <th>?האם הסקר פתוח לסטודנטים</th>
+                                <th>קישור לשאלון</th>
+                                <th>משקל השאלון </th>
+                                <th>מספר מקסימלי של עונים</th>
+                                <th>מספר מינימלי של עונים</th>
+                                <th>תאריך סגירת הסקר</th>
+                                <th> תאריך עלייה לאוויר</th>
+                                <th>ת.ז מחבר הסקר </th>
+                                <th>מחבר הסקר  </th>
+                                <th>פירוט על הסקרר</th>
+                                <th>נושא הסקר</th>
+                                <th>קוד סקר</th>
+                               
                             </tr>
                         </thead>
                     </table>
@@ -347,20 +360,22 @@
                     <table id="allmysurvey" style="width:100%">
                         <thead>
                             <tr id="f">
-                                <th>SurveyId</th>
-                                <th>Topic</th>
-                                <th>details</th>
-                                <th>auther  </th>
-                                <th>lecId </th>
-                                <th> uploaddate</th>
-                                <th>enddate</th>
-                                <th>min person</th>
-                                <th>max person</th>
-                                <th>weight </th>
-                                <th>link</th>
-                                <th>is open?</th>
-                                <th>Current Number</th>
                                 <th></th>
+
+                                <th>מספר עדכני של עונים על הסקר</th>
+                                <th>?האם הסקר פתוח לסטודנטים</th>
+                                <th>קישור לשאלון</th>
+                                <th>משקל השאלון </th>
+                                <th>מספר מקסימלי של עונים</th>
+                                <th>מספר מינימלי של עונים</th>
+                                <th>תאריך סגירת הסקר</th>
+                                <th> תאריך עלייה לאוויר</th>
+                                <th>ת.ז מחבר הסקר </th>
+                                <th>מחבר הסקר  </th>
+                                <th>פירוט על הסקרר</th>
+                                <th>נושא הסקר</th>
+                                <th>קוד סקר</th>
+                                
                             </tr>
                         </thead>
                     </table>

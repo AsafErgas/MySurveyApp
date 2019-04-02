@@ -188,6 +188,7 @@
     <Compile Include="Controllers\LecturerController.cs" />
     <Compile Include="Controllers\StatusController .cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\LabController .cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,6 +198,7 @@
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Lab.cs" />
     <Compile Include="Models\Survey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -208,13 +210,16 @@
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Pages\css\style.css" />
+    <Content Include="Pages\existslab.html" />
     <Content Include="Pages\js\prefixfree.min.js" />
+    <Content Include="Pages\Labspage.html" />
     <Content Include="Pages\Lecturloginpage.html" />
     <Content Include="Pages\style.css" />
-    <Content Include="Pages\test.html" />
+    <Content Include="Pages\AddstudentFile.html" />
     <Content Include="Pages\StudentReport.html" />
     <Content Include="Pages\Lecturpage.html" />
     <Content Include="Pages\editSurvey.html" />
+    <Content Include="Pages\Addstudent.html" />
     <Content Include="Pages\UploadSurvey.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />

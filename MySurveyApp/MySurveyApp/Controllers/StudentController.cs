@@ -24,6 +24,14 @@ namespace MySurveyApp.Controllers
             return M;
         }
 
+        [HttpPost]
+        [Route("api/student")]
+        public void Post([FromBody]Student s)
+        {
+            s.insertstudent();
+
+        }
+
         //[HttpGet]
         //[Route("api/lecturers")]
         //public IEnumerable<Lecturer> Get(string UserName, string Password)

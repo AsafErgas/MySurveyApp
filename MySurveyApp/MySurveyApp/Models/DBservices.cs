@@ -378,7 +378,7 @@ public class DBservices
             while (dr.Read())
             {   // Read till the end of the data into a row
                 Status s = new Status();
-                s.Id = (string)dr["Id"];
+                s.Username = (string)dr["username"];
                 s.SurveyId = (string)dr["surveyId"];
                 s.Surveyammount = Convert.ToInt32(dr["surveyammount"]);
                 s.Labsammount = Convert.ToInt32(dr["labsammount"]);
@@ -500,7 +500,7 @@ public class DBservices
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
            
-            String selectSTR = "SELECT COUNT(Id) as sum1 FROM " + tableName;
+            String selectSTR = "SELECT COUNT(username) as sum1 FROM " + tableName;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -534,6 +534,317 @@ public class DBservices
 
     }
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-GET-NUM-OF STUDENT-END-XXXXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-GET-Insert STUDENT-START-XXXXXXXXXXXXXXXXXX
+
+    public int insertstudent(Student s)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommand4(s);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand4(Student s)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', '{1}')", s.Username, s.Password );
+        String prefix = "INSERT INTO Student " + "(username, password) ";
+        command = prefix + sb.ToString();
+        return command;
+    }
+
+
+
+
+
+
+
+
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-GET-Insert STUDENT-END-XXXXXXXXXXXXXXXXXX
+
+
+    //    XXXXXXXXX-READ Filter LABS - START-XXXXXXX
+    public List<Lab> ReadLabs(string conString, string tableName, string lecId)
+    {
+
+        SqlConnection con = null;
+        List<Lab> lc = new List<Lab>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE lecturerId= " + lecId;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Lab L = new Lab();
+                L.LabId = (string)dr["labId"];
+                L.Labtopic = (string)dr["labtopic"];
+                L.Labdate = (DateTime)dr["labdate"];
+                L.Minperson = Convert.ToInt32(dr["minpers"]);
+                L.Maxperson = Convert.ToInt32(dr["maxpers"]);
+                L.Labdetails = (string)dr["labdetails"];
+                L.Director = (string)dr["Director"];
+                L.Labweight = Convert.ToSingle(dr["labweight"]);
+                L.Lablocation = (string)dr["lablocation"];
+
+
+                lc.Add(L);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //    XXXXXXXXX-READ Filter Labs - END-XXXXXXX
+
+    //    XXXXXXXXX-READ ALL Labs - START-XXXXXXX
+    public List<Lab> ReadAllLabs(string conString, string tableName)
+    {
+
+        SqlConnection con = null;
+        List<Lab> lc = new List<Lab>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Lab L = new Lab();
+                L.LabId = (string)dr["labId"];
+                L.Labtopic = (string)dr["labtopic"];
+                L.Labdate = (DateTime)dr["labdate"];
+                L.Minperson = Convert.ToInt32(dr["minpers"]);
+                L.Maxperson = Convert.ToInt32(dr["maxpers"]);
+                L.Labdetails = (string)dr["labdetails"];
+                L.Director = (string)dr["Director"];
+                L.Labweight = Convert.ToSingle(dr["labweight"]);
+                L.Lablocation = (string)dr["lablocation"];
+
+
+                lc.Add(L);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //    XXXXXXXXX-READ ALL Labs - END-XXXXXXX
+
+    //XXXXXXXXX-INSERT LAB- START-XXXXXXXXX
+
+    public int insertlab(Lab l)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommand(l);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand(Lab l)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', {3},{4},'{5}','{6}',{7},'{8}')", l.LabId, l.Labtopic, l.Labdate, l.Minperson.ToString(), l.Maxperson.ToString(), l.Labdetails, l.Director, l.Labweight.ToString(), l.Lablocation);
+        String prefix = "INSERT INTO Labs " + "(labId, labtopic,labdate, minpers,maxpers, labdetails, Director, labweight, lablocation) ";
+        command = prefix + sb.ToString();
+        return command;
+
+    }
+    //XXXXXXXXXXXX-INSERT SURVEY APP - END-XXXXXXXXXX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
