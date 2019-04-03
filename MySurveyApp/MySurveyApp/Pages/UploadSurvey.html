@@ -131,6 +131,7 @@
     <script>
          $(document).ready(function () {
              $("#pForm").submit(f1);
+ 
              return false;
          });
 
@@ -138,7 +139,23 @@
             Addsurvey();
              return false;
          }
+
+         String.prototype.replaceAt = function (index, replacement) {
+             return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+         }
+
          function Addsurvey() {
+             //UD = $("#uploaddate").val();
+             //UdArray = UD.split(' ');
+             //UDC = UdArray[0].split("/").reverse().join("/") + " " + UdArray[1] + " " + UdArray[2];
+
+             //ED = $("#enddate").val();
+             //EdArray = ED.split(' ');
+             //EDC = EdArray[0].split("/").reverse().join("/") + " " + EdArray[1] + " " + EdArray[2];
+             //var UDC = UD.replaceAt(2, "-");
+             //var UDCF = UDC.replaceAt(5, "-");
+             //var EDC = ED.replaceAt(2, "-");
+             //var EDCF = EDC.replaceAt(5, "-");
              Survey = {
                  SurveyId: $("#surveyid").val(),
                  Topic: $("#topic").val(),

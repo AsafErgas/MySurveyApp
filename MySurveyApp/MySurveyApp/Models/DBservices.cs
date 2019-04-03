@@ -7,6 +7,7 @@ using System.Web.Configuration;
 using System.Data;
 using MySurveyApp.Models;
 using System.Text;
+using System.Globalization;
 
 /// <summary>
 /// DBServices is a class created by me to provides some DataBase Services
@@ -269,11 +270,20 @@ public class DBservices
     //--------------------------------------------------------------------
     private String BuildInsertCommand(Survey s)
     {
-        String command;
 
+        String command;
+        string year = s.Uploaddate.Year.ToString();
+        string month= s.Uploaddate.Month.ToString();
+        string day= s.Uploaddate.Day.ToString();
+        string FF = month + '/' + day + '/' + year;
+
+        string year2 = s.Enddate.Year.ToString();
+        string month2 = s.Enddate.Month.ToString();
+        string day2 = s.Enddate.Day.ToString();
+        string FF2 = month2 + '/' + day2 + '/' + year2;
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}',{7},{8},{9},'{10}',{11},{12})", s.SurveyId, s.Topic, s.Details, s.Auther, s.Lecturerid, s.Uploaddate, s.Enddate, s.Minperson.ToString(), s.Maxperson.ToString(),  s.Surveyweight.ToString(),  s.Link, s.Isopensurvey.ToString(), s.Currentnumofpers.ToString());
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}',{7},{8},{9},'{10}',{11},{12})", s.SurveyId, s.Topic, s.Details, s.Auther, s.Lecturerid, FF.ToString(), FF2.ToString(), s.Minperson.ToString(), s.Maxperson.ToString(),  s.Surveyweight.ToString(),  s.Link, s.Isopensurvey.ToString(), s.Currentnumofpers.ToString());
         String prefix = "INSERT INTO Survey " + "(surveyId, topic,details, auther,lecturerId, uploaddate, enddate, minperson, maxperson, surveyweight, link, opensurvey, currentnumofpers) ";
         command = prefix + sb.ToString();
         return command;
@@ -347,9 +357,17 @@ public class DBservices
     //--------------------------------------------------------------------
     private String BuildInsertCommand2(Survey s,string sid)
     {
+        string year = s.Uploaddate.Year.ToString();
+        string month = s.Uploaddate.Month.ToString();
+        string day = s.Uploaddate.Day.ToString();
+        string FF = month + '/' + day + '/' + year;
 
-       
-        string command = "UPDATE Survey SET surveyId='" + s.SurveyId + "' , topic='" + s.Topic + "' , uploaddate= '" + s.Uploaddate + "' ,enddate='" + s.Enddate + "' , minperson='" + s.Minperson + "' , maxperson='" + s.Maxperson + "' , details='" + s.Details + "' , auther='" + s.Auther + "' , surveyweight='" + s.Surveyweight + "' , lecturerId='" + s.Lecturerid + "' , link='" + s.Link + "' , opensurvey='" + s.Isopensurvey + "' WHERE surveyId=" + sid;
+        string year2 = s.Enddate.Year.ToString();
+        string month2 = s.Enddate.Month.ToString();
+        string day2 = s.Enddate.Day.ToString();
+        string FF2 = month2 + '/' + day2 + '/' + year2;
+
+        string command = "UPDATE Survey SET surveyId='" + s.SurveyId + "' , topic='" + s.Topic + "' , uploaddate= '" + FF + "' ,enddate='" + FF2 + "' , minperson='" + s.Minperson + "' , maxperson='" + s.Maxperson + "' , details='" + s.Details + "' , auther='" + s.Auther + "' , surveyweight='" + s.Surveyweight + "' , lecturerId='" + s.Lecturerid + "' , link='" + s.Link + "' , opensurvey='" + s.Isopensurvey + "' WHERE surveyId=" + sid;
         return command;
     }
 
@@ -796,10 +814,15 @@ public class DBservices
     {
         String command;
 
+        string year = l.Labdate.Year.ToString();
+        string month = l.Labdate.Month.ToString();
+        string day = l.Labdate.Day.ToString();
+        string FF = month + '/' + day + '/' + year;
+
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', {3},{4},'{5}','{6}',{7},'{8}')", l.LabId, l.Labtopic, l.Labdate, l.Minperson.ToString(), l.Maxperson.ToString(), l.Labdetails, l.Director, l.Labweight.ToString(), l.Lablocation);
-        String prefix = "INSERT INTO Labs " + "(labId, labtopic,labdate, minpers,maxpers, labdetails, Director, labweight, lablocation) ";
+        sb.AppendFormat("Values('{0}', '{1}' ,{2}, {3},'{4}','{5}',{6},'{7}','{8}')", l.LabId, l.Labtopic, l.Minperson.ToString(), l.Maxperson.ToString(), l.Labdetails, l.Director, l.Labweight.ToString(), l.Lablocation, FF.ToString());
+        String prefix = "INSERT INTO Labs " + "(labId, labtopic, minpers,maxpers, labdetails, Director, labweight, lablocation,labdate) ";
         command = prefix + sb.ToString();
         return command;
 
