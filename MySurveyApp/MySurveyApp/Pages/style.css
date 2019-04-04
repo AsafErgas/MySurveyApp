@@ -619,6 +619,7 @@
                     direction: rtl;
                     color: black;
                         font-size: 160%;
+                            z-index: -1;
                   }
             #sb{
                     width: 50%;

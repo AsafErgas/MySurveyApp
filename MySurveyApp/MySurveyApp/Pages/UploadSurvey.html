@@ -17,8 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="style.css" rel="stylesheet" />
- 
+
     <script src="../Scripts/ajaxCalls.js"></script>
     <style type="text/css">
         .form-style-5 {
@@ -132,7 +131,6 @@
     <script>
          $(document).ready(function () {
              $("#pForm").submit(f1);
- 
              return false;
          });
 
@@ -140,23 +138,7 @@
             Addsurvey();
              return false;
          }
-
-         String.prototype.replaceAt = function (index, replacement) {
-             return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-         }
-
          function Addsurvey() {
-             //UD = $("#uploaddate").val();
-             //UdArray = UD.split(' ');
-             //UDC = UdArray[0].split("/").reverse().join("/") + " " + UdArray[1] + " " + UdArray[2];
-
-             //ED = $("#enddate").val();
-             //EdArray = ED.split(' ');
-             //EDC = EdArray[0].split("/").reverse().join("/") + " " + EdArray[1] + " " + EdArray[2];
-             //var UDC = UD.replaceAt(2, "-");
-             //var UDCF = UDC.replaceAt(5, "-");
-             //var EDC = ED.replaceAt(2, "-");
-             //var EDCF = EDC.replaceAt(5, "-");
              Survey = {
                  SurveyId: $("#surveyid").val(),
                  Topic: $("#topic").val(),
@@ -206,14 +188,6 @@
 </head>
 
 <body>
-
-
-
-
-
-
-
-
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -222,7 +196,7 @@
 
         </div>
     </nav>
-    <div id="all2" class="form-style-5">
+    <div class="form-style-5">
         <form id="pForm">
             <fieldset>
                 <legend><span class="number">1</span> העלאת שאלון</legend>
