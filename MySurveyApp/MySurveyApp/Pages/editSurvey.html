@@ -5,127 +5,30 @@
     <title>Edit Survey</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">s
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"> 
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://osvaldas.info/examples/main.js"></script>
+    <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <link href="css/style2.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
-    <style type="text/css">
-        .form-style-5 {
-            max-width: 500px;
-            padding: 10px 20px;
-            background: #f4f7f8;
-            margin: 10px auto;
-            padding: 20px;
-            background: #f4f7f8;
-            border-radius: 8px;
-            font-family: Georgia, "Times New Roman", Times, serif;
-        }
-
-            .form-style-5 fieldset {
-                border: none;
-            }
-
-            .form-style-5 legend {
-                font-size: 1.4em;
-                margin-bottom: 10px;
-            }
-
-            .form-style-5 label {
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            .form-style-5 input[type="text"],
-            .form-style-5 input[type="date"],
-            .form-style-5 input[type="datetime"],
-            .form-style-5 input[type="email"],
-            .form-style-5 input[type="number"],
-            .form-style-5 input[type="search"],
-            .form-style-5 input[type="time"],
-            .form-style-5 input[type="url"],
-            .form-style-5 textarea,
-            .form-style-5 select {
-                font-family: Georgia, "Times New Roman", Times, serif;
-                background: rgba(255,255,255,.1);
-                border: none;
-                border-radius: 4px;
-                font-size: 15px;
-                margin: 0;
-                outline: 0;
-                padding: 10px;
-                width: 100%;
-                box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                background-color: #e8eeef;
-                color: #8a97a0;
-                -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                margin-bottom: 30px;
-            }
-
-                .form-style-5 input[type="text"]:focus,
-                .form-style-5 input[type="date"]:focus,
-                .form-style-5 input[type="datetime"]:focus,
-                .form-style-5 input[type="email"]:focus,
-                .form-style-5 input[type="number"]:focus,
-                .form-style-5 input[type="search"]:focus,
-                .form-style-5 input[type="time"]:focus,
-                .form-style-5 input[type="url"]:focus,
-                .form-style-5 textarea:focus,
-                .form-style-5 select:focus {
-                    background: #d2d9dd;
-                }
-
-            .form-style-5 select {
-                -webkit-appearance: menulist-button;
-                height: 35px;
-            }
-
-            .form-style-5 .number {
-                background: #1abc9c;
-                color: #fff;
-                height: 30px;
-                width: 30px;
-                display: inline-block;
-                font-size: 0.8em;
-                margin-right: 4px;
-                line-height: 30px;
-                text-align: center;
-                text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-                border-radius: 15px 15px 15px 0px;
-            }
-            #dd{
-                color:red;
-            }
-
-            .form-style-5 input[type="submit"],
-            .form-style-5 input[type="button"] {
-                position: relative;
-                display: block;
-                padding: 19px 39px 18px 39px;
-                color: #FFF;
-                margin: 0 auto;
-                background: #1abc9c;
-                font-size: 18px;
-                text-align: center;
-                font-style: normal;
-                width: 100%;
-                border: 1px solid #16a085;
-                border-width: 1px 1px 3px;
-                margin-bottom: 10px;
-            }
-
-                .form-style-5 input[type="submit"]:hover,
-                .form-style-5 input[type="button"]:hover {
-                    background: #109177;
-                }
-    </style>
+  
     <script>
         $(document).ready(function () {
             ShowSurvey();
-            $("#pForm").submit(f1);
+            $("#pForm1").submit(f1);
             return false;
         });
 
@@ -223,35 +126,106 @@
 </head>
 
 <body>
-    <div class="form-style-5">
-        <form id="pForm">
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+            <div id="ms1" class="hidden-md hidden-sm hidden-xs">My<span id="ms3">survey</span></div>
+            <nav id="nav" role="navigation">
+
+                <ul class="clearfix">
+
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
+
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="">עריכת רשימת סטודנטים</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="existslab.html">צפייה במעבדות</a></li>
+
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
+
+                    </li>
+
+                </ul>
+                <div id="logout">
+                    <a href="Lecturpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a1" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp2">חזור <br />לדף הבית</p> </a>
+                </div>
+            </nav>
+        </div>
+    </nav>
+
+
+
+
+    <div id="all" class="form-style-5">
+        <form id="pForm1">
             <fieldset>
                 <legend><span class="number">1</span> עריכת שאלון</legend>
                 <br />
-                <h3> קוד שאלון</h3>
+                <h3 class="line"> קוד שאלון:</h3>
                 <input id="sid" type="text" name="field1" placeholder="קוד שאלון *">
-                <h3> נושא שאלון</h3>
+                <h3  class="line"> נושא השאלון:</h3>
                 <input id="topic" type="text" name="field2" placeholder="נושא שאלון *">
-                <h3> פירוט קצר על השאלון</h3>
+                <h3  class="line"> פרטי השאלון:</h3>
                 <textarea id="details" name="field3" placeholder="פירוט קצר על השאלון"></textarea>
-                <h3> תאריך הפצה</h3>
-                <input id="uploaddate" type="datetime" name="field2" placeholder="תאריך הפצה *">
-                <h3> תאריך סיום</h3>
-                <input id="enddate" type="datetime" name="field2" placeholder="תאריך סיום *">
-                <h3> מינימום עונים</h3>
+                <h3 class="line">תאריך התחלה:</h3>
+
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" id="uploaddate" placeholder="תאריך הפצה *" name="field2" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+
+
+
+
+                <!--<input id="uploaddate" type="datetime" name="field2" placeholder="תאריך הפצה *">-->
+                <h3 class="line"> תאריך סיום:</h3>
+
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" id="enddate" placeholder="תאריך סגירת שאלון *" name="field2" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+                <!--<input id="enddate" type="datetime" name="field2" placeholder="תאריך סיום *">-->
+                <h3 class="line"> מס' מינ' של עונים:</h3>
                 <input id="minpers" type="text" name="field2" placeholder="מינימום עונים *">
-                <h3> מקסימום עונים</h3>
+                <h3 class="line"> מס' מקס' של עונים:</h3>
                 <input id="maxpers" type="text" name="field2" placeholder="מקסימום עונים *">
-                <h3> מחבר השאלון</h3>
+                <h3 class="line"> מחבר השאלון:</h3>
                 <input id="auther" type="text" name="field2" placeholder="מחבר השאלון *">
-                <h3> תעודת זהות מחבר השאלון</h3>
+                <h3 class="line"> תעודת זהות מחבר השאלון:</h3>
                 <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
-                <h3> משקל השאלון</h3>
+                <h3 class="line"> משקל השאלון:</h3>
                 <input id="weight" type="text" name="field2" placeholder="משקל השאלון *">
-                <h3> קישור לאתר qualtrics</h3>
+                <legend><span class="number">2</span> הכנס קישור לסקר:</legend>
+                <h3 class="line"> קישור לאתר qualtrics:</h3>
                 <input id="link" type="text" name="field2" placeholder="קישור לאתר qualtrics *">
 
-                <label for="job">האם לפתוח את הסקר לסטודנטים:</label>
+                <label for="job">האם לפתוח את הסקר לסטודנטים</label>
 
                 <select id="job" name="field4">
 
@@ -260,13 +234,16 @@
 
                 </select>
             </fieldset>
-            <fieldset>
-                <legend><span class="number">2</span> לחץ אישור להעלאת הסקר</legend>
-
+           
+               <fieldset>
+                   <legend><span class="number">3</span>  לחץ אישור לשמירת שינויים או מחק שאלון </legend>
             </fieldset>
-            <input type="button" onclick="back()" value="חזור לדף מרצה " /><br />
-            <input type="button" id="dd" onclick="deletesurvey()" value="מחק שאלון מהמאגר " /><br />
-            <input type="submit" value="אישור" />
+            <div class="row">
+                <i id="deletes" class='fas fa-trash-alt' onclick="deletesurvey()"></i>
+                <!--<input type="button" id="dd" onclick="deletesurvey()" value="מחק שאלון מהמאגר " /><br />-->
+                <input id="sb" type="submit" value="אישור" />
+              
+            </div>
         </form>
     </div>
 

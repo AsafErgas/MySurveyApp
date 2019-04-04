@@ -1,5 +1,7 @@
-﻿    @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
-        @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+﻿@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+
 
         html, body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sup, sub, tt, var, b, u, i, center, ul, ol, li, dl, dt, dd, table, tr, th, td, thead, tbody, tfoot, caption, form, fieldset, legend, input, textarea, select, label, applet, object, iframe, audio, video, canvas, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
             font-size: 100%;
@@ -31,6 +33,9 @@
 
         article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
             display: block;
+        }
+        .line{
+            padding:10px;
         }
 
         audio, canvas, video {
@@ -266,7 +271,7 @@
                 }
 
                     #nav li a:active {
-                        background-color: #c00 !important;
+                        background-color: #f2f2f2 !important;
                     }
 
             #nav span:after {
@@ -288,11 +293,13 @@
                 background-color:  #f8f8f8;
                 right: 3%;
             }
+          
 
                 #nav > ul > li {
                     width: 25%;
                     height: 100%;
                     float: left;
+                      
                 }
 
                     #nav > ul > li > a {
@@ -307,10 +314,11 @@
                     @media only screen and (max-width: 1000px) {
                      #nav > ul > li > a {
                         height: 100%;
-                        font-size: 1.15em; /* 24 */
+                        font-size: 1.50em; /* 24 */
                         line-height: 2.5em; /* 60 (24) */
                         text-align: center;
                             background-color: #f8f8f8;
+                            margin-left: 17%;
                     }
 
                                       }
@@ -434,10 +442,28 @@
                 }
         }
 
-        h1 {
+        #h-head {
             text-align: center;
             font-family: 'Arimo', sans-serif;
+            color:cornflowerblue;
+             font-size:225%;
+                 margin-top: -2%;
+    margin-bottom: 2%;
         }
+        #h-s{
+             text-align: right;
+             font-family: 'Arimo', sans-serif;
+             font-size:180%;
+        text-decoration:underline;
+        margin-bottom:1%;
+             }
+         #h-t{
+             text-align: right;
+             font-family: 'Arimo', sans-serif;
+             font-size:180%;
+        text-decoration:underline;
+        margin-bottom:-2%;
+             }
         #sa :hover{
            font-weight:bolder;
         }
@@ -485,17 +511,31 @@
                                   position: fixed;
                                    left: 80%;
                                      bottom: 93%;
+                                                   }
+                                     }
+    
+@media only screen and (max-width: 1450px) {
+                                     #a1{
+                                  position: fixed;
+                                   left: 80%;
+                                     bottom: 93%;
                       
-                     
-                                                     }
-                                                                     }
+                      }
+                                     }
                          
                          #pp{
                          position: fixed;
-                         left: 91%;
+                         left: 90%;
                          bottom: 93%;
                          font-size: 120%;
                           z-index:-1;
+                               }
+                            #pp2{
+                         position: fixed;
+                             left: 93%;
+                          bottom: 93%;
+                         font-size: 120%;
+                          z-index:1;
                                }
       
         .container-fluid{
@@ -518,6 +558,16 @@
                       
                       
                                            }
+        #ms1 {
+                    float: left;
+                    color: cornflowerblue;
+                    font-family: 'Exo', sans-serif;
+                    font-size: 35px;
+                    font-weight: 300;
+                    position: fixed;
+                    right: 86%;
+                    top: 2%;
+                    }
            
         
         
@@ -535,11 +585,52 @@
                #ms2{
                     color: #5379fa !important;
                       }
+                #ms3s{
+                    color: #5379fa !important;
+                      }
 
              .dtable{
                 background-color:white;
                 width:100%;
                   height:100%;
+                      display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                direction: rtl;
+                text-align:center;
                     }
-            
-        
+             th{
+                 text-align:center;
+             }
+            #st{
+               margin-top:4%;
+            }
+
+            #all{
+                    position: relative;
+                    top: 105px;
+                    direction: rtl;
+                    color: black;
+                        font-size: 160%;
+                  }
+              #all2{
+                    position: relative;
+                    top: 105px;
+                    direction: rtl;
+                    color: black;
+                        font-size: 160%;
+                  }
+            #sb{
+                    width: 50%;
+                     position: relative;
+                     left: 24%;
+
+            }
+            #deletes{
+            position: relative;
+    right: 76%;
+    top: 57px;
+    font-size: 295%;
+}
+            }
+  

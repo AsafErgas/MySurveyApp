@@ -1,0 +1,241 @@
+
+
+
+.body{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+	background-size: cover;
+	-webkit-filter: blur(5px);
+	z-index: 0;
+}
+
+.grad{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	z-index: 1;
+	opacity: 0.7;
+}
+
+.header{
+	position: absolute;
+	top: calc(50% - 35px);
+	left: calc(50% - 255px);
+	z-index: 2;
+}
+
+.header div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
+}
+
+.header div span{
+	color: #5379fa !important;
+}
+
+.login{
+	position: absolute;
+	top: calc(50% - 75px);
+	left: calc(50% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+
+.login input[type=text]{
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+.login input[type=password]{
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+	margin-top: 10px;
+}
+
+.login input[type=button]{
+	width: 260px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #a18d6c;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+
+.login input[type=button]:hover{
+	opacity: 0.8;
+}
+
+.login input[type=button]:active{
+	opacity: 0.6;
+}
+
+.login input[type=text]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=password]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=button]:focus{
+	outline: none;
+}
+
+::-webkit-input-placeholder{
+   color: rgba(255,255,255,0.6);
+}
+
+::-moz-input-placeholder{
+   color: rgba(255,255,255,0.6);
+}
+
+   .form-style-5 {
+            max-width: 500px;
+            padding: 10px 20px;
+            background: #f4f7f8;
+            margin: 10px auto;
+            padding: 20px;
+            background: #f4f7f8;
+            border-radius: 8px;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+
+            .form-style-5 fieldset {
+                border: none;
+            }
+
+            .form-style-5 legend {
+                font-size: 1.4em;
+                margin-bottom: 10px;
+            }
+
+            .form-style-5 label {
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .form-style-5 input[type="text"],
+            .form-style-5 input[type="date"],
+            .form-style-5 input[type="datetime"],
+            .form-style-5 input[type="email"],
+            .form-style-5 input[type="number"],
+            .form-style-5 input[type="search"],
+            .form-style-5 input[type="time"],
+            .form-style-5 input[type="url"],
+            .form-style-5 textarea,
+            .form-style-5 select {
+                font-family: Georgia, "Times New Roman", Times, serif;
+                background: rgba(255,255,255,.1);
+                border: none;
+                border-radius: 4px;
+                font-size: 15px;
+                margin: 0;
+                outline: 0;
+                padding: 10px;
+                width: 100%;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                background-color: #e8eeef;
+                color: #8a97a0;
+                -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                margin-bottom: 30px;
+            }
+
+                .form-style-5 input[type="text"]:focus,
+                .form-style-5 input[type="date"]:focus,
+                .form-style-5 input[type="datetime"]:focus,
+                .form-style-5 input[type="email"]:focus,
+                .form-style-5 input[type="number"]:focus,
+                .form-style-5 input[type="search"]:focus,
+                .form-style-5 input[type="time"]:focus,
+                .form-style-5 input[type="url"]:focus,
+                .form-style-5 textarea:focus,
+                .form-style-5 select:focus {
+                    background: #d2d9dd;
+                }
+
+            .form-style-5 select {
+                -webkit-appearance: menulist-button;
+                height: 35px;
+            }
+
+            .form-style-5 .number {
+                background: #1abc9c;
+                color: #fff;
+                height: 30px;
+                width: 30px;
+                display: inline-block;
+                font-size: 0.8em;
+                margin-right: 4px;
+                line-height: 30px;
+                text-align: center;
+                text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+                border-radius: 15px 15px 15px 0px;
+            }
+            #dd{
+                color:red;
+            }
+
+            .form-style-5 input[type="submit"],
+            .form-style-5 input[type="button"] {
+                position: relative;
+                display: block;
+                padding: 19px 39px 18px 39px;
+                color: #FFF;
+                margin: 0 auto;
+                background: #1abc9c;
+                font-size: 18px;
+                text-align: center;
+                font-style: normal;
+                width: 100%;
+                border: 1px solid #16a085;
+                border-width: 1px 1px 3px;
+                margin-bottom: 10px;
+            }
+
+                .form-style-5 input[type="submit"]:hover,
+                .form-style-5 input[type="button"]:hover {
+                    background: #109177;
+                }

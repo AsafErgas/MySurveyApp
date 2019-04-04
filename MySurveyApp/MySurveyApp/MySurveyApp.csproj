@@ -209,7 +209,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Pages\css\style.css" />
+    <Content Include="Pages\css\style2.css" />
     <Content Include="Pages\existslab.html" />
     <Content Include="Pages\js\prefixfree.min.js" />
     <Content Include="Pages\Labspage.html" />
@@ -220,6 +220,7 @@
     <Content Include="Pages\Lecturpage.html" />
     <Content Include="Pages\editSurvey.html" />
     <Content Include="Pages\Addstudent.html" />
+    <Content Include="Pages\test.html" />
     <Content Include="Pages\UploadSurvey.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -246,6 +247,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\proj.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

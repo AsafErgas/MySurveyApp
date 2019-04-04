@@ -5,6 +5,8 @@
     <title>Welcome!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,7 +22,9 @@
     <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" />
+   
+    <link href="css/style2.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <script src="../Scripts/ajaxCalls.js"></script>
     <script>
 
@@ -36,7 +40,7 @@
         function loadSettings() {
             data = JSON.parse(localStorage.getItem('Data'));
             name = " ברוכים הבאים  " + data[0].Name + " " + data[0].FamilyName;
-            document.getElementById("wel").innerHTML = name;
+            document.getElementById("h-head").innerHTML = name;
             id = data[0].Id;
             open = 1;
             ajaxCall("GET", "../api/survey/?lecId=" + id + "&Isopen=" + open, "", getSuccess, error);
@@ -52,16 +56,22 @@
                         data: data,
                         pageLength: 5,
                         columns: [
-
+                             {
+                                 data: "SurveyId"
+                             },
                             {
-                                data: "Currentnumofpers"
+                                data: "Topic"
                             },
-                         {
-                             data: "Isopensurvey"
-                         },
-                           {
-                               data: "Link"
-                           },
+                        {
+                            data: "Details"
+                        },
+                        {
+                            data: "Auther"
+                        },
+                             {
+                                 data: "Lecturerid"
+                             },
+
                               {
                                   data: "Surveyweight"
                               },
@@ -72,49 +82,44 @@
                         {
                             data: "Maxperson"
                         },
+                            {
+                                data: "Uploaddate", render: function (data, type, row, meta) {
+
+
+                                    d = data.split("T");
+                                    df=d[0].split("-").reverse().join("-");
+                                    return df;
+
+                                }
+                            },
                          {
                              data: "Enddate", render: function (data, type, row, meta) {
 
 
                                  d = data.split("T");
-
-                                 return d[0];
+                                 df = d[0].split("-").reverse().join("-");
+                                 return df;
 
                              }
                          },
 
-                        {
-                            data: "Uploaddate", render: function (data, type, row, meta) {
+                    
 
-
-                                d = data.split("T");
-
-                                return d[0];
-
-                            }
-                        },
-
+                      
+                         
                          {
-                             data: "Lecturerid"
+                             data: "Link"
                          },
 
 
-                        {
-                            data: "Auther"
-                        },
-
-
+                      
                          {
-                             data: "Details"
+                             data: "Isopensurvey"
                          },
-
-
-                        {
-                            data: "Topic"
-                        },
-                       {
-                           data: "SurveyId"
-                       }
+                          {
+                              data: "Currentnumofpers"
+                          },
+                      
 
 
                         ]
@@ -165,22 +170,23 @@
                     data: data,
                     pageLength: 5,
                     columns: [
-                           {
-                               render: function (data, type, row, meta) {
-                                   editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
-                                   return editBtn;
-                               }
-                           },
-
+                         
+            {
+                data: "SurveyId"
+            },
+                            {
+                                data: "Topic"
+                            },
                         {
-                            data: "Currentnumofpers"
+                            data: "Details"
                         },
-                         {
-                             data: "Isopensurvey"
-                         },
-                           {
-                               data: "Link"
-                           },
+                        {
+                            data: "Auther"
+                        },
+                             {
+                                 data: "Lecturerid"
+                             },
+
                               {
                                   data: "Surveyweight"
                               },
@@ -191,49 +197,55 @@
                         {
                             data: "Maxperson"
                         },
+                          {
+                              data: "Uploaddate", render: function (data, type, row, meta) {
+
+
+                                  d = data.split("T");
+                                  df = d[0].split("-").reverse().join("-");
+                                  return df;
+
+                              }
+                          },
                          {
                              data: "Enddate", render: function (data, type, row, meta) {
 
 
                                  d = data.split("T");
-
-                                 return d[0];
+                                 df = d[0].split("-").reverse().join("-");
+                                 return df;
 
                              }
                          },
-                       
-                        {
-                    data: "Uploaddate", render: function (data, type, row, meta) {
-
-
-                       d = data.split("T");
-
-                    return d[0];
-
-                            }
-                           },
-                                          
-                         {
-                             data: "Lecturerid"
-                         },
 
                       
-                        {
-                            data: "Auther"
-                        },
 
-                       
+
+
+
+
+
+
+
                          {
-                             data: "Details"
+                             data: "Link"
                          },
-                     
 
-                        {
-                            data: "Topic"
-                        },
-                       {
-                           data: "SurveyId"
-                       }
+
+
+                         {
+                             data: "Isopensurvey"
+                         },
+                          {
+                              data: "Currentnumofpers"
+                          },
+                            {
+                                render: function (data, type, row, meta) {
+                                    editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
+                                    //e = "<i class='fas fa-edit' onclick='buttonEvents()'></i>"
+                                    return editBtn;
+                                }
+                            }
 
 
                     ]
@@ -259,7 +271,13 @@
         function error2(err) {
             swal("Error: " + err);
         }
+        $('#allmysurvey').DataTable({
+            responsive: true
+        });
 
+        $('#opensurvey').DataTable({
+            responsive: true
+        });
 
 
     </script>
@@ -274,7 +292,7 @@
   
     <nav class="navbar navbar-default navbar-header">
         <div class="row">
-            <div id="ms" class="hidden-md hidden-sm hidden-xs" >My<span id="ms2">survey</span></div>
+          <div id="ms" class="hidden-md hidden-sm hidden-xs" >My<span id="ms2">survey</span></div>
             <nav id="nav" role="navigation">
 
                 <ul class="clearfix" >
@@ -321,31 +339,31 @@
     <div class="container">
         <form id="pForm">
             <div>
-                <h1 id="wel"> ברוכים הבאים </h1>
+                <h1 id="h-head"> !ברוכים הבאים </h1>
             </div>
             <div>
                 <br />
                 <br />
-                <h1>:הסקרים הפתוחים שלי</h1>
+                <h1 id="h-s">:הסקרים הפתוחים שלי</h1>
                 <br />
                 <div class="dtable">
                     <table id="opensurvey" style="width:100%">
                         <thead>
                             <tr id="f">
                            
-                                <th>מספר עדכני של עונים על הסקר</th>
-                                <th>?האם הסקר פתוח לסטודנטים</th>
-                                <th>קישור לשאלון</th>
-                                <th>משקל השאלון </th>
-                                <th>מספר מקסימלי של עונים</th>
-                                <th>מספר מינימלי של עונים</th>
-                                <th>תאריך סגירת הסקר</th>
-                                <th> תאריך עלייה לאוויר</th>
-                                <th>ת.ז מחבר הסקר </th>
-                                <th>מחבר הסקר  </th>
-                                <th>פירוט על הסקרר</th>
-                                <th>נושא הסקר</th>
                                 <th>קוד סקר</th>
+                                <th>נושא</th>
+                                <th>פרטי השאלון</th>
+                                <th>מחבר </th>
+                                <th>ת.ז מחבר השאלון</th>
+                                <th>משקל השאלון</th>
+                                <th>מס' מינ' של עונים</th>
+                                <th> מס' מקס' של עונים</th>
+                                <th>תאריך התחלה </th>
+                                <th>תאריך סיום  </th>
+                                <th>קישור לשאלון</th>
+                                <th>?פתוח לסטודנטים</th>
+                                <th>מס' עדכני של עונים</th>
                                
                             </tr>
                         </thead>
@@ -354,28 +372,28 @@
 
                     <br />
                     <br />
-                    <h1>:כל הסקרים שלי</h1>
+                    <h1 id="h-t">:כל הסקרים שלי</h1>
                     <br />
-                <div class="dtable">
+                <div id="st" class="dtable">
                     <table id="allmysurvey" style="width:100%">
                         <thead>
                             <tr id="f">
-                                <th></th>
+                               
 
-                                <th>מספר עדכני של עונים על הסקר</th>
-                                <th>?האם הסקר פתוח לסטודנטים</th>
-                                <th>קישור לשאלון</th>
-                                <th>משקל השאלון </th>
-                                <th>מספר מקסימלי של עונים</th>
-                                <th>מספר מינימלי של עונים</th>
-                                <th>תאריך סגירת הסקר</th>
-                                <th> תאריך עלייה לאוויר</th>
-                                <th>ת.ז מחבר הסקר </th>
-                                <th>מחבר הסקר  </th>
-                                <th>פירוט על הסקרר</th>
-                                <th>נושא הסקר</th>
                                 <th>קוד סקר</th>
-                                
+                                <th>נושא</th>
+                                <th>פרטי השאלון</th>
+                                <th>מחבר </th>
+                                <th>ת.ז מחבר השאלון</th>
+                                <th>משקל השאלון</th>
+                                <th>מס' מינ' של עונים</th>
+                                <th> מס' מקס' של עונים</th>
+                                <th>תאריך התחלה </th>
+                                <th>תאריך סיום  </th>
+                                <th>קישור לשאלון</th>
+                                <th>?פתוח לסטודנטים</th>
+                                <th>מס' עדכני של עונים</th>
+                                <th>ערוך שאלון</th>
                             </tr>
                         </thead>
                     </table>
