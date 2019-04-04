@@ -598,7 +598,13 @@
                 white-space: nowrap;
                 direction: rtl;
                 text-align:center;
-                    }
+                    }#stable{
+                             position: relative;
+    top: 120px;
+    left: 31%;
+    width: 32%;
+                     }
+
              th{
                  text-align:center;
              }
@@ -633,5 +639,15 @@
     top: 57px;
     font-size: 295%;
 }
-            }
-  
+            
+            #file{
+                    position: relative;
+                    top: 67px;
+    
+                    direction: rtl;
+                   }
+       #Pstudent{
+          position:relative;
+          top:50px;
+          direction:rtl;
+       }

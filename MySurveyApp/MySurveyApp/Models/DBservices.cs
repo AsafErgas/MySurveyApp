@@ -832,7 +832,54 @@ public class DBservices
 
 
 
+    //XXXXXXXXX-READ student FUN - START-XXXXXXXXXXXXX
 
+    public List<Student> ReadStudent(string conString, string tableName)
+    {
+
+        SqlConnection con = null;
+        List<Student> lc = new List<Student>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName ;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Student s = new Student();
+                s.Username = (string)dr["username"];
+                s.Password = (string)dr["password"];
+              
+
+
+
+
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXX-READ student END-XXXXXXXXXXXX
 
 
 

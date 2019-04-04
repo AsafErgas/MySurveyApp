@@ -46,6 +46,12 @@ namespace MySurveyApp.Models
             int numAffected = dbs.insertstudent(this);
             return numAffected;
         }
+        public List<Student> ReadStudent()
+        {
+            DBservices dbs = new DBservices();
+            List<Student> lc = dbs.ReadStudent("PersonStringName", "Student");
+            return lc;
+        }
 
 
 

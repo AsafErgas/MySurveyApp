@@ -24,11 +24,21 @@
     <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-    
-    <link href="style.css" rel="stylesheet" />
+
+    <link href="css/style2.css" rel="stylesheet" />
+   
     <script src="../Scripts/ajaxCalls.js"></script>
   
   <script>
+
+      $(document).ready(function () {
+          ajaxCall("GET", "../api/allstudent", "", getSuccess, error);
+          return false;
+      });
+
+
+
+
       function Addstudent(u,p) {
           Student = {
               Username: u,
@@ -37,6 +47,45 @@
 
           ajaxCall("POST", "../api/student", JSON.stringify(Student), success, error);
 
+      }
+
+      function getSuccess(data) {
+
+
+
+          try {
+              tbl = $('#allstudent').DataTable({
+                  data: data,
+                  pageLength: 5,
+                  columns: [
+
+          {
+              data: "Username"
+          },
+                          {
+                              data: "Password"
+                          }
+                     
+
+
+                  ]
+              });
+
+
+
+
+          }
+
+
+          catch (err) {
+              alert(err);
+          }
+
+
+      }
+      //this function is activated in case of a failure
+      function error(err) {
+          swal("Error: " + err);
       }
 
 
@@ -195,13 +244,53 @@
             </nav>
         </div>
     </nav>
-    <div>
-        <input type="file" id="excelfile" />
-        <input type="button" id="viewfile" value="Export To Table" onclick="ExportToTable()" />
-    </div>
+    <!--<div class="row" id="file">
+
+        <input type="file" id="excelfile"  />
+        <input type="button" id="viewfile" value="הצגת נתונים:" onclick="ExportToTable()"  />
+    </div>-->
         <br />
         <br />
     
-    <table id="exceltable"></table> 
+   
+
+
+    
+
+        <div id="stable" class="dtable">
+            <table id="allstudent" style="width:100%">
+                <thead>
+                    <tr id="f">
+
+                        <th>שם משתמש</th>
+                        <th>סיסמא</th>
+                      
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+
+
+
+    <div id="Pstudent" class="form-style-5">
+        <form id="pForm">
+            <fieldset>
+                <legend><span class="number">1</span> העלאת קובץ שמות משתמש: </legend>
+                <input type="file" id="excelfile" />
+                <input type="button" id="viewfile" value="הצגת נתונים:" onclick="ExportToTable()" />
+
+
+            </fieldset>
+        </form>
+        <table id="exceltable"></table>
+    </div>
+
+
+
+
+
+
 </body>
 </html>
