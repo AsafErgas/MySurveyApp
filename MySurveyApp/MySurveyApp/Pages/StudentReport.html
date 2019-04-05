@@ -4,6 +4,8 @@
     <title>Welcome!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,35 +16,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <script src="../Scripts/ajaxCalls.js"></script>
-    <!--<style>
-        .activ {
-            color: black;
-            background-color: azure;
-        }
-
-        .container-fluid {
-            background-color: lightblue;
-        }
-
-        body {
-            background-color: lightblue;
-        }
-
-        .container {
-            background-color: azure;
-        }
-
-        li {
-            background-color: azure;
-        }
-
-        #photo1 {
-            height: 100px;
-            width: 100px;
-        }-->
-    <!--</style>-->
+    <link href="style.css" rel="stylesheet" />
+    <link href="css/style2.css" rel="stylesheet" />
     <script type="text/javascript">
         
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -80,6 +59,7 @@
         var count = 0;
         function getSuccess(data) {
 
+            var sum = 0;
             for (var i = 0; i < data.length; i++) {
                 sum = data[i].Surveyammount + data[i].Labsammount;
                 if (sum >= 10) {
@@ -112,6 +92,20 @@
                         },
                         {
                             data: "Labsammount"
+                        },
+                        {
+                            data: function (data, type, row, meta) {
+                                sum = data.Surveyammount + data.Labsammount;
+
+                                return sum;
+                            }
+                        },
+                        {
+                            render: function (data, type, row, meta) {
+                                detBtn = "<button type='button' class='detBtn' onclick='buttonEvents7()' > עוד פרטים </button>";
+                 
+                                return detBtn;
+                            }
                         }
 
                     ]
@@ -125,6 +119,18 @@
             }
             
 
+        }
+        function buttonEvents7() {
+            $(".detBtn").click(function () {
+                row = (this.parentNode).parentNode;
+                var data = tbl.row($(this).parents('tr')).data();
+
+                localStorage.setItem('d', JSON.stringify(data));
+
+                window.location.href = "showdetails.html";
+
+
+            })
         }
 
         // this function is activated in case of a failure
@@ -155,7 +161,7 @@
 
 
 
-    <nav class="navbar navbar-default">
+    <!--<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Tinder</a>
@@ -166,29 +172,72 @@
                 <li class="active"><a href="landingpage.html">Landing Page</a></li>
             </ul>
         </div>
+    </nav>-->
+
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+            <div id="ms" class="hidden-md hidden-sm hidden-xs">My<span id="ms2">survey</span></div>
+            <nav id="nav" role="navigation">
+
+                <ul class="clearfix">
+
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
+
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="">עריכת רשימת סטודנטים</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="existslab.html">צפייה במעבדות</a></li>
+
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
+
+                    </li>
+
+                </ul>
+                <div id="logout">
+                    <a href="Labspage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור <br />לדף הבית</p> </a>
+                </div>
+            </nav>
+        </div>
     </nav>
-
-
 
 
     <div class="container">
         <form id="pForm">
             <div>
-                <input type="button" onclick="back()" value="חזור לדף מרצה " />
+              
                 <h1 id="wel"> welcome </h1>
             </div>
-            <div>
-                <h1>:דוח התקדמות סטודנט</h1>
+            <div class="dtable">
+                
                 <table id="statustable" style="width:100%">
                     <thead>
                         <tr id="f">
                             <th>שם משתמש</th>
-                           
                             <th>שעות ניסוי</th>
-                            <th>שעות מעבדה  </th>
-                          
-                            
-
+                            <th>שעות מעבדה  </th>  
+                            <th>סה"כ</th>     
+                            <th></th>                  
                         </tr>
                     </thead>
                 </table>

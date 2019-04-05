@@ -10,17 +10,17 @@ using MySurveyApp.Models;
 namespace MySurveyApp.Controllers
 {
 
-    public class StatusController : ApiController
+    public class studsurveydetailsController : ApiController
     {
 
 
 
         [HttpGet]
-        [Route("api/statusstudent")]
-        public IEnumerable<Status> Get()
+        [Route("api/allsurveydetails")]
+        public IEnumerable<studsurveydetails> Get(string usern)
         {
-            Status s = new Status();
-            List<Status> M = s.Readstatus();
+            studsurveydetails s = new studsurveydetails();
+            List<studsurveydetails> M = s.Readdetails(usern);
             return M;
         }
 

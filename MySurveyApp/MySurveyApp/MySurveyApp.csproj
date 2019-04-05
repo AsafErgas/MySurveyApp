@@ -186,6 +186,8 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturerController.cs" />
+    <Compile Include="Controllers\studlabdetailsController.cs" />
+    <Compile Include="Controllers\studsurveydetailsController.cs" />
     <Compile Include="Controllers\StatusController .cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\LabController .cs" />
@@ -196,6 +198,8 @@
     </Compile>
     <Compile Include="Models\DBservices.cs" />
     <Compile Include="Models\Lecturer.cs" />
+    <Compile Include="Models\studlabdetails.cs" />
+    <Compile Include="Models\studsurveydetails.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Lab.cs" />
@@ -214,6 +218,7 @@
     <Content Include="Pages\js\prefixfree.min.js" />
     <Content Include="Pages\Labspage.html" />
     <Content Include="Pages\Lecturloginpage.html" />
+    <Content Include="Pages\showdetails.html" />
     <Content Include="Pages\style.css" />
     <Content Include="Pages\AddstudentFile.html" />
     <Content Include="Pages\StudentReport.html" />

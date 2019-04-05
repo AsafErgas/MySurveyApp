@@ -881,10 +881,104 @@ public class DBservices
 
 
 
+    //XXXXXXXXX-READ survey details FUN - START-XXXXXXXXXXXXX
+
+    public List<studsurveydetails> Readdetails(string conString, string tableName, string usern)
+    {
+
+        SqlConnection con = null;
+        List<studsurveydetails> lc = new List<studsurveydetails>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName+ " WHERE username= '" +usern+ "'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                studsurveydetails s = new studsurveydetails();
+                s.Username = (string)dr["username"];
+                s.SurveyId = (string)dr["surveyId"];
+                s.Surveyweight= Convert.ToSingle(dr["surveyweight"]);
 
 
 
 
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXX-READ survey details END-XXXXXXXXXXXX
+
+
+    //XXXXXXXXX-READ survey details FUN - START-XXXXXXXXXXXXX
+
+    public List<studlabdetails> Readdetails2(string conString, string tableName, string usern)
+    {
+
+        SqlConnection con = null;
+        List<studlabdetails> lc = new List<studlabdetails>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE username= '" + usern + "'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                studlabdetails s = new studlabdetails();
+                s.Username = (string)dr["username"];
+                s.LabId = (string)dr["labId"];
+                s.Labweight = Convert.ToSingle(dr["labweight"]);
+
+
+
+
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXX-READ survey details END-XXXXXXXXXXXX
 
 
 

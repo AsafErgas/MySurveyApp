@@ -1,0 +1,248 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://osvaldas.info/examples/main.js"></script>
+    <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+   
+    <link href="css/style2.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script>
+
+        $(function () {
+            $('#nav li:has(ul)').doubleTapToGo();
+        });
+        $(document).ready(function () {
+            loadSettings();
+            return false;
+        });
+
+        var id = "";
+        function loadSettings() {
+            data = JSON.parse(localStorage.getItem('d'));
+            name = " כל הסקרים והמעבדות שביצע משתמש  " + data.Username;
+            document.getElementById("h-head").innerHTML = name;
+            un = data.Username;
+
+            ajaxCall("GET", "../api/allsurveydetails/?usern=" + un, "", getSuccess2, error2);
+            ajaxCall("GET", "../api/alllabsdetails/?usern=" + un, "", getSuccess, error);
+        }
+
+
+        function getSuccess(data) {
+
+
+
+            try {
+                tbl = $('#lsurvey').DataTable({
+                    data: data,
+                    pageLength: 5,
+                    columns: [
+
+            {
+                data: "LabId"
+            },
+                            {
+                                data: "Labweight"
+                            }
+
+
+                    ]
+                });
+
+
+
+
+            }
+
+
+            catch (err) {
+                alert(err);
+            }
+
+
+        }
+        //this function is activated in case of a failure
+
+
+        function error(err) {
+            swal("Error: " + err);
+        }
+ 
+
+     
+
+
+        function getSuccess2(data) {
+
+
+
+            try {
+                tbl = $('#dsurvey').DataTable({
+                    data: data,
+                    pageLength: 5,
+                    columns: [
+                         
+            {
+                data: "SurveyId"
+            },
+                            {
+                                data: "Surveyweight"
+                            }
+
+
+                    ]
+                });
+
+
+
+
+            }
+
+
+            catch (err) {
+                alert(err);
+            }
+
+
+        }
+        //this function is activated in case of a failure
+     
+
+        function error2(err) {
+            swal("Error: " + err);
+        }
+        $('#dsurvey').DataTable({
+            responsive: true
+        });
+
+        function back(){
+            window.location.href = "StudentReport.html";
+        }
+
+
+    </script>
+
+
+
+
+
+
+</head>
+<body>
+  
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+          <div id="ms" class="hidden-md hidden-sm hidden-xs" >My<span id="ms2">survey</span></div>
+            <nav id="nav" role="navigation">
+
+                <ul class="clearfix" >
+
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
+
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="">עריכת רשימת סטודנטים</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="" ><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="existslab.html">צפייה במעבדות</a></li>
+                       
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
+
+                    </li>
+
+                </ul>
+                <div id="logout">
+                    <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a" href="Lecturloginpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">התנתק <br />מהמערכת</p> </a>
+                </div>
+            </nav>
+        </div>
+    </nav>
+    <div class="container">
+        <form id="pForm">
+            <div>
+                <h1 id="h-head"> !ברוכים הבאים </h1>
+            </div>
+            <div>
+                <br />
+                <br />
+                <h1 id="h-s">:הסקרים הפתוחים שלי</h1>
+                <br />
+                <div class="dtable">
+                    <table id="dsurvey" style="width:100%">
+                        <thead>
+                            <tr id="f">
+                           
+                                <th>קוד שאלון</th>
+                                <th>משקל</th>
+                             
+                               
+                            </tr>
+                        </thead>
+                    </table>
+                    </div>
+
+                    <br />
+                    <br />
+                    <h1 id="h-t">:כל הסקרים שלי</h1>
+                    <br />
+                <div id="st" class="dtable">
+                    <table id="lsurvey" style="width:100%">
+                        <thead>
+                            <tr id="f">
+                                <th>קוד מעבדה</th>
+                                <th>משקל</th>
+
+                               
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <button type="button" onclick="back()">Click Me!</button>
+
+            </div>
+        </form>
+
+
+    </div>
+
+</body>
+</html>
