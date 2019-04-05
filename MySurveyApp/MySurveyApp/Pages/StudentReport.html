@@ -16,7 +16,7 @@
     <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
-    <style>
+    <!--<style>
         .activ {
             color: black;
             background-color: azure;
@@ -41,8 +41,8 @@
         #photo1 {
             height: 100px;
             width: 100px;
-        }
-    </style>
+        }-->
+    <!--</style>-->
     <script type="text/javascript">
         
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -81,8 +81,8 @@
         function getSuccess(data) {
 
             for (var i = 0; i < data.length; i++) {
-
-                if (data[i].Sum >= 5) {
+                sum = data[i].Surveyammount + data[i].Labsammount;
+                if (sum >= 10) {
                     count+=1
                 }
             
@@ -94,8 +94,9 @@
                     data: data,
                     pageLength: 5,
                     "rowCallback": function (row, data, index) {
+                        sum = data.Surveyammount + data.Labsammount;
                        
-                            if (data.Sum >= 5) {
+                            if (sum >= 10) {
                                 $('td', row).css('background-color', 'Green');
                             }
                         
@@ -107,25 +108,11 @@
                             data: "Username"
                         },
                         {
-                            data: "SurveyId"
-                        },
-
-                        {
                             data: "Surveyammount"
                         },
                         {
                             data: "Labsammount"
-                        },
-                        {
-                            data: "LabId"
                         }
-                        ,
-                        {
-                            data: "Sum"
-                        }
-
-
-
 
                     ]
                 });
@@ -196,11 +183,11 @@
                     <thead>
                         <tr id="f">
                             <th>שם משתמש</th>
-                            <th>מספר ניסוי</th>
+                           
                             <th>שעות ניסוי</th>
                             <th>שעות מעבדה  </th>
-                            <th>מספר מעבדה  </th>
-                            <th>סה"כ הכל</th>
+                          
+                            
 
                         </tr>
                     </thead>

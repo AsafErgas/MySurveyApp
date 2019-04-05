@@ -397,12 +397,10 @@ public class DBservices
             {   // Read till the end of the data into a row
                 Status s = new Status();
                 s.Username = (string)dr["username"];
-                s.SurveyId = (string)dr["surveyId"];
+               
                 s.Surveyammount = Convert.ToInt32(dr["surveyammount"]);
                 s.Labsammount = Convert.ToInt32(dr["labsammount"]);
-                s.LabId= (string)dr["labId"];
-                s.Sum= Convert.ToInt32(dr["sum"]);
-
+               
 
                 lc.Add(s);
             }
@@ -496,7 +494,7 @@ public class DBservices
     {
 
 
-        string command = "DELETE from studentstatus where surveyId='" + sid +"'";
+        string command = "DELETE from studentsurveystatus where surveyId='" + sid +"'";
         return command;
     }
     private String BuildInsertCommand4(Survey s, string sid)
