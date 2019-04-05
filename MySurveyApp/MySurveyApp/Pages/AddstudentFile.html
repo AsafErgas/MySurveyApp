@@ -50,39 +50,59 @@
       }
 
       function getSuccess(data) {
+          var str = '';
+          
+          str = "<table id='ttt'>";
+          str += "<tr> <th>שם משתמש</th> <th>סיסמא</th> </tr>";
+          
+          for (var i = 0; i < data.length; i++) {
+              str += "<tr>";
+             
+              for (var j = 0; j < 1; j++) {
+                  str += "<td >" + data[i].Username + "</td>";
+                  str += "<td >" + data[i].Password + "</td>";
+              }
+              str += "</td>";
 
 
 
-          try {
-              tbl = $('#allstudent').DataTable({
-                  data: data,
-                  pageLength: 5,
-                  columns: [
 
-          {
-              data: "Username"
-          },
-                          {
-                              data: "Password"
-                          }
+          }
+          document.getElementById("d1").innerHTML = str;
+
+
+          }
+
+          //try {
+          //    tbl = $('#allstudent').DataTable({
+          //        data: data,
+          //        pageLength: 5,
+          //        columns: [
+
+          //{
+          //    data: "Username"
+          //},
+          //                {
+          //                    data: "Password"
+          //                }
                      
 
 
-                  ]
-              });
+          //        ]
+          //    });
 
 
 
 
-          }
+          //}
 
 
-          catch (err) {
-              alert(err);
-          }
+          //catch (err) {
+          //    alert(err);
+          //}
 
 
-      }
+      //}
       //this function is activated in case of a failure
       function error(err) {
           swal("Error: " + err);
@@ -257,7 +277,7 @@
 
     
 
-        <div id="stable" class="dtable">
+        <!--<div id="stable" class="dtable">
             <table id="allstudent" style="width:100%">
                 <thead>
                     <tr id="f">
@@ -269,9 +289,9 @@
                     </tr>
                 </thead>
             </table>
-        </div>
+        </div>-->
 
-
+    <div id="d1"></div>
 
 
     <div id="Pstudent" class="form-style-5">

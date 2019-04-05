@@ -651,3 +651,45 @@
           top:50px;
           direction:rtl;
        }
+       #piechart{
+           position:relative;
+               top: 90px;
+               left:37%;
+       }
+       #ts{
+           position:relative;
+           left:22%;
+           width:50%;
+       }
+         #tl{
+           position:relative;
+           left:22%;
+           width:50%;
+       }
+         #w4{
+            text-align:center;
+                 direction: rtl;
+    font-size: 180%;
+    text-decoration: underline;
+    margin-bottom: 50px;
+}
+         #hh{
+
+             position:relative;
+                left: 47%;
+    top: 67px;
+    font-size: 30px;
+    text-decoration: underline;
+
+         }
+         #ddtable{
+             width:80%;
+                 position: relative;
+    left: 8%;
+         }
+         #ttt{
+         
+                 margin-top: 50px;
+    direction: rtl;
+    border:1px solid black;
+         }

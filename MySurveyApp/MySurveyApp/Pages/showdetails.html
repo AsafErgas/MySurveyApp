@@ -39,7 +39,7 @@
         var id = "";
         function loadSettings() {
             data = JSON.parse(localStorage.getItem('d'));
-            name = " כל הסקרים והמעבדות שביצע משתמש  " + data.Username;
+            name = data.Username+" :כל הסקרים והמעבדות שביצע משתמש  "  ;
             document.getElementById("h-head").innerHTML = name;
             un = data.Username;
 
@@ -204,9 +204,9 @@
             <div>
                 <br />
                 <br />
-                <h1 id="h-s">:הסקרים הפתוחים שלי</h1>
+                <h1 id="h-s">:סקרים שבוצעו</h1>
                 <br />
-                <div class="dtable">
+                <div id="ts" class="dtable">
                     <table id="dsurvey" style="width:100%">
                         <thead>
                             <tr id="f">
@@ -222,9 +222,9 @@
 
                     <br />
                     <br />
-                    <h1 id="h-t">:כל הסקרים שלי</h1>
+                    <h1 id="h-t">:מעבדות שבוצעו</h1>
                     <br />
-                <div id="st" class="dtable">
+                <div id="ts" class="dtable">
                     <table id="lsurvey" style="width:100%">
                         <thead>
                             <tr id="f">
