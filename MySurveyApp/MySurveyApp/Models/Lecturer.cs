@@ -14,9 +14,10 @@ namespace MySurveyApp.Models
         public string UserName { get; set; }
         public string Password { get; set; }
 
+        public bool Ise { get; set; }
 
 
-        public Lecturer(string _id , string _name, string _familyName, string _email,string _username,string _password)
+        public Lecturer(string _id, string _name, string _familyName, string _email, string _username, string _password,bool ise)
         {
 
             Id = _id;
@@ -25,10 +26,23 @@ namespace MySurveyApp.Models
             Email = _email;
             UserName = _username;
             Password = _password;
+            Ise = ise;
         }
 
         public Lecturer()
         {
+
+        }
+        public bool checking (List<Lecturer> l, string U,string P){
+            bool exs = false;
+            if ((l[0].UserName==U)&&(l[0].Password==P))
+            {
+                exs = true;
+             
+            }
+            return exs;
+
+
 
         }
 
@@ -36,35 +50,12 @@ namespace MySurveyApp.Models
         {
             DBservices dbs = new DBservices();
             List<Lecturer> lc = dbs.Login("PersonStringName", "Lecturer", UserName, Password);
+            lc[0].Ise= checking(lc, UserName, Password);
             return lc;
 
         }
 
-        //public int insert()
-        //{
-        //    DBservices dbs = new DBservices();
-        //    int numAffected = dbs.insert(this);
-        //    return numAffected;
-        //}
-
-        //public void IsActive(int a ,int id  )
-        //{
-        //    DBservices dbs = new DBservices();
-        //    dbs.Update(a,id);
-        //}
-
-        //public List<Student> Filter()
-        //{
-        //    DBservices dbs = new DBservices();
-        //    List<Student> lc = dbs.Filter("PersonStringName", "Student");
-        //    return lc;
-        //}
-        //public int Update(Person p , int id)
-        //{
-        //    DBservices dbs = new DBservices();
-        //    int numAffected = dbs.Update(p,id);
-        //    return numAffected;
-        //}
+  
 
 
     }

@@ -14,9 +14,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
 
     <script src="../Scripts/ajaxCalls.js"></script>
     <style type="text/css">
@@ -178,12 +178,16 @@
          function error(err) {
              alert("error");
          }
-         $(function () {
-             $('#datetimepicker1').datetimepicker();
-         });
-         $(function () {
-             $('#datetimepicker2').datetimepicker();
-         });
+
+        
+      
+
+         //$(function () {
+         //    $('#datetimepicker1').datetimepicker();
+         //});
+         //$(function () {
+         //    $('#datetimepicker2').datetimepicker();
+         //});
     </script>
 </head>
 
@@ -200,11 +204,11 @@
         <form id="pForm">
             <fieldset>
                 <legend><span class="number">1</span> העלאת שאלון</legend>
-                <input id="surveyid" type="text" name="field1" placeholder="קוד שאלון *">
-                <input id="topic" type="text" name="field2" placeholder="נושא שאלון *">
+                <input id="surveyid" type="text"  placeholder="קוד שאלון *">
+                <input id="topic" type="text"  placeholder="נושא שאלון *">
                 <textarea id="details" name="field3" placeholder="פירוט קצר על השאלון"></textarea>
-
-                <div class='input-group date' id='datetimepicker1'>
+               
+                <!--<div class='input-group date' id='datetimepicker1'>
                     <input type='text' class="form-control" id="uploaddate" placeholder="תאריך הפצה *" name="field2" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -216,16 +220,16 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div>-->
 
                 <!--<input id="uploaddate" type="date" name="field2" placeholder="תאריך הפצה *">-->
                 <!--<input id="enddate" type="datetime" name="field2" placeholder="תאריך סיום *">-->
                 <input id="minpers" type="text" name="field2" placeholder="מינימום עונים *">
                 <input id="maxpers" type="text" name="field2" placeholder="מקסימום עונים *">
-                <input id="auther" type="text" name="field2" placeholder="מחבר השאלון *">
-                <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
-                <input id="weight" type="number" step="any" name="field2" placeholder="משקל השאלון *">
-                <input id="link" type="text" name="field2" placeholder="קישור לאתר qualtrics *">
+                <input id="auther" type="text"  placeholder="מחבר השאלון *">
+                <input id="lecId" type="text"  placeholder="תעודת זהות מחבר השאלון *">
+                <input id="weight" type="number" step="any"  placeholder="משקל השאלון *">
+                <input id="link" type="text"  placeholder="קישור לאתר qualtrics *">
                 <label >האם לפתוח את הסקר לסטודנטים:</label>
                 <select id="job" name="field4">
 
