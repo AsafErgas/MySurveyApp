@@ -59,7 +59,12 @@ namespace MySurveyApp.Models
             return numAffected;
         }
 
-
+        public int deletestudent(string un)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.deletestudent(this, un);
+            return numAffected;
+        }
 
 
     }

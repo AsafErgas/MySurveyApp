@@ -85,7 +85,14 @@
 
                                        return editBtn;
                                    }
-                               }
+                               },
+                                {
+                                    render: function (data, type, row, meta) {
+                                        editBtn = "<button type='button' class='delBtn' onclick='buttonEvents2()' > מחק </button>";
+
+                                        return editBtn;
+                                    }
+                                }
 
 
                      ]
@@ -120,6 +127,34 @@
 
 
              })
+         }
+         function buttonEvents2() {
+             $(".delBtn").click(function () {
+                 row = (this.parentNode).parentNode;
+                 var data = tbl.row($(this).parents('tr')).data();
+                 Student = {
+                     Username: data.Username,
+                     Password: data.Password
+                
+
+
+                 }
+                 un = Student.Username;
+
+                 ajaxCall("PUT", "../api/deletestudent/?un=" + un, JSON.stringify(Student), deleteSuccess, deleterror);
+                
+
+
+             })
+         }
+
+         function deleteSuccess(data) {
+             swal("מחיקה בוצעה", "הסטודנט נמחק בהצלחה מהמערכת", "error");
+             setTimeout(function () { location.reload(); }, 2000);
+         }
+
+         function deleterror(err) {
+             alert("error");
          }
 
          function change() {
@@ -183,7 +218,7 @@
                     <li>
                         <a href=""><span>מעבדות</span></a>
                         <ul>
-                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="uploadLabspage.html">הוספת מעבדה למערכת</a></li>
                             <li><a href="showLabs.html">צפייה במעבדות</a></li>
 
                         </ul>
@@ -213,8 +248,8 @@
 
                     <th>שם משתמש</th>
                     <th>סיסמא</th>
-                    <th></th>
-
+                    <th>עריכה</th>
+                    <th>מחיקה</th>
                 </tr>
             </thead>
         </table>

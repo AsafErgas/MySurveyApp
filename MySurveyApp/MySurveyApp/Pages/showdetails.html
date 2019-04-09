@@ -26,13 +26,7 @@
     <link href="css/style2.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <script src="../Scripts/ajaxCalls.js"></script>
-    <style>
-
-        #btnExport2
-        {
-                margin-top: 400px;
-        }
-    </style>
+   
     <script>
 
         $(function () {
@@ -142,9 +136,6 @@
             responsive: true
         });
 
-        function back(){
-            window.location.href = "StudentReport.html";
-        }
 
         //excel report for survuy
         function fnExcelReport() {
@@ -219,6 +210,10 @@
             return (sa);
         }
 
+
+        function moveback() {
+            window.location.href = "StudentReport.html";
+        }
     </script>
 
 
@@ -257,7 +252,7 @@
                     <li>
                         <a href=""><span>מעבדות</span></a>
                         <ul>
-                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="uploadLabspage.html">הוספת מעבדה למערכת</a></li>
                             <li><a href="showLabs.html">צפייה במעבדות</a></li>
                        
                         </ul>
@@ -270,7 +265,7 @@
                 </ul>
                 <div id="logout">
                     <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
-                    <a id="a" href="Lecturloginpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">התנתק <br />מהמערכת</p> </a>
+                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור <br />לדף הבית</p> </a>
                 </div>
             </nav>
         </div>
@@ -315,16 +310,17 @@
                         </thead>
                     </table>
                 </div>
-                <button type="button" onclick="back()">Click Me!</button>
-
+               
+                <button type="button" id="back" onclick="moveback();"> חזור אחורה </button>
             </div>
         </form>
 
 
     </div>
     <iframe id="txtArea1" style="display:none"></iframe>
-    <button type="button" id="btnExport2" onclick="fnExcelReport();"> הפק דוח אקסל סקרים </button>
  
+    <img  id="btnExport2"  src="images/Picture1.png"onclick="fnExcelReport();" />
+   
 
 </body>
 </html>

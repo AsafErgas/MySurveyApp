@@ -216,6 +216,7 @@
     <Content Include="Pages\css\style2.css" />
     <Content Include="Pages\css\table.css" />
     <Content Include="Pages\editLab.html" />
+    <Content Include="Pages\images\Picture1.png" />
     <Content Include="Pages\images\Rupin icon.png" />
     <Content Include="Pages\js\prefixfree.min.js" />
     <Content Include="Pages\showLabs.html" />

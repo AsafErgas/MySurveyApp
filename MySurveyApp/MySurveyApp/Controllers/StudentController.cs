@@ -47,7 +47,13 @@ namespace MySurveyApp.Controllers
 
         }
 
+        [HttpPut]
+        [Route("api/deletestudent")]
+        public void Put2([FromBody]Student s, string un)
+        {
+            s.deletestudent(un);
 
+        }
 
 
 

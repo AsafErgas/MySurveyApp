@@ -1364,7 +1364,116 @@ public class DBservices
     //XXXXXXXXXXX-EDITSURVEY- END-XXXXXXXXXXXXXXX
 
 
+    public int deletestudent(Student s, string un)
+    {
 
+        SqlConnection con;
+        SqlCommand cmd;
+        SqlCommand cmd2;
+        SqlCommand cmd3;
+        SqlCommand cmd4;
+     
+ 
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommand98(s, un);
+        String cStr2 = BuildInsertCommand99(s, un);
+        String cStr3 = BuildInsertCommand100(s, un);
+        String cStr4 = BuildInsertCommand101(s, un);
+       
+        cmd = CreateCommand(cStr, con);
+        cmd2 = CreateCommand(cStr2, con);
+        cmd3 = CreateCommand(cStr3, con);
+        cmd4 = CreateCommand(cStr4, con);
+    
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+            cmd2 = CreateCommand(cStr2, con);
+            cmd3 = CreateCommand(cStr3, con);
+            cmd4 = CreateCommand(cStr4, con);
+       
+            int numEffected = cmd.ExecuteNonQuery();
+            int numEffected2 = cmd2.ExecuteNonQuery();
+            int numEffected3 = cmd3.ExecuteNonQuery();
+            int numEffected4 = cmd4.ExecuteNonQuery();
+          
+            return numEffected + numEffected2 + numEffected3 + numEffected4;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand98(Student s, string sid)
+    {
+
+
+        string command = "DELETE from studentstatus where username='" + sid + "'";
+        return command;
+    }
+    private String BuildInsertCommand99(Student s, string sid)
+    {
+
+
+        string command = "DELETE from studentlabsstatus where username='" + sid + "'";
+        return command;
+    }
+    private String BuildInsertCommand100(Student s, string sid)
+    {
+
+
+        string command = "DELETE from studentsurveystatus where username='" + sid + "'";
+        return command;
+    }
+    private String BuildInsertCommand101(Student s, string sid)
+    {
+
+
+        string command = "DELETE from Student where username='" + sid + "'";
+        return command;
+    }
+  
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-DELETE-SURVEY-END-XXXXXXXXXXXXXXXX
 
 
 
