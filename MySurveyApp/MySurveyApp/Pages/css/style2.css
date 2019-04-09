@@ -145,8 +145,9 @@
             }
 
             .form-style-5 legend {
-                font-size: 1.4em;
+                font-size: 1.2em;
                 margin-bottom: 10px;
+                 font-family: 'Secular One', sans-serif;
             }
 
             .form-style-5 label {
@@ -202,13 +203,14 @@
             }
 
             .form-style-5 .number {
+                margin-left: 13px;
                 background: #1abc9c;
                 color: #fff;
                 height: 30px;
                 width: 30px;
                 display: inline-block;
                 font-size: 0.8em;
-                margin-right: 4px;
+                margin-right: -6px;
                 line-height: 30px;
                 text-align: center;
                 text-shadow: 0 1px 0 rgba(255,255,255,0.2);

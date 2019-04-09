@@ -26,6 +26,13 @@
     <link href="css/style2.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <script src="../Scripts/ajaxCalls.js"></script>
+    <style>
+
+        #btnExport2
+        {
+                margin-top: 400px;
+        }
+    </style>
     <script>
 
         $(function () {
@@ -139,6 +146,78 @@
             window.location.href = "StudentReport.html";
         }
 
+        //excel report for survuy
+        function fnExcelReport() {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+          
+            var textRange; var j = 0; var i=0;
+            tab = document.getElementById('dsurvey'); // id of table
+            tab2 = document.getElementById('lsurvey');
+            for (j = 0; j < tab.rows.length; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+                //tab_text=tab_text+"</tr>";
+            }
+            tab_text = tab_text + "</table>";
+            var tab_text2 = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            for (i = 0; i < tab2.rows.length; i++) {
+                tab_text2 = tab_text2 + tab2.rows[i].innerHTML + "</tr>";
+                //tab_text=tab_text+"</tr>";
+            }
+            tab_text2 = tab_text2 + "</table>"
+           
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text, tab_text2);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+            }
+            else                 //other browser not tested on IE 11
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+            return (sa);
+        }
+        //excel report for labs
+
+        function fnExcelReport2() {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange; var j = 0;
+            tab = document.getElementById('statustable'); // id of table
+
+            for (j = 0; j < tab.rows.length; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+                //tab_text=tab_text+"</tr>";
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+            }
+            else                 //other browser not tested on IE 11
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+            return (sa);
+        }
 
     </script>
 
@@ -179,7 +258,7 @@
                         <a href=""><span>מעבדות</span></a>
                         <ul>
                             <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
-                            <li><a href="existslab.html">צפייה במעבדות</a></li>
+                            <li><a href="showLabs.html">צפייה במעבדות</a></li>
                        
                         </ul>
                     </li>
@@ -224,7 +303,7 @@
                     <br />
                     <h1 id="h-t">:מעבדות שבוצעו</h1>
                     <br />
-                <div id="ts" class="dtable">
+                <div id="ts2" class="dtable">
                     <table id="lsurvey" style="width:100%">
                         <thead>
                             <tr id="f">
@@ -243,6 +322,9 @@
 
 
     </div>
+    <iframe id="txtArea1" style="display:none"></iframe>
+    <button type="button" id="btnExport2" onclick="fnExcelReport();"> הפק דוח אקסל סקרים </button>
+ 
 
 </body>
 </html>

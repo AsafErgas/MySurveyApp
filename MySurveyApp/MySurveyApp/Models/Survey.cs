@@ -61,6 +61,12 @@ namespace MySurveyApp.Models
             List<Survey> lc = dbs.ReadAllSurvey("PersonStringName", "Survey", lecId);
             return lc;
         }
+        public List<Survey> validSurvey()
+        {
+            DBservices dbs = new DBservices();
+            List<Survey> lc = dbs.validSurvey("PersonStringName", "Survey");
+            return lc;
+        }
 
         public int insertsurvey()
         {

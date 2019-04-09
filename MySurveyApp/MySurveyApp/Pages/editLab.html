@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Edit Survey</title>
+    <title>Edit Lab</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
@@ -35,37 +35,36 @@
   
     <script>
         $(document).ready(function () {
-            ShowSurvey();
-            $("#pForm1").submit(f1);
+            Showlab();
+            $("#pForm").submit(f1);
             return false;
         });
 
         function f1() {
-            Editsurvey();
+            Editlab();
             return false;
         }
 
-        function Editsurvey() {
+        function Editlab() {
 
-            Survey = {
-                SurveyId: $("#sid").val(),
-                Topic: $("#topic").val(),
-                Uploaddate: $("#uploaddate").val(),
-                Enddate: $("#enddate").val(),
+            Lab = {
+                Labid: $("#labid").val(),
+                Labtopic: $("#topic").val(),
+               Labdate: $("#uploaddate").val(),
                 Minperson: parseInt($("#minpers").val()),
                 Maxperson: parseInt($("#maxpers").val()),
-                Details: $("#details").val(),
-                Auther: $("#auther").val(),
-                Surveyweight: parseInt($("#weight").val()),
-                Lecturerid: $("#lecId").val(),
-                Link: $("#link").val(),
-                Isopensurvey: $("option[name='field']:checked").val()
+                Labdetails: $("#details").val(),
+               Director: $("#director").val(),
+               LecId: parseInt($("#lecId").val()),
+                Labweight: $("#weight").val(),
+                Lablocation: $("#location").val()
+              
 
 
             }
-            sid = Survey.SurveyId;
+            lid = Lab.Labid;
            
-            ajaxCall("PUT", "../api/editsurvey/?sid=" + sid, JSON.stringify(Survey), success, error);
+            ajaxCall("PUT", "../api/editlab/?lid=" + lid, JSON.stringify(Lab), success, error);
         }
 
 
@@ -80,48 +79,43 @@
             window.location.href = "Lecturpage.html";
         }
 
-        function ShowSurvey() {
-            s = JSON.parse(localStorage.getItem('s'));
-            $('#sid').val(s.SurveyId);
-            $('#topic').val(s.Topic);
-            $('#uploaddate').val(s.Uploaddate);
-            $('#enddate').val(s.Enddate);
-            $('#minpers').val(s.Minperson);
-            $('#maxpers').val(s.Maxperson);
-            $('#details').val(s.Details);
-            $('#auther').val(s.Auther);
-            $('#weight').val(s.Surveyweight);
-            $('#lecId').val(s.Lecturerid);
-            $('#link').val(s.Link);
-            $("input[name='field'][value = " + s.Isopensurvey + "]").prop('checked', true);
-            document.getElementById("sid").disabled = true;
+        function Showlab() {
+
+            l = JSON.parse(localStorage.getItem('l'));
+
+           $("#labid").val(l.LabId),
+            $("#topic").val(l.Labtopic),
+           $("#uploaddate").val(l.Labdate),
+         $("#minpers").val(l.Minperson),
+            $("#maxpers").val(l.Maxperson),
+             $("#details").val(l.Labdetails),
+            $("#director").val(l.Director),
+             $("#directorid").val(l.LecId),
+            $("#weight").val(l.Labweight),
+           $("#location").val(l.Lablocation)
+            document.getElementById("labid").disabled = true;
         }
-
-        function deletesurvey() {
-            
+        function deletelab() {
 
 
-            Survey = {
-                SurveyId: $("#sid").val(),
+
+            Lab = {
+                LabId: $("#labid").val(),
                 Topic: $("#topic").val(),
                 Uploaddate: $("#uploaddate").val(),
-                Enddate: $("#enddate").val(),
                 Minperson: parseInt($("#minpers").val()),
                 Maxperson: parseInt($("#maxpers").val()),
-                Details: $("#details").val(),
-                Auther: $("#auther").val(),
-                Surveyweight: parseInt($("#weight").val()),
-                Lecturerid: $("#lecId").val(),
-                Link: $("#link").val(),
-                Isopensurvey: $("option[name='field']:checked").val()
-
+                Director: $("#director").val(),
+                LecId: $("#directorid").val(),
+                Labweight: parseInt($("#weight").val()),
+                Lablocation: $("#location").val(),
 
             }
-            surId= Survey.SurveyId;
+            lid = Lab.LabId;
 
-            ajaxCall("PUT", "../api/deletesurvey/?sid=" + surId, JSON.stringify(Survey), deleteSuccess, deleterror);
+            ajaxCall("PUT", "../api/deletelab/?lid=" + lid, JSON.stringify(Lab), deleteSuccess, deleterror);
 
-           
+
         }
         function deleteSuccess(data) {
             swal("מחיקה בוצעה", "הסקר נמחק בהצלחה מהמערכת", "error");
@@ -130,12 +124,8 @@
         function deleterror(err) {
             alert("error");
         }
-        //$(function () {
-        //    $('#datetimepicker1').datetimepicker();
-        //});
-        //$(function () {
-        //    $('#datetimepicker2').datetimepicker();
-        //});
+
+     
         $(function () {
             $("#uploaddate").datepicker();
         });
@@ -175,7 +165,7 @@
                         <a href=""><span>מעבדות</span></a>
                         <ul>
                             <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
-                            <li><a href="showLabs.html">צפייה במעבדות</a></li>
+                            <li><a href="showlabs.html">צפייה במעבדות</a></li>
 
                         </ul>
                     </li>
@@ -196,54 +186,43 @@
 
 
 
-    <div id="all" class="form-style-5">
-        <form id="pForm1">
+    <div id="all5" class="form-style-5">
+        <form id="pForm">
             <fieldset>
-                <legend><span class="number">1</span> עריכת שאלון</legend>
-                <br />
-                <h3 class="upload"> קוד שאלון:</h3>
-                <input id="sid" type="text" name="field1" placeholder="קוד שאלון *">
-                <h3  class="upload"> נושא השאלון:</h3>
-                <input id="topic" type="text" name="field2" placeholder="נושא שאלון *">
-                <h3  class="upload"> פרטי השאלון:</h3>
-                <textarea id="details" name="field3" placeholder="פירוט קצר על השאלון"></textarea>
-                <h3 class="upload">תאריך התחלה:</h3>
-                <input type="text" id="uploaddate" placeholder="תאריך הפצה *">          
-                <h3 class="upload"> תאריך סיום:</h3>
-                <input type="text" id="enddate" placeholder="תאריך סיום *">       
-                <h3 class="upload"> מס' מינ' של עונים:</h3>
-                <input id="minpers" type="text" name="field2" placeholder="מינימום עונים *">
-                <h3 class="upload"> מס' מקס' של עונים:</h3>
-                <input id="maxpers" type="text" name="field2" placeholder="מקסימום עונים *">
-                <h3 class="upload"> מחבר השאלון:</h3>
-                <input id="auther" type="text" name="field2" placeholder="מחבר השאלון *">
-                <h3 class="upload"> תעודת זהות מחבר השאלון:</h3>
-                <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
-                <h3 class="upload"> משקל השאלון:</h3>
-                <input id="weight" type="text" name="field2" placeholder="משקל השאלון *">
-                <legend><span class="number">2</span> הכנס קישור לסקר:</legend>
-                <h3 class="upload"> קישור לאתר qualtrics:</h3>
-                <input id="link" type="text" name="field2" placeholder="קישור לאתר qualtrics *">
+                <legend><span class="number">1</span> עריכת מעבדה</legend>
+                <h3 class="upload"> קוד מעבדה:</h3>
+                <input style="color:black" id="labid" type="text" name="field1" placeholder="קוד מעבדה *">
+                <h3 class="upload"> נושא מעבדה:</h3>
+                <input style="color:black" id="topic" type="text" name="field2" placeholder="נושא מעבדה *">
+                <h3 class="upload"> תאריך המעבדה:</h3>
+                <input type="text" id="uploaddate" placeholder="תאריך המעבדה *">
+                <h3 class="upload"> מינימום סטודנטים:</h3>
+                <input style="color:black" id="minpers" type="text" name="field2" placeholder="מינימום סטודנטים *">
+                <h3 class="upload"> מקסימום סטודנטים:</h3>
+                <input style="color:black" id="maxpers" type="text" name="field2" placeholder="מקסימום סטודנטים *">
+                <h3 class="upload"> פרטי המעבדה:</h3>
+                <input style="color:black" id="details" type="text" name="field2" placeholder="פרטי המעבדה *">
+                <h3 class="upload"> אחראי מעבדה:</h3>
+                <input style="color:black" id="director" type="text" name="field2" placeholder="אחראי מעבדה *">
+                <h3 class="upload"> תעודת זהות אחראי מעבדה:</h3>
+                <input style="color:black" id="directorid" type="text" name="field2" placeholder="תעודת זהות אחראי מעבדה *">
+                <h3 class="upload"> משקל המעבדה:</h3>
+                <input style="color:black" id="weight" type="number" step="any" name="field2" placeholder="משקל המעבדה *">
+                <h3 class="upload"> מיקום המעבדה:</h3>
+                <input style="color:black" id="location" type="text" name="field2" placeholder="מיקום המעבדה *">
 
-                <label class="upload" for="job">האם לפתוח את הסקר לסטודנטים</label>
 
-                <select id="job" name="field4">
-
-                    <option value="0" name="field">לא לפתוח</option>
-                    <option value="1" name="field">לפתוח</option>
-
-                </select>
             </fieldset>
-           
-               <fieldset>
-                   <legend><span class="number">3</span>  לחץ אישור לשמירת שינויים או מחק שאלון </legend>
+            <fieldset>
+                <legend><span class="number">3</span>  לחץ אישור לשמירת שינויים או מחק שאלון </legend>
             </fieldset>
             <div class="row">
-                <i id="deletes" class='fas fa-trash-alt' onclick="deletesurvey()"></i>
-                
+                <i id="deletes" class='fas fa-trash-alt' onclick="deletelab()"></i>
+
                 <input id="sb" type="submit" value="אישור" />
-              
+
             </div>
+            
         </form>
     </div>
 

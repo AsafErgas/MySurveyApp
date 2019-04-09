@@ -54,8 +54,15 @@ namespace MySurveyApp.Models
             return lc;
 
         }
+        public List<Lecturer> Loginserver(string UserName, string Password)
+        {
+            DBservices dbs = new DBservices();
+            List<Lecturer> lc = dbs.Loginserver("PersonStringName", "Lecturer", UserName, Password);
+     
+            return lc;
 
-  
+        }
+
 
 
     }

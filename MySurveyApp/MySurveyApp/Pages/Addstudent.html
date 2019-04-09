@@ -7,129 +7,31 @@
     <title>Upload Survey</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://osvaldas.info/examples/main.js"></script>
+    <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+    <link href="css/style2.css" rel="stylesheet" type="text/css" />
+    <link href="css/table.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <script src="../Scripts/ajaxCalls.js"></script>
-    <style type="text/css">
-        .form-style-5 {
-            max-width: 500px;
-            padding: 10px 20px;
-            background: #f4f7f8;
-            margin: 10px auto;
-            padding: 20px;
-            background: #f4f7f8;
-            border-radius: 8px;
-            font-family: Georgia, "Times New Roman", Times, serif;
-        }
-
-            .form-style-5 fieldset {
-                border: none;
-            }
-
-            .form-style-5 legend {
-                font-size: 1.4em;
-                margin-bottom: 10px;
-            }
-
-            .form-style-5 label {
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            .form-style-5 input[type="text"],
-            .form-style-5 input[type="date"],
-            .form-style-5 input[type="datetime"],
-            .form-style-5 input[type="email"],
-            .form-style-5 input[type="number"],
-            .form-style-5 input[type="search"],
-            .form-style-5 input[type="time"],
-            .form-style-5 input[type="url"],
-            .form-style-5 textarea,
-            .form-style-5 select {
-                font-family: Georgia, "Times New Roman", Times, serif;
-                background: rgba(255,255,255,.1);
-                border: none;
-                border-radius: 4px;
-                font-size: 15px;
-                margin: 0;
-                outline: 0;
-                padding: 10px;
-                width: 100%;
-                box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                background-color: #e8eeef;
-                color: #8a97a0;
-                -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                margin-bottom: 30px;
-            }
-
-                .form-style-5 input[type="text"]:focus,
-                .form-style-5 input[type="date"]:focus,
-                .form-style-5 input[type="datetime"]:focus,
-                .form-style-5 input[type="email"]:focus,
-                .form-style-5 input[type="number"]:focus,
-                .form-style-5 input[type="search"]:focus,
-                .form-style-5 input[type="time"]:focus,
-                .form-style-5 input[type="url"]:focus,
-                .form-style-5 textarea:focus,
-                .form-style-5 select:focus {
-                    background: #d2d9dd;
-                }
-
-            .form-style-5 select {
-                -webkit-appearance: menulist-button;
-                height: 35px;
-            }
-
-            .form-style-5 .number {
-                background: #1abc9c;
-                color: #fff;
-                height: 30px;
-                width: 30px;
-                display: inline-block;
-                font-size: 0.8em;
-                margin-right: 4px;
-                line-height: 30px;
-                text-align: center;
-                text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-                border-radius: 15px 15px 15px 0px;
-            }
-
-            .form-style-5 input[type="submit"],
-            .form-style-5 input[type="button"] {
-                position: relative;
-                display: block;
-                padding: 19px 39px 18px 39px;
-                color: #FFF;
-                margin: 0 auto;
-                background: #1abc9c;
-                font-size: 18px;
-                text-align: center;
-                font-style: normal;
-                width: 100%;
-                border: 1px solid #16a085;
-                border-width: 1px 1px 3px;
-                margin-bottom: 10px;
-            }
-
-                .form-style-5 input[type="submit"]:hover,
-                .form-style-5 input[type="button"]:hover {
-                    background: #109177;
-                }
-    </style>
+   
     <script>
-         $(document).ready(function () {
+        $(document).ready(function () {
+            ajaxCall("GET", "../api/allstudent", "", getSuccess, error2);
              $("#pForm").submit(f1);
              return false;
          });
@@ -153,30 +55,185 @@
              swal("הוספה בוצעה", "הסטודנט הועלה בהצלחה למערכת", "success");
              $("#uid").val('');
              $("#pass").val('');
-             
+             setTimeout(function () { location.reload(); }, 2000);
            
          }
 
          function error(err) {
              alert("error");
          }
-        
+
+         function getSuccess(data) {
+
+
+
+             try {
+                 tbl = $('#allstud').DataTable({
+                     data: data,
+                     pageLength: 5,
+                     columns: [
+
+                                {
+                                 data: "Username"
+                                  },
+                             {
+                                 data: "Password"
+                             },
+                               {
+                                   render: function (data, type, row, meta) {
+                                       editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
+
+                                       return editBtn;
+                                   }
+                               }
+
+
+                     ]
+                 });
+
+
+
+
+             }
+
+
+             catch (err) {
+                 alert(err);
+             }
+
+
+         }
+         //this function is activated in case of a failure
+
+
+         function error2(err) {
+             swal("Error: " + err);
+         }
+         function buttonEvents() {
+             $(".editBtn").click(function () {
+                 row = (this.parentNode).parentNode;
+                 var data = tbl.row($(this).parents('tr')).data();
+
+                 localStorage.setItem('es', JSON.stringify(data));
+
+                 change();
+
+
+             })
+         }
+
+         function change() {
+             es = JSON.parse(localStorage.getItem('es'));
+            $('#cid').val(es.Username);
+            $('#cpass').val(es.Password);
+            $("#cid").prop('disabled', true);
+            $("#cpass").css("background-color", "red");
+            btn="<button type='button' id='btn' onclick='conf()' > אישור </button>"
+            document.getElementById('b').innerHTML = btn;
+         }
+         function conf() {
+             Student = {
+                 Username: $("#cid").val(),
+                 Password: $("#cpass").val()
+             }
+             su = Student.Username;
+
+             ajaxCall("PUT", "../api/editstudent/?su=" + su, JSON.stringify(Student), successedit, erroredit);
+         }
+         function successedit(data) {
+             swal("עריכה בוצעה", "הסיסמא שונתה בהצלחה", "success");
+             $("#cpass").css("background-color", "#E8EEEF");
+             setTimeout(function () { location.reload(); }, 2000);
+
+
+         }
+
+         function erroredit(err) {
+             alert("error");
+         }
     </script>
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="Lecturpage.html">לדף הבית</a>
-            </div>
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+            <div id="ms1" class="hidden-md hidden-sm hidden-xs">My<span id="ms3">survey</span></div>
+            <nav id="nav" role="navigation">
 
+                <ul class="clearfix">
+
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
+
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="Addstudent.html">עריכת רשימת סטודנטים</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="showLabs.html">צפייה במעבדות</a></li>
+
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
+
+                    </li>
+
+                </ul>
+                <div id="logout">
+                    <a href="Lecturpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a1" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp2">חזור <br />לדף הבית</p> </a>
+                </div>
+            </nav>
         </div>
     </nav>
-    <div class="form-style-5">
+    <fieldset>
+        <legend id="choose"><span  class="number">1</span> בחר סטודנט לעריכה</legend>
+
+    </fieldset>
+    <h1 id="toph2">:כלל הסטודנטים הרשומים למערכת</h1>
+    <div id="studt" class="dtable">
+        <table id="allstud" style="width:100%">
+            <thead>
+                <tr id="f">
+
+                    <th>שם משתמש</th>
+                    <th>סיסמא</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="all3" class="form-style-5">
         <form id="pForm">
-            <fieldset>
-                <legend><span class="number">1</span> הכנסת סטודנט למערכת</legend>
+            <div>
+                <fieldset>
+                    <legend><span class="number">#</span>נא לשנות את סיסמת המשתמש: </legend>
+                    <input id="cid" type="text" name="field1" placeholder="שם משתמש *">
+                    <input id="cpass" type="text" name="field2" placeholder="סיסמא *">
+
+                    <div id="b"></div>
+                </fieldset>
+            </div>
+            <h1 id="toph3">הכנסת סטודנט בודד למערכת:</h1>
+            <fieldset id="sp">
+                <legend><span class="number">1</span> הכנס פרטי משתמש</legend>
                 <input id="uid" type="text" name="field1" placeholder="שם משתמש *">
                 <input id="pass" type="text" name="field2" placeholder="סיסמא *">
                

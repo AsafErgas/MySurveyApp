@@ -15,18 +15,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="style.css" rel="stylesheet" />
-    <script src="jquery-1.10.2.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.7/xlsx.core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xls/0.7.4-a/xls.core.min.js"></script>  
     <script src="http://osvaldas.info/examples/main.js"></script>
     <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-
-    <link href="css/style2.css" rel="stylesheet" />
-   
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <link href="css/style2.css" rel="stylesheet" />  
+    <link href="css/table.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
   
   <script>
@@ -52,7 +51,7 @@
       function getSuccess(data) {
           var str = '';
           
-          str = "<table id='ttt'>";
+          str = "<table  class='minimalistBlack'>";
           str += "<tr> <th>שם משתמש</th> <th>סיסמא</th> </tr>";
           
           for (var i = 0; i < data.length; i++) {
@@ -73,37 +72,7 @@
 
           }
 
-          //try {
-          //    tbl = $('#allstudent').DataTable({
-          //        data: data,
-          //        pageLength: 5,
-          //        columns: [
-
-          //{
-          //    data: "Username"
-          //},
-          //                {
-          //                    data: "Password"
-          //                }
-                     
-
-
-          //        ]
-          //    });
-
-
-
-
-          //}
-
-
-          //catch (err) {
-          //    alert(err);
-          //}
-
-
-      //}
-      //this function is activated in case of a failure
+       
       function error(err) {
           swal("Error: " + err);
       }
@@ -203,7 +172,8 @@
       }
 
       function success() {
-          alert("good");
+          swal("הוספה בוצעה", "הקובץ הועלה בהצלחה למערכת", "success");
+          setTimeout(function () { location.reload(); }, 2000);
       }
       function error(err) {
           alert("error");
@@ -214,7 +184,7 @@
 
 
 
-
+    
 
 </head>
 <body>
@@ -230,7 +200,7 @@
                         <ul>
 
                             <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
-                            <li><a href="">עריכת רשימת סטודנטים</a></li>
+                            <li><a href="Addstudent.html">עריכת רשימת סטודנטים</a></li>
 
                         </ul>
                     </li>
@@ -247,7 +217,7 @@
                         <a href=""><span>מעבדות</span></a>
                         <ul>
                             <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
-                            <li><a href="existslab.html">צפייה במעבדות</a></li>
+                            <li><a href="showLabs.html">צפייה במעבדות</a></li>
 
                         </ul>
                     </li>
@@ -264,32 +234,7 @@
             </nav>
         </div>
     </nav>
-    <!--<div class="row" id="file">
-
-        <input type="file" id="excelfile"  />
-        <input type="button" id="viewfile" value="הצגת נתונים:" onclick="ExportToTable()"  />
-    </div>-->
-        <br />
-        <br />
-    
-   
-
-
-    
-
-        <!--<div id="stable" class="dtable">
-            <table id="allstudent" style="width:100%">
-                <thead>
-                    <tr id="f">
-
-                        <th>שם משתמש</th>
-                        <th>סיסמא</th>
-                      
-
-                    </tr>
-                </thead>
-            </table>
-        </div>-->
+<h1 id="toph">:כלל המשתמשים הרשומים</h1>
 
     <div id="d1"></div>
 
@@ -297,9 +242,9 @@
     <div id="Pstudent" class="form-style-5">
         <form id="pForm">
             <fieldset>
-                <legend><span class="number">1</span> העלאת קובץ שמות משתמש: </legend>
-                <input type="file" id="excelfile" />
-                <input type="button" id="viewfile" value="הצגת נתונים:" onclick="ExportToTable()" />
+                <legend><span class="number">1</span> :העלאת קובץ שמות משתמש </legend>
+                <input type="file" id="excelfile" style="margin: 14px; margin-right: 100px" />
+                <input type="button" id="viewfile" value="העלה קובץ" onclick="ExportToTable()" />
 
 
             </fieldset>

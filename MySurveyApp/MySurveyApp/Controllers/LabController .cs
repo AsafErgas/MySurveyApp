@@ -36,5 +36,19 @@ namespace MySurveyApp.Controllers
             return L;
         }
 
+        [HttpPut]
+        [Route("api/editlab")]
+        public void Put([FromBody]Lab l, string lid)
+        {
+            l.Editlab(lid);
+
+        }
+        [HttpPut]
+        [Route("api/deletelab")]
+        public void Put2([FromBody]Lab s, string lid)
+        {
+            s.deletelab(lid);
+
+        }
     }
 }

@@ -14,10 +14,11 @@ namespace MySurveyApp.Models
         public int Maxperson { get; set; }
         public string Labdetails { get; set; }
         public string Director { get; set; }
+        public string LecId { get; set; }
         public float Labweight { get; set; }
         public string Lablocation { get; set; }
 
-        public Lab(string _labId, string _labtopic, DateTime _labdate, int _min, int _max, string _labdetails, string _director, float _labweight, string _lablocation)
+        public Lab(string _labId, string _labtopic, DateTime _labdate, int _min, int _max, string _labdetails, string _director,string l, float _labweight, string _lablocation)
         {
 
             LabId = _labId;
@@ -27,6 +28,7 @@ namespace MySurveyApp.Models
             Maxperson = _max;
             Labdetails = _labdetails;
             Director = _director;
+            LecId = l;
             Labweight = _labweight;
             Lablocation = _lablocation;
 
@@ -54,6 +56,18 @@ namespace MySurveyApp.Models
             DBservices dbs = new DBservices();
             List<Lab> lc = dbs.ReadAllLabs("PersonStringName", "Labs");
             return lc;
+        }
+        public int Editlab(string lid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.Editlab(this, lid);
+            return numAffected;
+        }
+        public int deletelab(string lid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.deletelab(this, lid);
+            return numAffected;
         }
     }
 }

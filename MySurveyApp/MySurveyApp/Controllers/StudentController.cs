@@ -39,8 +39,15 @@ namespace MySurveyApp.Controllers
             List<Student> M = s.ReadStudent();
             return M;
         }
+        [HttpPut]
+        [Route("api/editstudent")]
+        public void Put([FromBody]Student s, string su)
+        {
+            s.EditPass(su);
 
-      
+        }
+
+
 
 
 

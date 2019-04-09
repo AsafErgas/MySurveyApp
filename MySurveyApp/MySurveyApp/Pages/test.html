@@ -7,162 +7,56 @@
     <title>Upload Survey</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
-
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://osvaldas.info/examples/main.js"></script>
+    <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--date-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--date-->  
+     <link href="style.css" rel="stylesheet" />
+    <link href="css/style2.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
-    <style type="text/css">
-        .form-style-5 {
-            max-width: 500px;
-            padding: 10px 20px;
-            background: #f4f7f8;
-            margin: 10px auto;
-            padding: 20px;
-            background: #f4f7f8;
-            border-radius: 8px;
-            font-family: Georgia, "Times New Roman", Times, serif;
-        }
 
-            .form-style-5 fieldset {
-                border: none;
-            }
-
-            .form-style-5 legend {
-                font-size: 1.4em;
-                margin-bottom: 10px;
-            }
-
-            .form-style-5 label {
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            .form-style-5 input[type="text"],
-            .form-style-5 input[type="date"],
-            .form-style-5 input[type="datetime"],
-            .form-style-5 input[type="email"],
-            .form-style-5 input[type="number"],
-            .form-style-5 input[type="search"],
-            .form-style-5 input[type="time"],
-            .form-style-5 input[type="url"],
-            .form-style-5 textarea,
-            .form-style-5 select {
-                font-family: Georgia, "Times New Roman", Times, serif;
-                background: rgba(255,255,255,.1);
-                border: none;
-                border-radius: 4px;
-                font-size: 15px;
-                margin: 0;
-                outline: 0;
-                padding: 10px;
-                width: 100%;
-                box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                background-color: #e8eeef;
-                color: #8a97a0;
-                -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                margin-bottom: 30px;
-            }
-
-                .form-style-5 input[type="text"]:focus,
-                .form-style-5 input[type="date"]:focus,
-                .form-style-5 input[type="datetime"]:focus,
-                .form-style-5 input[type="email"]:focus,
-                .form-style-5 input[type="number"]:focus,
-                .form-style-5 input[type="search"]:focus,
-                .form-style-5 input[type="time"]:focus,
-                .form-style-5 input[type="url"]:focus,
-                .form-style-5 textarea:focus,
-                .form-style-5 select:focus {
-                    background: #d2d9dd;
-                }
-
-            .form-style-5 select {
-                -webkit-appearance: menulist-button;
-                height: 35px;
-            }
-
-            .form-style-5 .number {
-                background: #1abc9c;
-                color: #fff;
-                height: 30px;
-                width: 30px;
-                display: inline-block;
-                font-size: 0.8em;
-                margin-right: 4px;
-                line-height: 30px;
-                text-align: center;
-                text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-                border-radius: 15px 15px 15px 0px;
-            }
-
-            .form-style-5 input[type="submit"],
-            .form-style-5 input[type="button"] {
-                position: relative;
-                display: block;
-                padding: 19px 39px 18px 39px;
-                color: #FFF;
-                margin: 0 auto;
-                background: #1abc9c;
-                font-size: 18px;
-                text-align: center;
-                font-style: normal;
-                width: 100%;
-                border: 1px solid #16a085;
-                border-width: 1px 1px 3px;
-                margin-bottom: 10px;
-            }
-
-                .form-style-5 input[type="submit"]:hover,
-                .form-style-5 input[type="button"]:hover {
-                    background: #109177;
-                }
-    </style>
+    
+   
     <script>
+      
+        var IsValid =false;
          $(document).ready(function () {
              $("#pForm").submit(f1);
- 
              return false;
          });
 
          function f1() {
-            Addsurvey();
+             if (IsValid == false) {
+                 ajaxCall("GET", "../api/validsurvey", "", getSuccess, error);
+                
+             }
+             else {
+                 setTimeout(function () { location.reload(); }, 2000);
+             }
+           
              return false;
          }
-
-         String.prototype.replaceAt = function (index, replacement) {
-             return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-         }
-
          function Addsurvey() {
-             //UD = $("#uploaddate").val();
-             //UdArray = UD.split(' ');
-             //UDC = UdArray[0].split("/").reverse().join("/") + " " + UdArray[1] + " " + UdArray[2];
-
-             //ED = $("#enddate").val();
-             //EdArray = ED.split(' ');
-             //EDC = EdArray[0].split("/").reverse().join("/") + " " + EdArray[1] + " " + EdArray[2];
-             //var UDC = UD.replaceAt(2, "-");
-             //var UDCF = UDC.replaceAt(5, "-");
-             //var EDC = ED.replaceAt(2, "-");
-             //var EDCF = EDC.replaceAt(5, "-");
              Survey = {
-                 SurveyId: $("#surveyid").val(),
+                 SurveyId: $("#sid").val(),
                  Topic: $("#topic").val(),
                  Uploaddate: $("#uploaddate").val(),
                  Enddate: $("#enddate").val(),
@@ -178,12 +72,12 @@
 
              }
 
-             ajaxCall("POST", "../api/survey", JSON.stringify(Survey), success, error);
-
+            ajaxCall("POST", "../api/survey", JSON.stringify(Survey), success, error);
+           
          }
          function success(data) {
              swal("הוספה בוצעה", "הסקר הועלה בהצלחה למערכת", "success");
-             $("#surveyid").val('');
+             $("#sid").val('');
              $("#topic").val('');
              $("#uploaddate").val('');
              $("#enddate").val('');
@@ -200,75 +94,138 @@
          function error(err) {
              alert("error");
          }
+
          $(function () {
-             $('#datetimepicker1').datetimepicker();
+             $("#uploaddate").datepicker();
          });
          $(function () {
-             $('#datetimepicker2').datetimepicker();
+             $("#enddate").datepicker();
          });
+
+         function validateForm() {
+             var surveyid = document.forms["pForm"]["field1"].value;
+           
+             if (surveyid == "") {
+                 IsValid = true;
+                 swal("חייב למלא קוד שאלון");
+              
+                 return false;
+             }
+            
+         }
+      function getSuccess(data){
+          id = $("#sid").val();
+          for (var i = 0; i <data.length; i++) {
+              
+              if (data[i].SurveyId == id) {
+                  swal("קוד שאלון כבר קיים במערכת");
+            
+              }
+              
+          }
+          Addsurvey();
+      }
+
     </script>
 </head>
 
 <body>
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+            <div id="ms" class="hidden-md hidden-sm hidden-xs">My<span id="ms2">survey</span></div>
+            <nav id="nav" role="navigation">
 
+                <ul class="clearfix">
 
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
 
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="">עריכת רשימת סטודנטים</a></li>
 
+                        </ul>
+                    </li>
 
+                    <li>
+                        <a href=""><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="existslab.html">צפייה במעבדות</a></li>
 
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
 
+                    </li>
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="Lecturpage.html">לדף הבית</a>
-            </div>
-
+                </ul>
+                <div id="logout">
+                    <a href="Lecturpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור לדף <br />הבית</p> </a>
+                </div>
+            </nav>
         </div>
     </nav>
-    <div class="form-style-5">
-        <form id="pForm">
+    <div id="all2" class="form-style-5">
+        <form id="pForm" onsubmit="return validateForm()" method="post"  >
             <fieldset>
                 <legend><span class="number">1</span> העלאת שאלון</legend>
-                <input id="surveyid" type="text" name="field1" placeholder="קוד שאלון *">
+                <br />
+
+                <input id="sid" type="text" name="field1" placeholder="קוד שאלון *">
+
                 <input id="topic" type="text" name="field2" placeholder="נושא שאלון *">
+
                 <textarea id="details" name="field3" placeholder="פירוט קצר על השאלון"></textarea>
 
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" id="uploaddate" placeholder="תאריך הפצה *" name="field2" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                <input type="text" id="uploaddate" placeholder="תאריך הפצה *">
 
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" id="enddate" placeholder="תאריך סגירת שאלון *" name="field2" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
 
-                <!--<input id="uploaddate" type="date" name="field2" placeholder="תאריך הפצה *">-->
-                <!--<input id="enddate" type="datetime" name="field2" placeholder="תאריך סיום *">-->
+
+                <input type="text" id="enddate" placeholder="תאריך סיום *">
+
+
                 <input id="minpers" type="text" name="field2" placeholder="מינימום עונים *">
+
                 <input id="maxpers" type="text" name="field2" placeholder="מקסימום עונים *">
+
                 <input id="auther" type="text" name="field2" placeholder="מחבר השאלון *">
+
                 <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
-                <input id="weight" type="number" step="any" name="field2" placeholder="משקל השאלון *">
+
+                <input id="weight" type="text" name="field2" placeholder="משקל השאלון *">
+                <legend><span class="number">2</span> הכנס קישור לסקר:</legend>
+                <h3 class="line"> קישור לאתר qualtrics:</h3>
                 <input id="link" type="text" name="field2" placeholder="קישור לאתר qualtrics *">
-                <label >האם לפתוח את הסקר לסטודנטים:</label>
+
+                <label for="job">האם לפתוח את הסקר לסטודנטים</label>
+
                 <select id="job" name="field4">
 
-                    <option value="1">לא לפתוח</option>
-                    <option value="2">לפתוח</option>
+                    <option value="0" name="field">לא לפתוח</option>
+                    <option value="1" name="field">לפתוח</option>
 
                 </select>
             </fieldset>
-            <fieldset>
-                <legend><span class="number">2</span> לחץ אישור להעלאת הסקר</legend>
 
+            <fieldset>
+                <legend><span class="number">3</span>  לחץ אישור להעלאת הסקר </legend>
             </fieldset>
-            <input type="submit" value="אישור" />
+            <div class="row">
+                
+                <input id="sb" type="submit" value="אישור" />
+
+            </div>
         </form>
     </div>
   

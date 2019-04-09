@@ -1,0 +1,177 @@
+﻿<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add lab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://osvaldas.info/examples/main.js"></script>
+    <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--date-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--date-->
+    <link href="style.css" rel="stylesheet" />
+    <link href="css/style2.css" rel="stylesheet" />
+    <script src="../Scripts/ajaxCalls.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#pForm").submit(f1);
+            return false;
+        });
+
+        function f1() {
+            AddLab();
+            return false;
+        }
+        function AddLab() {
+            Lab = {
+                LabId: $("#labid").val(),
+                Labtopic: $("#topic").val(),
+                Labdate: $("#uploaddate").val(),
+                Minperson: $("#minpers").val(),
+                Maxperson: $("#maxpers").val(),
+                Labdetails: $("#details").val(),
+                Director: $("#director").val(),
+                LecId: $("#directorid").val(),
+                Labweight: $("#weight").val(),
+                Lablocation: $("#location").val()
+
+            }
+
+            ajaxCall("POST", "../api/lab", JSON.stringify(Lab), success, error);
+
+        }
+        function success(data) {
+            swal("הוספה בוצעה", "המעבדה עלתה בהצלחה למערכת", "success");
+            $("#labid").val('');
+            $("#topic").val('');
+            $("#uploaddate").val('');
+            $("#minpers").val('');
+            $("#maxpers").val("");
+            $("#details").val('');
+            $("#director").val('');
+            $("#directorid").val('');
+            $("#weight").val('');
+            $("#location").val('');
+           
+
+        }
+
+        function error(err) {
+            alert("error");
+        }
+        $(function () {
+            $("#uploaddate").datepicker();
+        });
+        $(function () {
+            $("#enddate").datepicker();
+        });
+    </script>
+</head>
+<body>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+            <div id="ms" class="hidden-md hidden-sm hidden-xs">My<span id="ms2">survey</span></div>
+            <nav id="nav" role="navigation">
+
+                <ul class="clearfix">
+
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
+
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="">עריכת רשימת סטודנטים</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="Labspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="showLabs.html">צפייה במעבדות</a></li>
+
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
+
+                    </li>
+
+                </ul>
+                <div id="logout">
+                    <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור לדף <br />הבית</p> </a>
+                </div>
+            </nav>
+        </div>
+    </nav>
+    <div id="all4" class="form-style-5">
+        <form id="pForm">
+            <fieldset>
+                <legend><span class="number">1</span> העלאת מעבדה</legend>
+                <h3 class="upload"> קוד מעבדה:</h3>
+                <input style="color:black" id="labid" type="text" name="field1" placeholder="קוד מעבדה *">
+                <h3 class="upload"> נושא מעבדה:</h3>
+                <input style="color:black" id="topic" type="text" name="field2" placeholder="נושא מעבדה *">
+                <h3 class="upload"> תאריך המעבדה:</h3>
+                <input type="text" id="uploaddate" placeholder="תאריך המעבדה *">
+                <h3 class="upload"> מינימום סטודנטים:</h3>
+                <input style="color:black" id="minpers" type="text" name="field2" placeholder="מינימום סטודנטים *">
+                <h3 class="upload"> מקסימום סטודנטים:</h3>
+                <input style="color:black" id="maxpers" type="text" name="field2" placeholder="מקסימום סטודנטים *">
+                <h3 class="upload"> פרטי המעבדה:</h3>
+                <input style="color:black" id="details" type="text" name="field2" placeholder="פרטי המעבדה *">
+                <h3 class="upload"> אחראי מעבדה:</h3>
+                <input style="color:black" id="director" type="text" name="field2" placeholder="אחראי מעבדה *">
+                <h3 class="upload"> תעודת זהות אחראי מעבדה:</h3>
+                <input style="color:black" id="directorid" type="text" name="field2" placeholder="תעודת זהות אחראי מעבדה *">
+                <h3 class="upload"> משקל המעבדה:</h3>
+                <input style="color:black" id="weight" type="number" step="any" name="field2" placeholder="משקל המעבדה *">
+                <h3 class="upload"> מיקום המעבדה:</h3>
+                <input style="color:black" id="location" type="text" name="field2" placeholder="מיקום המעבדה *">
+
+
+            </fieldset>
+            <fieldset>
+                <legend><span class="number">2</span> לחץ אישור להעלאת מעבדה</legend>
+            </fieldset>
+            <input type="submit" value="אישור" />
+        </form>
+    </div>
+
+</body>
+</html>

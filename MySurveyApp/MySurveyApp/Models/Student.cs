@@ -52,6 +52,12 @@ namespace MySurveyApp.Models
             List<Student> lc = dbs.ReadStudent("PersonStringName", "Student");
             return lc;
         }
+        public int EditPass(string sid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.EditPass(this, sid);
+            return numAffected;
+        }
 
 
 

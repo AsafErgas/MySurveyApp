@@ -444,22 +444,30 @@
 
         #h-head {
             text-align: center;
-            font-family: 'Arimo', sans-serif;
+         
             color:cornflowerblue;
              font-size:225%;
-                 margin-top: -2%;
+                 margin-top: -4%;
+    margin-bottom: 2%;
+        }
+            #h-head2 {
+            text-align: center;
+         
+            color:cornflowerblue;
+             font-size:225%;
+                 margin-top: -4%;
     margin-bottom: 2%;
         }
         #h-s{
-             text-align: right;
-             font-family: 'Arimo', sans-serif;
+             text-align: center;
+          
              font-size:180%;
         text-decoration:underline;
         margin-bottom:1%;
              }
          #h-t{
-             text-align: right;
-             font-family: 'Arimo', sans-serif;
+             text-align:center;
+          
              font-size:180%;
         text-decoration:underline;
         margin-bottom:-2%;
@@ -610,6 +618,7 @@
              }
             #st{
                margin-top:4%;
+                   margin-bottom: 50px;
             }
 
             #all{
@@ -620,8 +629,28 @@
                         font-size: 160%;
                   }
               #all2{
-                    position: relative;
-                    top: 105px;
+                        margin-top: 90px;
+                    direction: rtl;
+                    color: black;
+                        font-size: 160%;
+                            z-index: -1;
+                  }
+               #all3{
+                        margin-top: 230px;
+                    direction: rtl;
+                    color: black;
+                        font-size: 160%;
+                            z-index: -1;
+                  }
+                #all4{
+                        margin-top: 140px;
+                    direction: rtl;
+                    color: black;
+                        font-size: 160%;
+                            z-index: -1;
+                  }
+                 #all5{
+                        margin-top: 140px;
                     direction: rtl;
                     color: black;
                         font-size: 160%;
@@ -639,6 +668,7 @@
     top: 57px;
     font-size: 295%;
 }
+          
             
             #file{
                     position: relative;
@@ -658,8 +688,14 @@
        }
        #ts{
            position:relative;
-           left:22%;
-           width:50%;
+           left:14%;
+           width:70%;
+       }
+        #ts2{
+           position:relative;
+           left:14%;
+           width:70%;
+           top:50px;
        }
          #tl{
            position:relative;
@@ -684,12 +720,64 @@
          }
          #ddtable{
              width:80%;
+             position: relative;
+             left: 8%;
+         }
+
+             #studt{
+               position: relative;
+               top: 200px;
+               margin: auto;
+              width:50%;
+                   }
+
+             #toph2{
+               position:relative;
+               position: relative;
+               top: 125px;
+               text-align: center;
+               font-size: 26px;
+               text-decoration: underline;
+                   }
+
+             #toph3{
+                 position:relative;
                  position: relative;
-    left: 8%;
-         }
-         #ttt{
-         
-                 margin-top: 50px;
-    direction: rtl;
-    border:1px solid black;
-         }
+                 top: 34px;
+                 text-align: center;
+                 font-size: 26px;
+                 text-decoration: underline;
+                 font-family: 'Secular One', sans-serif;
+                 
+                    }
+             #edt{
+                 position:relative;
+                 top: 246px;
+                 left: 36%;
+             }
+
+             #choose{
+                 position:relative;
+
+             }
+             #btn{
+                 margin-bottom: 52px;
+              
+             }
+             #sp{
+                 margin-top:62px;
+             }
+             #logor{
+                 position:relative;
+                 top:30px;
+                 left:82%;
+             }
+             #im{
+                 height:120px;
+             }
+             .upload
+             {
+                   font-family: 'Secular One', sans-serif;
+                   font-size: 20px;
+                   margin-bottom: 10px;
+             }

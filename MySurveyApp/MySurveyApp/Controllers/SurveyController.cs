@@ -57,5 +57,14 @@ namespace MySurveyApp.Controllers
 
         }
 
+        [HttpGet]
+        [Route("api/validsurvey")]
+        public IEnumerable<Survey> Get2()
+        {
+            Survey s = new Survey();
+            List<Survey> M = s.validSurvey();
+            return M;
+        }
+
     }
 }
