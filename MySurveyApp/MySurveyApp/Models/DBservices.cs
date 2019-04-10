@@ -16,13 +16,13 @@ public class DBservices
 {
     public SqlDataAdapter da;
     public DataTable dt;
-// anat
-	public DBservices()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    // anat
+    public DBservices()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 
     //--------------------------------------------------------------------------------------------------
     // This method creates a connection to the database according to the connectionString name in the web.config 
@@ -37,10 +37,10 @@ public class DBservices
         return con;
     }
 
-   
-  
-        //XXXXXXXXXXX-LOGIN FUN- start-XXXXXXXXXXXXXXXX
-          public List<Lecturer> Loginserver(string conString, string tableName, string UserName, string Password)
+
+
+    //XXXXXXXXXXX-LOGIN FUN- start-XXXXXXXXXXXXXXXX
+    public List<Lecturer> Loginserver(string conString, string tableName, string UserName, string Password)
     {
 
         SqlConnection con = null;
@@ -92,11 +92,11 @@ public class DBservices
 
 
     //XXXXXXXXXXX-LOGIN FUN- start-XXXXXXXXXXXXXXXX
-    public List<Lecturer> Login(string conString, string tableName, string UserName, string Password)
+    public List<Student> Login(string conString, string tableName, string UserName, string Password)
     {
 
         SqlConnection con = null;
-        List<Lecturer> lc = new List<Lecturer>();
+        List<Student> lc = new List<Student>();
         try
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
@@ -109,13 +109,11 @@ public class DBservices
 
             while (dr.Read())
             {   // Read till the end of the data into a row
-                Lecturer s = new Lecturer();
-                s.Id = (string)dr["id"];
-                s.Name = (string)dr["firstname"];
-                s.FamilyName = (string)dr["lastname"];
-                s.Email = (string)dr["email"];
-                s.UserName = (string)dr["username"];
+                Student s = new Student();
+                s.Username = (string)dr["username"];
                 s.Password = (string)dr["password"];
+                s.Token = (string)dr["token"];
+
 
 
                 lc.Add(s);
@@ -176,7 +174,7 @@ public class DBservices
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
-            String selectSTR = "SELECT * FROM " + tableName+ " WHERE lecturerId= "+ lecId;
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE lecturerId= " + lecId;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -193,11 +191,11 @@ public class DBservices
                 s.Maxperson = Convert.ToInt32(dr["maxperson"]);
                 s.Details = (string)dr["details"];
                 s.Auther = (string)dr["auther"];
-                s.Surveyweight =Convert.ToSingle(dr["surveyweight"]); 
+                s.Surveyweight = Convert.ToSingle(dr["surveyweight"]);
                 s.Lecturerid = (string)dr["lecturerId"];
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
-                s.Currentnumofpers= Convert.ToInt32(dr["currentnumofpers"]);
+                s.Currentnumofpers = Convert.ToInt32(dr["currentnumofpers"]);
 
                 lc.Add(s);
             }
@@ -232,7 +230,7 @@ public class DBservices
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
-            String selectSTR = "SELECT * FROM " + tableName + " WHERE lecturerId= " + lecId + " and opensurvey = "+Isopen;
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE lecturerId= " + lecId + " and opensurvey = " + Isopen;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -244,7 +242,7 @@ public class DBservices
                 s.SurveyId = (string)dr["surveyId"];
                 s.Topic = (string)dr["topic"];
                 s.Uploaddate = (DateTime)dr["uploaddate"];
-                s.Enddate= (DateTime)dr["enddate"];
+                s.Enddate = (DateTime)dr["enddate"];
                 s.Minperson = Convert.ToInt32(dr["minperson"]);
                 s.Maxperson = Convert.ToInt32(dr["maxperson"]);
                 s.Details = (string)dr["details"];
@@ -281,12 +279,12 @@ public class DBservices
     //XXXXXXXXXX-READ SURVEY END-XXXXXXXXXXXX
 
     //XXXXXXXXXXXX-INSERT SURVEY APP - START-XXXXXXXXXX
-            public int insertsurvey(Survey s)
+    public int insertsurvey(Survey s)
     {
 
         SqlConnection con;
         SqlCommand cmd;
-     
+
 
         try
         {
@@ -349,8 +347,8 @@ public class DBservices
 
         String command;
         string year = s.Uploaddate.Year.ToString();
-        string month= s.Uploaddate.Month.ToString();
-        string day= s.Uploaddate.Day.ToString();
+        string month = s.Uploaddate.Month.ToString();
+        string day = s.Uploaddate.Day.ToString();
         string FF = month + '/' + day + '/' + year;
 
         string year2 = s.Enddate.Year.ToString();
@@ -359,7 +357,7 @@ public class DBservices
         string FF2 = month2 + '/' + day2 + '/' + year2;
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}',{7},{8},{9},'{10}',{11},{12})", s.SurveyId, s.Topic, s.Details, s.Auther, s.Lecturerid, FF.ToString(), FF2.ToString(), s.Minperson.ToString(), s.Maxperson.ToString(),  s.Surveyweight.ToString(),  s.Link, s.Isopensurvey.ToString(), s.Currentnumofpers.ToString());
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}',{7},{8},{9},'{10}',{11},{12})", s.SurveyId, s.Topic, s.Details, s.Auther, s.Lecturerid, FF.ToString(), FF2.ToString(), s.Minperson.ToString(), s.Maxperson.ToString(), s.Surveyweight.ToString(), s.Link, s.Isopensurvey.ToString(), s.Currentnumofpers.ToString());
         String prefix = "INSERT INTO Survey " + "(surveyId, topic,details, auther,lecturerId, uploaddate, enddate, minperson, maxperson, surveyweight, link, opensurvey, currentnumofpers) ";
         command = prefix + sb.ToString();
         return command;
@@ -368,7 +366,7 @@ public class DBservices
     //XXXXXXXXXXXX-INSERT SURVEY APP - END-XXXXXXXXXX
 
     //XXXXXXXXXXX-EDITSURVEY- START-XXXXXXXXXXXXXXX
-    public int Editsurvey(Survey s,string sid)
+    public int Editsurvey(Survey s, string sid)
     {
 
         SqlConnection con;
@@ -387,7 +385,7 @@ public class DBservices
 
         // helper method to build the insert string
 
-        String cStr = BuildInsertCommand2(s,sid);
+        String cStr = BuildInsertCommand2(s, sid);
         cmd = CreateCommand(cStr, con);
 
 
@@ -431,7 +429,7 @@ public class DBservices
     //--------------------------------------------------------------------
     // Build the Insert command String
     //--------------------------------------------------------------------
-    private String BuildInsertCommand2(Survey s,string sid)
+    private String BuildInsertCommand2(Survey s, string sid)
     {
         string year = s.Uploaddate.Year.ToString();
         string month = s.Uploaddate.Month.ToString();
@@ -463,7 +461,7 @@ public class DBservices
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
-            String selectSTR = "SELECT * FROM " + tableName ;
+            String selectSTR = "SELECT * FROM " + tableName;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -473,10 +471,10 @@ public class DBservices
             {   // Read till the end of the data into a row
                 Status s = new Status();
                 s.Username = (string)dr["username"];
-               
+
                 s.Surveyammount = Convert.ToInt32(dr["surveyammount"]);
                 s.Labsammount = Convert.ToInt32(dr["labsammount"]);
-               
+
 
                 lc.Add(s);
             }
@@ -519,10 +517,10 @@ public class DBservices
         }
 
         // helper method to build the insert string
-        
+
         String cStr = BuildInsertCommand3(s, sid);
         String cStr2 = BuildInsertCommand4(s, sid);
-       
+
         cmd = CreateCommand(cStr, con);
         cmd2 = CreateCommand(cStr2, con);
 
@@ -538,7 +536,7 @@ public class DBservices
             cmd2 = CreateCommand(cStr2, con);
             int numEffected = cmd.ExecuteNonQuery();
             int numEffected2 = cmd2.ExecuteNonQuery();
-            return numEffected + numEffected2 ;
+            return numEffected + numEffected2;
         }
         catch (Exception ex)
         {
@@ -570,7 +568,7 @@ public class DBservices
     {
 
 
-        string command = "DELETE from studentsurveystatus where surveyId='" + sid +"'";
+        string command = "DELETE from studentsurveystatus where surveyId='" + sid + "'";
         return command;
     }
     private String BuildInsertCommand4(Survey s, string sid)
@@ -677,21 +675,21 @@ public class DBservices
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
-           
+
             String selectSTR = "SELECT COUNT(username) as sum1 FROM " + tableName;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
             SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-            
+
             while (dr.Read())
             {   // Read till the end of the data into a row
-                 sum = Convert.ToInt32(dr["sum1"]);
-              
-             
+                sum = Convert.ToInt32(dr["sum1"]);
 
 
-             
+
+
+
             }
 
             return sum;
@@ -784,7 +782,7 @@ public class DBservices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}')", s.Username, s.Password );
+        sb.AppendFormat("Values('{0}', '{1}')", s.Username, s.Password);
         String prefix = "INSERT INTO Student " + "(username, password) ";
         command = prefix + sb.ToString();
         return command;
@@ -827,7 +825,7 @@ public class DBservices
                 L.Maxperson = Convert.ToInt32(dr["maxpers"]);
                 L.Labdetails = (string)dr["labdetails"];
                 L.Director = (string)dr["Director"];
-                L.LecId= (string)dr["lecid"];
+                L.LecId = (string)dr["lecid"];
                 L.Labweight = Convert.ToSingle(dr["labweight"]);
                 L.Lablocation = (string)dr["lablocation"];
 
@@ -983,7 +981,7 @@ public class DBservices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,{2}, {3},'{4}','{5}','{6}',{7},'{8}','{9}')", l.LabId, l.Labtopic, l.Minperson.ToString(), l.Maxperson.ToString(), l.Labdetails, l.Director,l.LecId, l.Labweight.ToString(), l.Lablocation, FF.ToString());
+        sb.AppendFormat("Values('{0}', '{1}' ,{2}, {3},'{4}','{5}','{6}',{7},'{8}','{9}')", l.LabId, l.Labtopic, l.Minperson.ToString(), l.Maxperson.ToString(), l.Labdetails, l.Director, l.LecId, l.Labweight.ToString(), l.Lablocation, FF.ToString());
         String prefix = "INSERT INTO Labs " + "(labId, labtopic, minpers,maxpers, labdetails, Director,lecid, labweight, lablocation,labdate) ";
         command = prefix + sb.ToString();
         return command;
@@ -1005,7 +1003,7 @@ public class DBservices
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
-            String selectSTR = "SELECT * FROM " + tableName ;
+            String selectSTR = "SELECT * FROM " + tableName;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -1016,7 +1014,7 @@ public class DBservices
                 Student s = new Student();
                 s.Username = (string)dr["username"];
                 s.Password = (string)dr["password"];
-              
+
 
 
 
@@ -1056,7 +1054,7 @@ public class DBservices
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
-            String selectSTR = "SELECT * FROM " + tableName+ " WHERE username= '" +usern+ "'";
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE username= '" + usern + "'";
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -1067,7 +1065,7 @@ public class DBservices
                 studsurveydetails s = new studsurveydetails();
                 s.Username = (string)dr["username"];
                 s.SurveyId = (string)dr["surveyId"];
-                s.Surveyweight= Convert.ToSingle(dr["surveyweight"]);
+                s.Surveyweight = Convert.ToSingle(dr["surveyweight"]);
 
 
 
@@ -1210,9 +1208,9 @@ public class DBservices
     //--------------------------------------------------------------------
     private String BuildInsertCommand5(Student s, string sid)
     {
-     
 
-        string command = "UPDATE Student SET password='" + s.Password+"' where username ='"+sid+"'" ;
+
+        string command = "UPDATE Student SET password='" + s.Password + "' where username ='" + sid + "'";
         return command;
     }
 
@@ -1352,9 +1350,9 @@ public class DBservices
         string day = s.Labdate.Day.ToString();
         string FF = month + '/' + day + '/' + year;
 
-        
 
-        string command = "UPDATE Labs SET labId='" + s.LabId + "' , labtopic='" + s.Labtopic + "' , minpers= '" + s.Minperson+ "' ,maxpers='" + s.Maxperson + "' , labdetails='" + s.Labdetails + "' , Director='" + s.Director + "' , lecid='" + s.LecId + "' , labweight='" + s.Labweight + "' , lablocation='" + s.Lablocation + "' , labdate='" + FF + "' WHERE labId=" + lid;
+
+        string command = "UPDATE Labs SET labId='" + s.LabId + "' , labtopic='" + s.Labtopic + "' , minpers= '" + s.Minperson + "' ,maxpers='" + s.Maxperson + "' , labdetails='" + s.Labdetails + "' , Director='" + s.Director + "' , lecid='" + s.LecId + "' , labweight='" + s.Labweight + "' , lablocation='" + s.Lablocation + "' , labdate='" + FF + "' WHERE labId=" + lid;
         return command;
     }
 
@@ -1372,8 +1370,8 @@ public class DBservices
         SqlCommand cmd2;
         SqlCommand cmd3;
         SqlCommand cmd4;
-     
- 
+
+
 
         try
         {
@@ -1391,12 +1389,12 @@ public class DBservices
         String cStr2 = BuildInsertCommand99(s, un);
         String cStr3 = BuildInsertCommand100(s, un);
         String cStr4 = BuildInsertCommand101(s, un);
-       
+
         cmd = CreateCommand(cStr, con);
         cmd2 = CreateCommand(cStr2, con);
         cmd3 = CreateCommand(cStr3, con);
         cmd4 = CreateCommand(cStr4, con);
-    
+
 
 
         // create the command
@@ -1410,12 +1408,12 @@ public class DBservices
             cmd2 = CreateCommand(cStr2, con);
             cmd3 = CreateCommand(cStr3, con);
             cmd4 = CreateCommand(cStr4, con);
-       
+
             int numEffected = cmd.ExecuteNonQuery();
             int numEffected2 = cmd2.ExecuteNonQuery();
             int numEffected3 = cmd3.ExecuteNonQuery();
             int numEffected4 = cmd4.ExecuteNonQuery();
-          
+
             return numEffected + numEffected2 + numEffected3 + numEffected4;
         }
         catch (Exception ex)
@@ -1472,13 +1470,133 @@ public class DBservices
         string command = "DELETE from Student where username='" + sid + "'";
         return command;
     }
-  
+
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-DELETE-SURVEY-END-XXXXXXXXXXXXXXXX
 
 
+    public List<Student> getstudforpush(string conString, string tableName, string UserName)
+    {
+
+        SqlConnection con = null;
+        List<Student> lc = new List<Student>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " where username = '" + UserName + "'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Student s = new Student();
+                s.Username = (string)dr["username"];
+                s.Password = (string)dr["password"];
+                s.Token = (string)dr["token"];
 
 
 
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+
+    //XXXXXXXXXXX-LOGIN FUN- ending - XXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXX-EDITtoken- START-XXXXXXXXXXXXXXX
+    public int Edittoken(string t, string un)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommandt(t, un);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommandt(string t, string un)
+    {
+
+
+        string command = "UPDATE Student SET token='" + t + "' where username ='" + un + "'";
+        return command;
+    }
+
+
+
+
+    //XXXXXXXXXXX-EDITSURVEY- END-XXXXXXXXXXXXXXX
 
 
 

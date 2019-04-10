@@ -21,48 +21,49 @@
     <script src="../Scripts/ajaxCalls.js"></script>
     <link href="style.css" rel="stylesheet" />
     <link href="css/style2.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         html, body {
-   overflow-y: overlay;
-    overflow-x: hidden;
-       }
-         #btnExport
-        {
-         top:600px;
-         position:relative;
+            overflow-y: overlay;
+            overflow-x: hidden;
+        }
+
+        #btnExport {
+            top: 600px;
+            position: relative;
         }
     </style>
     <script type="text/javascript">
-        
+
         google.charts.load('current', { 'packages': ['corechart'] });
 
-// Draw the chart and set the chart values
+        // Draw the chart and set the chart values
         function drawChart(x) {
-            didnt = x-count;
-  var data = google.visualization.arrayToDataTable([
-  ['sum', 'num of finishers'],
-  ['השלימו 10 שעות', count],
-  ['לא השלימו', didnt]
- 
-]);
+            didnt = x - count;
+            var data = google.visualization.arrayToDataTable([
+                ['sum', 'num of finishers'],
+                ['השלימו 10 שעות', count],
+                ['לא השלימו', didnt]
 
-  // Optional; add a title and set the width and height of the chart
-  var options = {'title':'הצגת סטודנטים שהשלימו 10 שעות', 'width':550, 'height':400};
+            ]);
 
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
-}
-   
-       
+            // Optional; add a title and set the width and height of the chart
+            var options = { 'title': 'הצגת סטודנטים שהשלימו 10 שעות', 'width': 550, 'height': 400 };
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+
+
         $(document).ready(function () {
             ajaxCall("GET", "../api/statusstudent", "", getSuccess, error);
-          
+
 
             return false;
 
         });
-   
+
 
         var count = 0;
         function getSuccess(data) {
@@ -71,11 +72,11 @@
             for (var i = 0; i < data.length; i++) {
                 sum = data[i].Surveyammount + data[i].Labsammount;
                 if (sum >= 10) {
-                    count+=1
+                    count += 1
                 }
-            
+
             }
-    
+
             // keep the cars array in a global variable;
             try {
                 tbl = $('#statustable').DataTable({
@@ -83,15 +84,15 @@
                     pageLength: 5,
                     "rowCallback": function (row, data, index) {
                         sum = data.Surveyammount + data.Labsammount;
-                       
-                            if (sum >= 10) {
-                                $('td', row).css('background-color', 'Green');
-                            }
-                        
+
+                        if (sum >= 10) {
+                            $('td', row).css('background-color', 'Green');
+                        }
+
                     },
 
                     columns: [
-                       
+
                         {
                             data: "Username"
                         },
@@ -111,21 +112,28 @@
                         {
                             render: function (data, type, row, meta) {
                                 detBtn = "<button type='button' class='detBtn' onclick='buttonEvents7()' > עוד פרטים </button>";
-                 
+
+                                return detBtn;
+                            }
+                        },
+                        {
+                            render: function (data, type, row, meta) {
+                                detBtn = "<button type='button' class='pushBtn' onclick='pushEvents()' >  send </button>";
+
                                 return detBtn;
                             }
                         }
 
                     ]
                 });
-                ajaxCall("GET", "../api/student", "", getSuccess2, error2);
+                ajaxCall("GET", "../api/studentcount", "", getSuccess2, error2);
             }
 
 
             catch (err) {
                 alert(err);
             }
-            
+
 
         }
         function buttonEvents7() {
@@ -140,7 +148,36 @@
 
             })
         }
+        function pushEvents() {
+            $(".pushBtn").click(function () {
+                row = (this.parentNode).parentNode;
+                var data = tbl.row($(this).parents('tr')).data();
+                un = data.Username;
+                ajaxCall("GET", "../api/getpushstud/?un=" + un, "", getSuccessstud, errorstud);
 
+
+            })
+        }
+        function getSuccessstud(data) {
+            var pnd = {
+                to: data[0].Token,
+                title: 'תזכורת להלשמת שעות',
+                body: '  נותרו לך שבועיים לסיים את השעות שלך'+ data[0].Username + '  שלום',
+                badge: 1
+            }
+            ajaxCall("POST", "../sendpushnotification", JSON.stringify(pnd), good, errorbad);
+
+        }
+
+        function good() {
+            swal("השליחה בוצעה בהצלחה", "הודעתך נשלחה בהצלחה אל היעד", "success");
+        }
+        function errorbad(err) {
+            console.log(err);
+        }
+        function errorstud(err) {
+            swal("Error: " + err);
+        }
         // this function is activated in case of a failure
         function error(err) {
             swal("Error: " + err);
@@ -150,12 +187,11 @@
         function back() {
             window.location.href = "Lecturpage.html";
         }
-      
-        function getSuccess2(data)
-        {
+
+        function getSuccess2(data) {
             x = data;
             // Load google charts
-            
+
             google.charts.setOnLoadCallback(drawChart(x));
         }
         function error2(err) {
@@ -252,36 +288,39 @@
     <div class="container">
         <form id="pForm">
             <div>
-              
+
                 <h1 id="w4"> דו"ח שעות סטודנטים:</h1>
             </div>
             <div id="ddtable" class="dtable">
-                
+
                 <table id="statustable" style="width:100%">
                     <thead>
                         <tr id="f">
                             <th>שם משתמש</th>
                             <th>שעות ניסוי</th>
-                            <th>שעות מעבדה  </th>  
-                            <th>סה"כ</th>     
-                            <th></th>                  
+                            <th>שעות מעבדה  </th>
+                            <th>סה"כ</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
-                
+
             </div>
+            <h3 id="upload2">הפק דו"ח אקסל</h3>
+            <iframe id="txtArea1" style="display:none"></iframe>
             <img id="btnExport3" src="images/Picture1.png" onclick="fnExcelReport();" />
             <div>
 
-               
+
                 <h1 id="hh">דיאגרמת פאי</h1>
 
                 <div id="piechart"></div>
             </div>
         </form>
     </div>
-    <iframe id="txtArea1" style="display:none"></iframe>
-   
+
+
 
 </body>
 </html>

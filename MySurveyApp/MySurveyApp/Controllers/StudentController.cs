@@ -16,16 +16,16 @@ namespace MySurveyApp.Controllers
 
 
         [HttpGet]
-        [Route("api/student")]
+        [Route("api/studentcount")]
         public int Get()
         {
             Student s = new Student();
-          int M = s.Numofstudent();
+            int M = s.Numofstudent();
             return M;
         }
 
         [HttpPost]
-        [Route("api/student")]
+        [Route("api/addstudent")]
         public void Post([FromBody]Student s)
         {
             s.insertstudent();
@@ -55,7 +55,31 @@ namespace MySurveyApp.Controllers
 
         }
 
+        [HttpGet]
+        [Route("api/student")]
+        public IEnumerable<Student> Get3(string Username, string Password)
+        {
+            Student s2 = new Student();
+            List<Student> LL = s2.Login(Username, Password);
+            return LL;
+        }
 
+        [HttpGet]
+        [Route("api/getpushstud")]
+        public IEnumerable<Student> Get4(string un)
+        {
+            Student s2 = new Student();
+            List<Student> LL = s2.getstudforpush(un);
+            return LL;
+        }
+        [HttpPost]
+        [Route("api/edittoken")]
+        public void Put(string Token, string username)
+        {
+            Student s = new Student();
+            s.Edittoken(Token, username);
+
+        }
 
     }
 }

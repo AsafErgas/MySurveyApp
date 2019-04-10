@@ -13,7 +13,6 @@ namespace MySurveyApp.Models
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-
         public bool Ise { get; set; }
 
 
@@ -33,27 +32,7 @@ namespace MySurveyApp.Models
         {
 
         }
-        public bool checking (List<Lecturer> l, string U,string P){
-            bool exs = false;
-            if ((l[0].UserName==U)&&(l[0].Password==P))
-            {
-                exs = true;
-             
-            }
-            return exs;
-
-
-
-        }
-
-        public List<Lecturer> Login(string UserName,string Password)
-        {
-            DBservices dbs = new DBservices();
-            List<Lecturer> lc = dbs.Login("PersonStringName", "Lecturer", UserName, Password);
-            lc[0].Ise= checking(lc, UserName, Password);
-            return lc;
-
-        }
+     
         public List<Lecturer> Loginserver(string UserName, string Password)
         {
             DBservices dbs = new DBservices();

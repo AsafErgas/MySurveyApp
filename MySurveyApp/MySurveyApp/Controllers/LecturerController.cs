@@ -15,14 +15,7 @@ namespace MySurveyApp.Controllers
 
 
 
-        [HttpGet]
-        [Route("api/Lecturer")]
-        public IEnumerable<Lecturer> Get(string UserName, string Password)
-        {
-            Lecturer s2 = new Lecturer();
-            List<Lecturer> LL = s2.Login(UserName, Password);
-            return LL;
-        }
+     
         [HttpGet]
         [Route("api/Lecturerserver")]
         public IEnumerable<Lecturer> Get2(string UserName, string Password)
