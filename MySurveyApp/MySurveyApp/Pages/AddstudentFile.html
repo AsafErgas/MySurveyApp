@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link href="style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <link href="css/style2.css" rel="stylesheet" />  
     <link href="css/table.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
@@ -44,7 +44,7 @@
               Password:p 
           }
 
-          ajaxCall("POST", "../api/student", JSON.stringify(Student), success, error);
+          ajaxCall("POST", "../api/addstudentfromfile", JSON.stringify(Student), success, error);
 
       }
 

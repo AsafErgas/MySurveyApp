@@ -19,14 +19,11 @@
     <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <script src="../Scripts/ajaxCalls.js"></script>
-    <link href="style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <link href="css/style2.css" rel="stylesheet" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
-        html, body {
-            overflow-y: overlay;
-            overflow-x: hidden;
-        }
+      
 
         #btnExport {
             top: 600px;
@@ -57,6 +54,7 @@
 
 
         $(document).ready(function () {
+            
             ajaxCall("GET", "../api/statusstudent", "", getSuccess, error);
 
 
@@ -67,7 +65,7 @@
 
         var count = 0;
         function getSuccess(data) {
-
+            ajaxCall("GET", "../api/studentcount", "", getSuccess2, error2);
             var sum = 0;
             for (var i = 0; i < data.length; i++) {
                 sum = data[i].Surveyammount + data[i].Labsammount;
@@ -126,7 +124,7 @@
 
                     ]
                 });
-                ajaxCall("GET", "../api/studentcount", "", getSuccess2, error2);
+                
             }
 
 
@@ -187,11 +185,11 @@
         function back() {
             window.location.href = "Lecturpage.html";
         }
-
+        var x;
         function getSuccess2(data) {
             x = data;
             // Load google charts
-
+            //google.charts.load('current', { 'packages': ['corechart'] });
             google.charts.setOnLoadCallback(drawChart(x));
         }
         function error2(err) {

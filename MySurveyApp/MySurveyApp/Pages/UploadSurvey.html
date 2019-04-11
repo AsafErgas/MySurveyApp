@@ -30,7 +30,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--date-->  
-     <link href="style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <link href="css/style2.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
 
@@ -43,7 +43,8 @@
          });
 
          function f1() {
-            Addsurvey();
+             ajaxCall("GET", "../api/validsurvey", "", getSuccess, error2);
+            
              return false;
          }
          function Addsurvey() {
@@ -93,6 +94,92 @@
          $(function () {
              $("#enddate").datepicker();
          });
+
+         function getSuccess(data) {
+             id = $("#sid").val();
+             topic = $("#topic").val();
+             det = $("#details").val();
+             up = $("#uploaddate").val();
+             en = $("#enddate").val();
+             min = $("#minpers").val();
+             max = $("#maxpers").val();
+             aut = $("#auther").val();
+             lecid = $("#lecId").val();
+             wei = $("#weight").val();
+             link = $("#link").val();
+
+             var today = new Date();
+             var dd = today.getDate()
+             var mm = today.getMonth() + 1
+             var yyyy = today.getFullYear();
+
+             today = mm + '/' + dd + '/' + yyyy;
+
+
+             var d1 = Date.parse(today);
+             var d2 = Date.parse(up);
+             var d3 = Date.parse(en);
+             for (var i = 0; i < data.length; i++) {
+
+                 if ((data[i].SurveyId == id) && (data[i].SurveyId != '')) {
+                     swal("קוד שאלון כבר קיים במערכת");
+                     return;
+                 }
+                 if (id == '') {
+                     swal("חייב למלא קוד שאלון");
+                     return;
+                 }
+                 if (topic == '') {
+                     swal("חייב למלא נושא שאלון");
+                     return;
+                 }
+                 if (min < 0) {
+                     swal("מספר מינימלי חייב להיות גדול מאפס");
+                     return;
+                 }
+                 if (max <= 0) {
+                     swal("מספר מקסימלי חייב להיות גדול מאפס");
+                     return;
+                 }
+                 if (aut == '') {
+                     swal("חובה למלא מחבר סקר");
+                     return;
+                 }
+                 if (lecid.length != 9) {
+                     swal("ת.ז חייבת לכלול 9 ספרות");
+                     return;
+                 }
+                 if ((wei > 9) || (wei < 1) || (wei == '')) {
+                     swal("משקל שאלון חייב להיות בין 10-1");
+                     return;
+                 }
+                 if (link == '') {
+                     swal("חובה להכניס קישור לשאלון");
+                     return;
+                 }
+                 if (d2 < d1) {
+                     swal("אנא הכנס תאריך תקין");
+                     return;
+                 }
+                 if (d3 < d2) {
+                     swal("אנא הכנס תאריך תקין ");
+                     return;
+                 }
+                 if ((isNaN(d3)) || (isNaN(d2))) {
+                     swal("אנא הכנס תאריך  ");
+                     return;
+                 }
+
+
+
+
+
+             }
+             Addsurvey();
+         }
+         function error2(err) {
+             alert("error");
+         }
 
     </script>
 </head>
@@ -164,15 +251,15 @@
 
                 <h2 class="upload">מינימום עונים</h2>
                 
-                <input id="minpers" type="text" name="field2" placeholder="מינימום עונים *">
+                <input id="minpers" type="number" name="field2" placeholder="מינימום עונים *">
                 <h2 class="upload">מקסימום עונים</h2>
-                <input id="maxpers" type="text" name="field2" placeholder="מקסימום עונים *">
+                <input id="maxpers" type="number" name="field2" placeholder="מקסימום עונים *">
                 <h2 class="upload">מחבר השאלון</h2>
                 <input id="auther" type="text" name="field2" placeholder="מחבר השאלון *">
                 <h2 class="upload">תעודת זהות מחבר השאלון</h2>
                 <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
                 <h2 class="upload">משקל השאלון</h2>
-                <input style="color:black" id="weight" type="text" name="field2" placeholder="משקל השאלון *">
+                <input style="color:black" id="weight" type="number" name="field2" placeholder="משקל השאלון *">
                 <legend><span class="number">2</span> הכנס קישור לסקר:</legend>
                 
                 <h3 class="upload"> קישור לאתר qualtrics:</h3>

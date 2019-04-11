@@ -1600,6 +1600,61 @@ public class DBservices
 
 
 
+    //XXXXXXXXX-VALID LAB FUN - START-XXXXXXXXXXXXX
+
+    public List<Lab> validlab(string conString, string tableName)
+    {
+
+        SqlConnection con = null;
+        List<Lab> lc = new List<Lab>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Lab s = new Lab();
+                s.LabId = (string)dr["labId"];
+                s.Labtopic = (string)dr["labtopic"];
+                s.Minperson = Convert.ToInt32(dr["minpers"]);
+                s.Maxperson = Convert.ToInt32(dr["maxpers"]);
+                s.Labdetails = (string)dr["labdetails"];
+                s.Director = (string)dr["director"];
+                s.LecId = (string)dr["lecid"];
+                s.Labdate = (DateTime)dr["labdate"];
+                s.Labweight = Convert.ToSingle(dr["labweight"]);             
+                s.Lablocation = (string)dr["lablocation"];
+          
+
+
+
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXX-VALID LAB END-XXXXXXXXXXXX
 
 
 

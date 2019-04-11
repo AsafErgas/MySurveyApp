@@ -69,5 +69,11 @@ namespace MySurveyApp.Models
             int numAffected = dbs.deletelab(this, lid);
             return numAffected;
         }
+        public List<Lab> validlab()
+        {
+            DBservices dbs = new DBservices();
+            List<Lab> lc = dbs.validlab("PersonStringName", "Labs");
+            return lc;
+        }
     }
 }

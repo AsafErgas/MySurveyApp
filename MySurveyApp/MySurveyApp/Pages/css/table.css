@@ -16,6 +16,11 @@
     text-align: center;
     font-size: 26px;
     text-decoration: underline;
+        left: 37%;
+}
+#d1{
+    position:relative;
+    left:38%;
 }
 table.minimalistBlack td, table.minimalistBlack th {
   border: 1px solid #000000;

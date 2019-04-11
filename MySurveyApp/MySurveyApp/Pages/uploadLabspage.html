@@ -27,7 +27,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--date-->
-    <link href="style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <link href="css/style2.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
 
@@ -39,7 +39,8 @@
         });
 
         function f1() {
-            AddLab();
+            ajaxCall("GET", "../api/validlab", "", getSuccess, error2);
+        
             return false;
         }
         function AddLab() {
@@ -85,6 +86,88 @@
         $(function () {
             $("#enddate").datepicker();
         });
+        function getSuccess(data) {
+            id = $("#labid").val();
+            topic = $("#topic").val();
+            det = $("#details").val();
+            up = $("#uploaddate").val();          
+            min = $("#minpers").val();
+            max = $("#maxpers").val();
+            aut = $("#director").val();
+            did = $("#directorid").val();
+            wei = $("#weight").val();
+            loc = $("#location").val();
+
+            var today = new Date();
+            var dd = today.getDate()
+            var mm = today.getMonth() + 1
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+
+
+            var d1 = Date.parse(today);
+            var d2 = Date.parse(up);
+     
+            for (var i = 0; i < data.length; i++) {
+
+                if ((data[i].LabId == id) && (data[i].LabId != '')) {
+                    swal("קוד מעבדה כבר קיים במערכת");
+                    return;
+                }
+                if (id == '') {
+                    swal("חייב למלא קוד מעבדה");
+                    return;
+                }
+                if (topic == '') {
+                    swal("חייב למלא נושא מעבדה");
+                    return;
+                }
+                if (min < 0) {
+                    swal("מספר מינימלי חייב להיות גדול מאפס");
+                    return;
+                }
+                if (max <= 0) {
+                    swal("מספר מקסימלי חייב להיות גדול מאפס");
+                    return;
+                }
+                if (aut == '') {
+                    swal("חובה למלא מנהל מעבדה");
+                    return;
+                }
+                if (did.length != 9) {
+                    swal("ת.ז חייבת לכלול 9 ספרות");
+                    return;
+                }
+                if ((wei > 9) || (wei < 1) || (wei == '')) {
+                    swal("משקל מעבדה חייב להיות בין 10-1");
+                    return;
+                }
+                if (loc == '') {
+                    swal("חובה להכניס מיקום מעבדה");
+                    return;
+                }
+                if (d2 < d1) {
+                    swal("אנא הכנס תאריך תקין");
+                    return;
+                }
+              
+                if ( isNaN(d2)) {
+                    swal("אנא הכנס תאריך  ");
+                    return;
+                }
+
+
+
+
+
+            }
+            AddLab();
+        }
+        function error2(err) {
+            alert("error");
+        }
+
     </script>
 </head>
 <body>

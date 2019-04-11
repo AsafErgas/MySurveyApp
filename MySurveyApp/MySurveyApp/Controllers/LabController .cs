@@ -50,5 +50,13 @@ namespace MySurveyApp.Controllers
             s.deletelab(lid);
 
         }
+        [HttpGet]
+        [Route("api/validlab")]
+        public IEnumerable<Lab> Get2()
+        {
+            Lab s = new Lab();
+            List<Lab> M = s.validlab();
+            return M;
+        }
     }
 }

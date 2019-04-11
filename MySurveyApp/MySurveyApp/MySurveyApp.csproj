@@ -85,6 +85,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -191,6 +192,7 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\LabController .cs" />
     <Compile Include="Controllers\LecturerController.cs" />
+    <Compile Include="Controllers\PushController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -224,13 +226,12 @@
     <Content Include="Pages\Lecturloginpage.html" />
     <Content Include="Pages\css\loginstyle.css" />
     <Content Include="Pages\showdetails.html" />
-    <Content Include="Pages\style.css" />
+    <Content Include="Pages\css\style.css" />
     <Content Include="Pages\AddstudentFile.html" />
     <Content Include="Pages\StudentReport.html" />
     <Content Include="Pages\Lecturpage.html" />
     <Content Include="Pages\editSurvey.html" />
     <Content Include="Pages\Addstudent.html" />
-    <Content Include="Pages\test.html" />
     <Content Include="Pages\UploadSurvey.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\bootstrap.js" />

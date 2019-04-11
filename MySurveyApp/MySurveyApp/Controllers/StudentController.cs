@@ -25,7 +25,7 @@ namespace MySurveyApp.Controllers
         }
 
         [HttpPost]
-        [Route("api/addstudent")]
+        [Route("api/addstudentfromfile")]
         public void Post([FromBody]Student s)
         {
             s.insertstudent();

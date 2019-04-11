@@ -14,6 +14,7 @@
             outline: 0;
             padding: 0;
             margin: 0;
+            
         }
 
         html {
@@ -237,8 +238,12 @@
             padding: 1.25em; /* 20 */
         }
 
-        body, a, a:hover {
+        /*body, a, a:hover {
             color: #111;
+               
+        }*/
+        body{
+            width:57%;
         }
 
    
@@ -330,7 +335,7 @@
             /* second level */
 
             #nav li ul {
-                background-color: #cc470d;
+                background-color: snow;
                 display: none;
                 position: absolute;
                 top: 100%;
@@ -444,33 +449,40 @@
 
         #h-head {
             text-align: center;
-         
+             position: relative;
+              left: 36%;
+               top: -62px;
             color:cornflowerblue;
              font-size:225%;
-                 margin-top: -4%;
-    margin-bottom: 2%;
+   
         }
             #h-head2 {
             text-align: center;
+                position: relative;
+             left: 39%;
          
             color:cornflowerblue;
              font-size:225%;
-                 margin-top: -4%;
-    margin-bottom: 2%;
+             margin-top: -4%;
+            margin-bottom: 2%;
         }
         #h-s{
              text-align: center;
           
              font-size:180%;
-        text-decoration:underline;
-        margin-bottom:1%;
+            text-decoration:underline;
+             margin-bottom:1%;
+            position: relative;
+            left: 36%;
+                bottom: 15px;
              }
          #h-t{
              text-align:center;
-          
+             position: relative;
+             left: 36%;
              font-size:180%;
-        text-decoration:underline;
-        margin-bottom:-2%;
+             text-decoration:underline;
+             margin-bottom:-2%;
              }
         #sa :hover{
            font-weight:bolder;
@@ -540,8 +552,8 @@
                                }
                             #pp2{
                          position: fixed;
-                             left: 93%;
-                          bottom: 93%;
+                         left: 92%;
+                         bottom: 93%;
                          font-size: 120%;
                           z-index:1;
                                }
@@ -599,7 +611,7 @@
 
              .dtable{
                 background-color:white;
-                width:100%;
+                width:180%;
                   height:100%;
                       display: block;
                 overflow-x: auto;
@@ -627,6 +639,7 @@
                     direction: rtl;
                     color: black;
                         font-size: 160%;
+                            left: 35%;
                   }
               #all2{
                         margin-top: 90px;
@@ -634,20 +647,26 @@
                     color: black;
                         font-size: 160%;
                             z-index: -1;
+                            position: relative;
+                           left: 34%;
                   }
                #all3{
-                        margin-top: 230px;
+                    margin-top: 230px;
                     direction: rtl;
                     color: black;
-                        font-size: 160%;
-                            z-index: -1;
+                    font-size: 160%;
+                    z-index: -1;
+                    left: 37%;
+                    position: relative;
                   }
                 #all4{
-                        margin-top: 140px;
-                    direction: rtl;
-                    color: black;
-                        font-size: 160%;
-                            z-index: -1;
+                   margin-top: 140px;
+                   direction: rtl;
+                   color: black;
+                   font-size: 160%;
+                   z-index: -1;
+                   position: relative;
+                   left: 327px;
                   }
                  #all5{
                         margin-top: 140px;
@@ -680,11 +699,12 @@
           position:relative;
           top:50px;
           direction:rtl;
+              left: 37%;
        }
        #piechart{
            position:relative;
                top: 90px;
-               left:37%;
+               left:53%;
        }
        #ts{
            position:relative;
@@ -704,36 +724,40 @@
        }
          #w4{
             text-align:center;
-                 direction: rtl;
-    font-size: 180%;
-    text-decoration: underline;
-    margin-bottom: 50px;
+            direction: rtl;
+            font-size: 180%;
+            text-decoration: underline;
+            margin-bottom: 50px;
+            position: relative;
+            left: 37%;
 }
          #hh{
 
              position:relative;
-                left: 47%;
-    top: 67px;
-    font-size: 30px;
-    text-decoration: underline;
+             left: 77%;
+             top: 67px;
+             font-size: 30px;
+             text-decoration: underline;
 
          }
          #ddtable{
-             width:80%;
-             position: relative;
-             left: 8%;
-         }
+                 width: 108%;
+                 position: relative;
+                 left: 36%;
+                 }
+         
 
              #studt{
                position: relative;
                top: 200px;
-               margin: auto;
-              width:50%;
+               margin: auto;          
+               width: 80%;
+               left: 37%;
                    }
 
              #toph2{
                position:relative;
-               position: relative;
+                left: 37%;
                top: 125px;
                text-align: center;
                font-size: 26px;
@@ -769,8 +793,8 @@
              }
              #logor{
                  position:relative;
-                 top:30px;
-                 left:82%;
+                 top: -56px;
+                 left: 7%;
              }
              #im{
                  height:120px;
@@ -786,6 +810,9 @@
                    font-family: 'Secular One', sans-serif;
                    font-size: 20px;
                    margin-bottom: 10px;
+                   position: relative;
+                   left: 79%;
+                   top: 84px;
              }
              #back{
                  position:relative;
@@ -799,9 +826,10 @@
                      position: relative;
                      left: 37%;
                           }
+
               #btnExport3{
-                         width: 12%;
-                         margin-top: 30px;
-                         position: relative;
-                         left: 42%;
+                            width: 12%;
+                            margin-top: 0px;
+                           position: relative;
+                           left: 81%;
                           }
