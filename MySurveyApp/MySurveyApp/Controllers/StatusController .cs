@@ -24,8 +24,15 @@ namespace MySurveyApp.Controllers
             return M;
         }
 
-       
 
+        [HttpGet]
+        [Route("api/statusspecstudent")]
+        public float Get2(string un)
+        {
+            Status s = new Status();
+            float M = s.Readspecstud(un);
+            return M;
+        }
 
 
 

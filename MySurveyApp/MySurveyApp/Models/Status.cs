@@ -45,7 +45,15 @@ namespace MySurveyApp.Models
             return lc;
         }
 
-      
+        public float Readspecstud(string un)
+        {
+            DBservices dbs = new DBservices();
+            float lc = dbs.Readspecstud("PersonStringName", "studentstatus", un);
+            return lc;
+        }
+
+
+
 
 
 

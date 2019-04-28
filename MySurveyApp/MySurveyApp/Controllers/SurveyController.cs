@@ -25,6 +25,15 @@ namespace MySurveyApp.Controllers
         }
 
         [HttpGet]
+        [Route("api/opensurvey")]
+        public IEnumerable<Survey> Getopen(int Isopen)
+        {
+            Survey s = new Survey();
+            List<Survey> M = s.ReadopenSurvey(Isopen);
+            return M;
+        }
+
+        [HttpGet]
         [Route("api/allsurvey")]
         public IEnumerable<Survey> Get(string lecId)
         {

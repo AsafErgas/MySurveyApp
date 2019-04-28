@@ -708,12 +708,12 @@
        }
        #ts{
            position:relative;
-           left:14%;
+             left: 52%;
            width:70%;
        }
         #ts2{
            position:relative;
-           left:14%;
+           left:52%;
            width:70%;
            top:50px;
        }
@@ -817,14 +817,15 @@
              #back{
                  position:relative;
                  top: 100px;
-                 left: 58%;
+                 left: 102%;
              }
 
              #btnExport2{
                      width: 10%;
                      margin-top: 162px;
                      position: relative;
-                     left: 37%;
+                   left: 72%;
+                    top: 18px;
                           }
 
               #btnExport3{
@@ -833,3 +834,9 @@
                            position: relative;
                            left: 81%;
                           }
+              #chartContainer{
+                  position:relative;
+                  left:40%;
+                      top: 30px;
+                           font-family: 'Secular One', sans-serif;
+              }

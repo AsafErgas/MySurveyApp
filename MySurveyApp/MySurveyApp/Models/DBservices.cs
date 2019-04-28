@@ -278,6 +278,69 @@ public class DBservices
     }
     //XXXXXXXXXX-READ SURVEY END-XXXXXXXXXXXX
 
+
+    //XXXXXXXXX-READ open SURVEY FUN - START-XXXXXXXXXXXXX
+
+    public List<Survey> ReadopenSurvey(string conString, string tableName, int Isopen)
+    {
+
+        SqlConnection con = null;
+        List<Survey> lc = new List<Survey>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE opensurvey = " + Isopen;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Survey s = new Survey();
+                s.SurveyId = (string)dr["surveyId"];
+                s.Topic = (string)dr["topic"];
+                s.Uploaddate = (DateTime)dr["uploaddate"];
+                s.Enddate = (DateTime)dr["enddate"];
+                s.Minperson = Convert.ToInt32(dr["minperson"]);
+                s.Maxperson = Convert.ToInt32(dr["maxperson"]);
+                s.Details = (string)dr["details"];
+                s.Auther = (string)dr["auther"];
+                s.Surveyweight = Convert.ToSingle(dr["surveyweight"]);
+                s.Lecturerid = (string)dr["lecturerId"];
+                s.Link = (string)dr["link"];
+                s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
+                s.Currentnumofpers = Convert.ToInt32(dr["currentnumofpers"]);
+
+
+
+
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXX-READopen SURVEY END-XXXXXXXXXXXX
+
+
+
+
     //XXXXXXXXXXXX-INSERT SURVEY APP - START-XXXXXXXXXX
     public int insertsurvey(Survey s)
     {
@@ -478,7 +541,7 @@ public class DBservices
 
                 lc.Add(s);
             }
-
+            
             return lc;
         }
         catch (Exception ex)
@@ -497,6 +560,57 @@ public class DBservices
 
     }
     //XXXXXXXX-READ-STATUS-END-XXXXXXXXXXXXX
+
+    //XXXXXXXX-READ-specstudent-END-XXXXXXXXXXXXX
+    public float Readspecstud(string conString, string tableName,string un)
+    {
+        float x = 0;
+        SqlConnection con = null;
+        List<Status> lc = new List<Status>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+            
+            String selectSTR = "SELECT * FROM " + tableName +" where username='"+un+"'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Status s = new Status();
+                s.Username = (string)dr["username"];
+
+                s.Surveyammount = Convert.ToSingle(dr["surveyammount"]);
+                s.Labsammount = Convert.ToSingle(dr["labsammount"]);
+
+                x = s.Surveyammount + s.Labsammount;
+                //lc.Add(s);
+            }
+            
+            return x;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXX-DELETE-SURVEY-START-XXXXXXXXXXXXXXXXXXXX
     public int deletesurvey(Survey s, string sid)
     {

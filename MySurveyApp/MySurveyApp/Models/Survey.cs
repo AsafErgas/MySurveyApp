@@ -55,6 +55,13 @@ namespace MySurveyApp.Models
             return lc;
         }
 
+        public List<Survey> ReadopenSurvey(int Isopen)
+        {
+            DBservices dbs = new DBservices();
+            List<Survey> lc = dbs.ReadopenSurvey("PersonStringName", "Survey",  Isopen);
+            return lc;
+        }
+
         public List<Survey> ReadAllSurvey(string lecId)
         {
             DBservices dbs = new DBservices();

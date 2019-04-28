@@ -222,6 +222,7 @@
     <Content Include="Pages\images\Rupin icon.png" />
     <Content Include="Pages\js\prefixfree.min.js" />
     <Content Include="Pages\showLabs.html" />
+    <Content Include="Pages\StudentReport - Copy.html" />
     <Content Include="Pages\uploadLabspage.html" />
     <Content Include="Pages\Lecturloginpage.html" />
     <Content Include="Pages\css\loginstyle.css" />
