@@ -17,8 +17,10 @@ namespace MySurveyApp.Models
         public string LecId { get; set; }
         public float Labweight { get; set; }
         public string Lablocation { get; set; }
+        public string Finalcode { get; set; }
 
-        public Lab(string _labId, string _labtopic, DateTime _labdate, int _min, int _max, string _labdetails, string _director,string l, float _labweight, string _lablocation)
+
+        public Lab(string _labId, string _labtopic, DateTime _labdate, int _min, int _max, string _labdetails, string _director,string l, float _labweight, string _lablocation, string fc)
         {
 
             LabId = _labId;
@@ -31,7 +33,7 @@ namespace MySurveyApp.Models
             LecId = l;
             Labweight = _labweight;
             Lablocation = _lablocation;
-
+            Finalcode = fc;
 
         }
         public int insertlab()

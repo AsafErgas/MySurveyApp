@@ -241,3 +241,17 @@
                 .form-style-5 input[type="button"]:hover {
                     background: #109177;
                 }
+                   #barcode2
+                   {
+                  margin:auto;
+                  position:relative;
+                  left:77%;
+                  }
+                   .explan{
+                       text-align: center;
+                       font-size:180%;
+                       margin-bottom:1%;
+                       position: relative;
+                       left: 36%;
+                       bottom: 15px;
+                   }

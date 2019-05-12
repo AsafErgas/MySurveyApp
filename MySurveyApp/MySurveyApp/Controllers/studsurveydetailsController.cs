@@ -24,12 +24,26 @@ namespace MySurveyApp.Controllers
             return M;
         }
 
-       
+
+        [HttpPost]
+        [Route("api/insertsurveyfromapp")]
+        public void Post(string un, string sid, float wei)
+        {
+            studsurveydetails s = new studsurveydetails();
+            s.uploadsurveyfromapp(un, sid, wei);
+
+        }
 
 
 
-
-
+        [HttpGet]
+        [Route("api/checkifsurveyex")]
+        public IEnumerable<studsurveydetails> Get2(string usern,string sid)
+        {
+            studsurveydetails s = new studsurveydetails();
+            List<studsurveydetails> M = s.checkifsurveyex(usern,sid);
+            return M;
+        }
 
 
 

@@ -33,9 +33,12 @@
         });
 
         $(document).ready(function () {
-            loadSettings();
+
+             loadSettings();     
             return false;
         });
+
+      
 
         var id = "";
         function loadSettings() {
@@ -117,7 +120,9 @@
                               data: "Currentnumofpers"
                           },
                       
-
+                       {
+                           data: "Verifcode"
+                       },
 
                         ]
                     });
@@ -229,6 +234,9 @@
                               {
                                   data: "Currentnumofpers"
                               },
+                                {
+                                    data: "Verifcode"
+                                },
                                 {
                                     render: function (data, type, row, meta) {
                                         editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
@@ -362,7 +370,7 @@
                                 <th>קישור לשאלון</th>
                                 <th>פתוח לסטודנטים?</th>
                                 <th>מס' עדכני של עונים</th>
-                               
+                               <th>קוד אימות שאלון</th>
                             </tr>
                         </thead>
                     </table>
@@ -391,6 +399,7 @@
                                 <th>קישור לשאלון</th>
                                 <th>?פתוח לסטודנטים</th>
                                 <th>מס' עדכני של עונים</th>
+                                <th>קוד אימות שאלון</th>
                                 <th>ערוך שאלון</th>
                             </tr>
                         </thead>

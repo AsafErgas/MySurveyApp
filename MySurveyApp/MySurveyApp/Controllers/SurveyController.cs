@@ -32,6 +32,15 @@ namespace MySurveyApp.Controllers
             List<Survey> M = s.ReadopenSurvey(Isopen);
             return M;
         }
+        [HttpGet]
+        [Route("api/specsurvey")]
+        public Survey Gets(string sidfromapp)
+        {
+            Survey s = new Survey();
+            Survey M = s.ReadspecSurvey(sidfromapp);
+            return M;
+        }
+
 
         [HttpGet]
         [Route("api/allsurvey")]
@@ -74,6 +83,14 @@ namespace MySurveyApp.Controllers
             List<Survey> M = s.validSurvey();
             return M;
         }
+       
+        [HttpPost]
+        [Route("api/Editcurrentnumofans")]
+        public void Put3(string sid)
+        {
+            Survey s = new Survey();
+            s.Editcurrentnumofans(sid);
 
+        }
     }
 }

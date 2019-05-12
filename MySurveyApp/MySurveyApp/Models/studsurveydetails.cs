@@ -46,7 +46,19 @@ namespace MySurveyApp.Models
             return lc;
         }
 
-      
+        public int uploadsurveyfromapp(string un, string sid, float wei)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.uploadsurveyfromapp(un,sid, wei);
+            return numAffected;
+        }
+
+        public List<studsurveydetails> checkifsurveyex(string usern, string sid)
+        {
+            DBservices dbs = new DBservices();
+            List<studsurveydetails> lc = dbs.checkifsurveyex("PersonStringName", "studentsurveystatus", usern, sid);
+            return lc;
+        }
 
 
 

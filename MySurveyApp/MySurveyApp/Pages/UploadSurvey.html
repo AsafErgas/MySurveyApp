@@ -39,14 +39,17 @@
     <script>
          $(document).ready(function () {
              $("#pForm").submit(f1);
+    
              return false;
          });
 
          function f1() {
+             
              ajaxCall("GET", "../api/validsurvey", "", getSuccess, error2);
             
              return false;
          }
+     
          function Addsurvey() {
              Survey = {
                  SurveyId: $("#sid").val(),
@@ -61,8 +64,9 @@
                  Lecturerid: $("#lecId").val(),
                  Link: $("#link").val(),
                  Isopensurvey: $("#job").val(),
-                 Currentnumofpers:0
-
+                 Currentnumofpers:0,
+                 Verifcode: $("#vercode").val(),
+                 Expanded: 0,
              }
 
              ajaxCall("POST", "../api/survey", JSON.stringify(Survey), success, error);
@@ -81,7 +85,7 @@
              $("#weight").val('');
              $("#lecId").val('');
              $("#link").val('');
-           
+             $("#vercode").val('');
          }
 
          function error(err) {
@@ -260,6 +264,8 @@
                 <input id="lecId" type="text" name="field2" placeholder="תעודת זהות מחבר השאלון *">
                 <h2 class="upload">משקל השאלון</h2>
                 <input style="color:black" id="weight" type="number" name="field2" placeholder="משקל השאלון *">
+                <h2 class="upload">קוד אימות שאלון</h2>
+                <input id="vercode" type="text" name="field2" placeholder="קוד אימות שאלון *">
                 <legend><span class="number">2</span> הכנס קישור לסקר:</legend>
                 
                 <h3 class="upload"> קישור לאתר qualtrics:</h3>

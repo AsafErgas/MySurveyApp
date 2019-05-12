@@ -44,6 +44,7 @@
             return false;
         }
         function AddLab() {
+            var rand= Math.floor(Math.random() * 100001);
             Lab = {
                 LabId: $("#labid").val(),
                 Labtopic: $("#topic").val(),
@@ -54,8 +55,8 @@
                 Director: $("#director").val(),
                 LecId: $("#directorid").val(),
                 Labweight: $("#weight").val(),
-                Lablocation: $("#location").val()
-
+                Lablocation: $("#location").val(),
+                Finalcode: rand
             }
 
             ajaxCall("POST", "../api/lab", JSON.stringify(Lab), success, error);

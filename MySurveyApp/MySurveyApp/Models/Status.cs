@@ -44,6 +44,14 @@ namespace MySurveyApp.Models
             List<Status> lc = dbs.Readstatus("PersonStringName", "studentstatus");
             return lc;
         }
+        public List<Status> ReadstatusforApp(string un)
+        {
+            DBservices dbs = new DBservices();
+            List<Status> lc = dbs.ReadstatusforApp("PersonStringName", "studentstatus", un);
+            return lc;
+        }
+      
+       
 
         public float Readspecstud(string un)
         {
@@ -52,6 +60,20 @@ namespace MySurveyApp.Models
             return lc;
         }
 
+
+        public int Editstatusfromapp(string un, float wei)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.Editstatusfromapp(un,wei);
+            return numAffected;
+        }
+
+        public int inserthourfromapp(string un, float wei)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.inserthourfromapp(un, wei);
+            return numAffected;
+        }
 
 
 

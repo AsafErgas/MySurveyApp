@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-
+    <script src="JsBarcode.all.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
     <link href="css/style2.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
@@ -33,125 +34,40 @@
         });
 
         $(document).ready(function () {
-            ajaxCall("GET", "../api/allLabs", "", getSuccess2, error2);
+            getfinalcode();
             return false;
         });
-       
-        function getSuccess2(data) {
 
+        function qrcode(code) {
+            randNum = code;
+            JsBarcode("#barcode", randNum , { displayValue: false });
+        };
 
-
-            try {
-                tbl = $('#allmyLabs').DataTable({
-                    data: data,
-                    pageLength: 5,
-                    columns: [
-
-
-                        {
-                            data: "LabId"
-                        },
-                        {
-                            data: "Labtopic"
-                        },
-
-
-                        {
-                            data: "Labdate", render: function (data, type, row, meta) {
-
-                                d = data.split("T");
-                                df = d[0].split("-").reverse().join("-");
-                                return df;
-
-                            }
-                        },
-
-                        {
-                            data: "Minperson"
-                        },
-                        {
-                            data: "Maxperson"
-                        },
-                        {
-                            data: "Labdetails"
-                        },
-
-                        {
-                            data: "Director"
-                        },
-                         {
-                             data: "LecId"
-                         },
-
-                        {
-                            data: "Labweight"
-                        },
-                        {
-                            data: "Lablocation"
-                        },
-                        
-                        {
-                            render: function (data, type, row, meta) {
-                                editBtn2 = "<button type='button' class='editBtn' onclick='buttonEvents2()' > קוד סיום </button>";
-
-                                return editBtn2;
-                            }
-                        },
-                          {
-                              render: function (data, type, row, meta) {
-                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
-
-                                  return editBtn;
-                              }
-                          }
-
-
-                    ]
-                });
-
-
-
-
-            }
-
-
-            catch (err) {
-                alert(err);
-            }
-
-
+            
+        function getfinalcode() {
+            l = JSON.parse(localStorage.getItem('labcode'));
+            code = l.Finalcode;
+            LabId = '<h1 class="explan">' + l.LabId + ' :מספר זיהוי שאלון</h1>';
+            
+            document.getElementById("labid").innerHTML = LabId;
+            qrcode(code);
+         
         }
        
+           
+        function getSuccess(data) {
+        }
 
-        function error2(err) {
+        function error(err) {
             swal("Error: " + err);
         }
 
-        function buttonEvents() {
-            $(".editBtn").click(function () {
-                row = (this.parentNode).parentNode;
-                var data = tbl.row($(this).parents('tr')).data();
 
-                localStorage.setItem('l', JSON.stringify(data));
-
-                window.location.href = "editLab.html";
+      
 
 
-            })
-        }
-        function buttonEvents2() {
-            $(".editBtn").click(function () {
-                row = (this.parentNode).parentNode;
-                var data = tbl.row($(this).parents('tr')).data();
-
-                localStorage.setItem('labcode', JSON.stringify(data));
-
-                window.location.href = "QRcodePage.html";
-
-
-            })
-        }
-
+      
+     
 
     </script>
 
@@ -210,37 +126,26 @@
         </div>
     </nav>
     <div class="container">
+        <div id="logor" class="hidden-md hidden-sm hidden-xs">
+            <img id="im" src="images/Rupin icon.png" />
+        </div>
         <form id="pForm">
-           
-         
-            
-             
-                <h1 id="h-head2">:כל המעבדות</h1>
+            <div>
+                <h1 id="h-head"> קוד מעבדה</h1>
+            </div>
+            <div style="margin:auto">
                 <br />
-            <div class="dtable">
-                <table id="allmyLabs" style="width:100%">
-                    <thead>
-                        <tr id="f">
-                            <th>labId</th>
-                            <th>labtopic</th>
-                            <th>labdate</th>
-                            <th>minpers  </th>
-                            <th>maxpers </th>
-                            <th>labdetails</th>
-                            <th>Director</th>
-                            <th>lecid</th>
-                            <th>labweight</th>
-                            <th>lablocation</th>
-                           
-                            <th>קבל קוד סיום</th>
-                            <th>ערוך</th>
-                        </tr>
-                    </thead>
-                </table>
+                <br />
+                <h1 class="explan">נא לסרוק את הברקוד המוצג ולאחר מכן להזין קוד סיום באפליקציה </h1>
+           <div id="labid"></div>
+                <div id="barcode2">
+                    <svg id="barcode"></svg>
                 </div>
-</form>
-    </div>
+                </div>
+        </form>
 
+
+    </div>
 
 </body>
 </html>

@@ -34,10 +34,35 @@ namespace MySurveyApp.Controllers
             return M;
         }
 
+        [HttpPost]
+        [Route("api/updatestatusfromapp")]
+        public void Post( string un, float wei)
+        {
+            Status s = new Status();
+            s.Editstatusfromapp(un,wei);
+
+        }
+       
+   
 
 
 
+        [HttpPost]
+        [Route("api/inserthourfromapp")]
+        public void Post2(string un, float wei)
+        {
+            Status s = new Status();
+            s.inserthourfromapp(un, wei);
 
+        }
+        [HttpGet]
+        [Route("api/ReadstatusforApp")]
+        public IEnumerable<Status> Gets(string un)
+        {
+            Status s = new Status();
+            List<Status> M = s.ReadstatusforApp(un);
+            return M;
+        }
 
 
 

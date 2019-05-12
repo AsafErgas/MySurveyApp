@@ -196,7 +196,8 @@ public class DBservices
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
                 s.Currentnumofpers = Convert.ToInt32(dr["currentnumofpers"]);
-
+                s.Verifcode= (string)dr["vercode"];
+               
                 lc.Add(s);
             }
 
@@ -218,7 +219,60 @@ public class DBservices
 
     }
     //XXXXXXXXXX-READ ALL SURVEY-END-XXXXXXXXXXXXXX
+    //XXXXXXXXXXXX-READ SPEC SURVEY-START-XXXXXXXXXXXXXXX
+    public Survey ReadspecSurvey(string conString, string tableName, string sidfromapp)
+    {
 
+        SqlConnection con = null;
+        List<Survey> lc = new List<Survey>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE surveyId= '" + sidfromapp+"'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            Survey s = new Survey();
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+               
+                s.SurveyId = (string)dr["surveyId"];
+                s.Topic = (string)dr["topic"];
+                s.Uploaddate = (DateTime)dr["uploaddate"];
+                s.Enddate = (DateTime)dr["enddate"];
+                s.Minperson = Convert.ToInt32(dr["minperson"]);
+                s.Maxperson = Convert.ToInt32(dr["maxperson"]);
+                s.Details = (string)dr["details"];
+                s.Auther = (string)dr["auther"];
+                s.Surveyweight = Convert.ToSingle(dr["surveyweight"]);
+                s.Lecturerid = (string)dr["lecturerId"];
+                s.Link = (string)dr["link"];
+                s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
+                s.Currentnumofpers = Convert.ToInt32(dr["currentnumofpers"]);
+                s.Verifcode = (string)dr["vercode"];
+                s.Expanded= Convert.ToInt32(dr["expanded"]);
+            }
+
+            return s;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXXXX-READ SPEC SURVEY-END-XXXXXXXXXXXXXXX
     //XXXXXXXXX-READ SURVEY FUN - START-XXXXXXXXXXXXX
 
     public List<Survey> ReadSurvey(string conString, string tableName, string lecId, int Isopen)
@@ -252,7 +306,7 @@ public class DBservices
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
                 s.Currentnumofpers = Convert.ToInt32(dr["currentnumofpers"]);
-
+                s.Verifcode = (string)dr["vercode"];
 
 
 
@@ -312,7 +366,7 @@ public class DBservices
                 s.Link = (string)dr["link"];
                 s.Isopensurvey = Convert.ToInt32(dr["opensurvey"]);
                 s.Currentnumofpers = Convert.ToInt32(dr["currentnumofpers"]);
-
+                s.Verifcode = (string)dr["vercode"];
 
 
 
@@ -418,10 +472,11 @@ public class DBservices
         string month2 = s.Enddate.Month.ToString();
         string day2 = s.Enddate.Day.ToString();
         string FF2 = month2 + '/' + day2 + '/' + year2;
+
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}',{7},{8},{9},'{10}',{11},{12})", s.SurveyId, s.Topic, s.Details, s.Auther, s.Lecturerid, FF.ToString(), FF2.ToString(), s.Minperson.ToString(), s.Maxperson.ToString(), s.Surveyweight.ToString(), s.Link, s.Isopensurvey.ToString(), s.Currentnumofpers.ToString());
-        String prefix = "INSERT INTO Survey " + "(surveyId, topic,details, auther,lecturerId, uploaddate, enddate, minperson, maxperson, surveyweight, link, opensurvey, currentnumofpers) ";
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}',{7},{8},{9},'{10}',{11},{12},{13},{14})", s.SurveyId, s.Topic, s.Details, s.Auther, s.Lecturerid, FF.ToString(), FF2.ToString(), s.Minperson.ToString(), s.Maxperson.ToString(), s.Surveyweight.ToString(), s.Link, s.Isopensurvey.ToString(), s.Currentnumofpers.ToString(),s.Verifcode,s.Expanded.ToString());
+        String prefix = "INSERT INTO Survey " + "(surveyId, topic,details, auther,lecturerId, uploaddate, enddate, minperson, maxperson, surveyweight, link, opensurvey, currentnumofpers, vercode,expanded) ";
         command = prefix + sb.ToString();
         return command;
 
@@ -504,7 +559,7 @@ public class DBservices
         string day2 = s.Enddate.Day.ToString();
         string FF2 = month2 + '/' + day2 + '/' + year2;
 
-        string command = "UPDATE Survey SET surveyId='" + s.SurveyId + "' , topic='" + s.Topic + "' , uploaddate= '" + FF + "' ,enddate='" + FF2 + "' , minperson='" + s.Minperson + "' , maxperson='" + s.Maxperson + "' , details='" + s.Details + "' , auther='" + s.Auther + "' , surveyweight='" + s.Surveyweight + "' , lecturerId='" + s.Lecturerid + "' , link='" + s.Link + "' , opensurvey='" + s.Isopensurvey + "' WHERE surveyId=" + sid;
+        string command = "UPDATE Survey SET surveyId='" + s.SurveyId + "' , topic='" + s.Topic + "' , uploaddate= '" + FF + "' ,enddate='" + FF2 + "' , minperson='" + s.Minperson + "' , maxperson='" + s.Maxperson + "' , details='" + s.Details + "' , auther='" + s.Auther + "' , surveyweight='" + s.Surveyweight + "' , lecturerId='" + s.Lecturerid + "' , link='" + s.Link + "' , opensurvey='" + s.Isopensurvey + "', vercode= '"+s.Verifcode+"' WHERE surveyId=" + sid;
         return command;
     }
 
@@ -560,6 +615,7 @@ public class DBservices
 
     }
     //XXXXXXXX-READ-STATUS-END-XXXXXXXXXXXXX
+
 
     //XXXXXXXX-READ-specstudent-END-XXXXXXXXXXXXX
     public float Readspecstud(string conString, string tableName,string un)
@@ -942,7 +998,7 @@ public class DBservices
                 L.LecId = (string)dr["lecid"];
                 L.Labweight = Convert.ToSingle(dr["labweight"]);
                 L.Lablocation = (string)dr["lablocation"];
-
+                L.Finalcode= (string)dr["finalcode"];
 
                 lc.Add(L);
             }
@@ -995,7 +1051,7 @@ public class DBservices
                 L.LecId = (string)dr["lecid"];
                 L.Labweight = Convert.ToSingle(dr["labweight"]);
                 L.Lablocation = (string)dr["lablocation"];
-
+                L.Finalcode = (string)dr["finalcode"];
 
                 lc.Add(L);
             }
@@ -1095,8 +1151,8 @@ public class DBservices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,{2}, {3},'{4}','{5}','{6}',{7},'{8}','{9}')", l.LabId, l.Labtopic, l.Minperson.ToString(), l.Maxperson.ToString(), l.Labdetails, l.Director, l.LecId, l.Labweight.ToString(), l.Lablocation, FF.ToString());
-        String prefix = "INSERT INTO Labs " + "(labId, labtopic, minpers,maxpers, labdetails, Director,lecid, labweight, lablocation,labdate) ";
+        sb.AppendFormat("Values('{0}', '{1}' ,{2}, {3},'{4}','{5}','{6}',{7},'{8}','{9}','{10}')", l.LabId, l.Labtopic, l.Minperson.ToString(), l.Maxperson.ToString(), l.Labdetails, l.Director, l.LecId, l.Labweight.ToString(), l.Lablocation, FF.ToString(),l.Finalcode);
+        String prefix = "INSERT INTO Labs " + "(labId, labtopic, minpers,maxpers, labdetails, Director,lecid, labweight, lablocation,labdate,finalcode) ";
         command = prefix + sb.ToString();
         return command;
 
@@ -1770,6 +1826,340 @@ public class DBservices
     }
     //XXXXXXXXXX-VALID LAB END-XXXXXXXXXXXX
 
+    //XXXXXXXXXXX-EDITStatus from app- START-XXXXXXXXXXXXXXX
+    public int Editstatusfromapp(string un , float wei)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommand44( un,wei);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand44( string un, float wei)
+    {
+        string command = "UPDATE studentstatus SET surveyammount= surveyammount +" + wei + " where username ='" + un + "'";
+        return command;
+    }
+
+
+
+
+    //XXXXXXXXXXX-EDITStatus from app- END-XXXXXXXXXXXXXXX
+
+
+
+    //XXXXXXXXXXX-upload-survey from app- START-XXXXXXXXXXXXXXX
+    public int uploadsurveyfromapp(string un,string sid, float wei)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommand66(un,sid, wei);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand66(string un,string sid, float wei)
+    {
+        string command;
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', '{1}' ,{2})", un, sid, wei.ToString());
+        String prefix = "INSERT INTO studentsurveystatus " + "(username, surveyId,surveyweight) ";
+        command = prefix + sb.ToString();
+        return command;
+    }
+
+
+
+
+    //XXXXXXXXXXX-upload-survey from app- END-XXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXX-upload-survey from app- START-XXXXXXXXXXXXXXX
+    public int inserthourfromapp(string un,  float wei)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommand99(un, wei);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+          
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand99(string un, float wei)
+    {
+        string command;
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', {1} ,{2})", un, wei.ToString(),0);
+        String prefix = "INSERT INTO studentstatus " + "(username, surveyammount,labsammount) ";
+        command = prefix + sb.ToString();
+        return command;
+    }
+
+
+
+
+    //XXXXXXXXXXX-upload-survey from app- END-XXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXX-READ STATUS for spec stud- START-XXXXXXXXXX
+    public List<Status> ReadstatusforApp(string conString, string tableName, string un)
+    {
+
+        SqlConnection con = null;
+        List<Status> lc = new List<Status>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName+ " WHERE username= '"+un+"'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Status s = new Status();
+                s.Username = (string)dr["username"];
+
+                s.Surveyammount = Convert.ToInt32(dr["surveyammount"]);
+                s.Labsammount = Convert.ToInt32(dr["labsammount"]);
+
+
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXX-READ-STATUS-END-XXXXXXXXXXXXX
+
+
+
+    //XXXXXXXXX-READ survey details to check if excist FUN - START-XXXXXXXXXXXXX
+
+    public List<studsurveydetails> checkifsurveyex(string conString, string tableName, string usern, string sid)
+    {
+
+        SqlConnection con = null;
+        List<studsurveydetails> lc = new List<studsurveydetails>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE username= '" + usern + "' and surveyId= '"+sid+"'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                studsurveydetails s = new studsurveydetails();
+                s.Username = (string)dr["username"];
+                s.SurveyId = (string)dr["surveyId"];
+                s.Surveyweight = Convert.ToSingle(dr["surveyweight"]);
+
+
+
+
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXX-READ survey details to check if excist END-XXXXXXXXXXXX
 
 
 
@@ -1778,6 +2168,83 @@ public class DBservices
 
 
 
+
+
+
+    //XXXXXXXXXXX-EDITCURRENTNUMBER- START-XXXXXXXXXXXXXXX
+    public int Editcurrentnumofans(string sid)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommandcurrent(sid);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommandcurrent(string sid)
+    {
+        string command = "UPDATE Survey SET currentnumofpers= currentnumofpers + 1 WHERE surveyId='" + sid+"'";
+        return command;
+    }
+
+
+
+
+    //XXXXXXXXXXX-EDITCURRENTNUMBER- END-XXXXXXXXXXXXXXX
 
 
 

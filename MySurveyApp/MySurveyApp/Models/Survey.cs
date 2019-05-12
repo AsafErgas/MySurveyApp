@@ -21,10 +21,11 @@ namespace MySurveyApp.Models
         public int Isopensurvey { get; set; }
         public int Currentnumofpers { get; set; }
 
+        public string Verifcode { get; set; }
+        public int Expanded { get; set; }
 
 
-
-        public Survey(string _surveyid , string _topic, DateTime _upload,DateTime _enddate,int _min,int _max, string _details, string _auther, float _weight , string _lecid, string _link, int _isopen, int _current )
+        public Survey(string _surveyid , string _topic, DateTime _upload,DateTime _enddate,int _min,int _max, string _details, string _auther, float _weight , string _lecid, string _link, int _isopen, int _current, string ver )
         {
 
             SurveyId = _surveyid;
@@ -40,7 +41,8 @@ namespace MySurveyApp.Models
             Link = _link;
             Isopensurvey = _isopen;
             Currentnumofpers = _current;
-        
+            Verifcode = ver;
+            Expanded = 0;
         }
 
         public Survey()
@@ -54,6 +56,16 @@ namespace MySurveyApp.Models
             List<Survey> lc = dbs.ReadSurvey("PersonStringName", "Survey",lecId, Isopen);
             return lc;
         }
+
+        public Survey ReadspecSurvey(string sidfromapp)
+        {
+            DBservices dbs = new DBservices();
+            Survey lc = dbs.ReadspecSurvey("PersonStringName", "Survey", sidfromapp);
+            return lc;
+        }
+
+
+
 
         public List<Survey> ReadopenSurvey(int Isopen)
         {
@@ -94,27 +106,15 @@ namespace MySurveyApp.Models
             return numAffected;
         }
 
-
-        //public int insert()
-        //{
-        //    DBservices dbs = new DBservices();
-        //    int numAffected = dbs.insert(this);
-        //    return numAffected;
-        //}
-
-        //public void IsActive(int a ,int id  )
-        //{
-        //    DBservices dbs = new DBservices();
-        //    dbs.Update(a,id);
-        //}
+        public int Editcurrentnumofans(string sid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.Editcurrentnumofans(sid);
+            return numAffected;
+        }
 
 
-        //public int Update(Person p , int id)
-        //{
-        //    DBservices dbs = new DBservices();
-        //    int numAffected = dbs.Update(p,id);
-        //    return numAffected;
-        //}
+
 
 
     }
