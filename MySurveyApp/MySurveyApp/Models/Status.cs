@@ -67,15 +67,26 @@ namespace MySurveyApp.Models
             int numAffected = dbs.Editstatusfromapp(un,wei);
             return numAffected;
         }
-
+       
+            public int updatelabstatusfromapp(string un, float wei)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.updatelabstatusfromapp(un, wei);
+            return numAffected;
+        }
         public int inserthourfromapp(string un, float wei)
         {
             DBservices dbs = new DBservices();
             int numAffected = dbs.inserthourfromapp(un, wei);
             return numAffected;
         }
-
-
+        
+               public int insertlabhourfromapp(string un, float wei)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.insertlabhourfromapp(un, wei);
+            return numAffected;
+        }
 
 
 

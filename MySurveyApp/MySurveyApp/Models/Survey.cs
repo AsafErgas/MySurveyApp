@@ -73,6 +73,7 @@ namespace MySurveyApp.Models
             List<Survey> lc = dbs.ReadopenSurvey("PersonStringName", "Survey",  Isopen);
             return lc;
         }
+    
 
         public List<Survey> ReadAllSurvey(string lecId)
         {

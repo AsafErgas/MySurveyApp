@@ -46,9 +46,19 @@ namespace MySurveyApp.Models
             List<studlabdetails> lc = dbs.Readdetails2("PersonStringName", "studentlabsstatus", usern);
             return lc;
         }
+        public List<studlabdetails> ReadstatuslabforApp(string usern)
+        {
+            DBservices dbs = new DBservices();
+            List<studlabdetails> lc = dbs.ReadstatuslabforApp("PersonStringName", "studentlabsstatus", usern);
+            return lc;
+        }
 
-      
-
+        public int insertLabfromApp(string un, string Lid, float wei)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.insertLabfromApp(un,Lid,wei);
+            return numAffected;
+        }
 
 
 

@@ -32,6 +32,8 @@ namespace MySurveyApp.Controllers
             List<Survey> M = s.ReadopenSurvey(Isopen);
             return M;
         }
+
+     
         [HttpGet]
         [Route("api/specsurvey")]
         public Survey Gets(string sidfromapp)

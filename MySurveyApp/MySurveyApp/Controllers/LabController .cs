@@ -26,6 +26,14 @@ namespace MySurveyApp.Controllers
             List<Lab> L = s.ReadLabs(lecId);
             return L;
         }
+        [HttpGet]
+        [Route("api/getlabtofinish")]
+        public IEnumerable<Lab> Gettofinish(string finishcode)
+        {
+            Lab s = new Lab();
+            List<Lab> L = s.getlabtofinish(finishcode);
+            return L;
+        }
 
         [HttpGet]
         [Route("api/allLabs")]
@@ -57,6 +65,14 @@ namespace MySurveyApp.Controllers
             Lab s = new Lab();
             List<Lab> M = s.validlab();
             return M;
+        }
+        [HttpGet]
+        [Route("api/ReadRegLab")]
+        public IEnumerable<Lab> Getreg(string un)
+        {
+            Lab s = new Lab();
+            List<Lab> L = s.ReadRegLab(un);
+            return L;
         }
     }
 }

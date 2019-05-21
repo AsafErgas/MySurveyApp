@@ -186,6 +186,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegToLabController.cs" />
     <Compile Include="Controllers\studlabdetailsController.cs" />
     <Compile Include="Controllers\studsurveydetailsController.cs" />
     <Compile Include="Controllers\StatusController .cs" />
@@ -199,6 +200,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DBservices.cs" />
+    <Compile Include="Models\RegToLab.cs" />
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\studlabdetails.cs" />
     <Compile Include="Models\studsurveydetails.cs" />

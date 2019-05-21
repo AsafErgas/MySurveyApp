@@ -52,7 +52,13 @@ namespace MySurveyApp.Models
             List<Lab> lc = dbs.ReadLabs("PersonStringName", "Labs", lecId);
             return lc;
         }
-
+        
+              public List<Lab> getlabtofinish(string finishcode)
+        {
+            DBservices dbs = new DBservices();
+            List<Lab> lc = dbs.getlabtofinish("PersonStringName", "Labs", finishcode);
+            return lc;
+        }
         public List<Lab> ReadAllLabs()
         {
             DBservices dbs = new DBservices();
@@ -75,6 +81,12 @@ namespace MySurveyApp.Models
         {
             DBservices dbs = new DBservices();
             List<Lab> lc = dbs.validlab("PersonStringName", "Labs");
+            return lc;
+        }
+        public List<Lab> ReadRegLab(string un)
+        {
+            DBservices dbs = new DBservices();
+            List<Lab> lc = dbs.ReadRegLab("PersonStringName", "Labs", un);
             return lc;
         }
     }

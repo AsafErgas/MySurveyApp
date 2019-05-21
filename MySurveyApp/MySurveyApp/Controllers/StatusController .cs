@@ -42,8 +42,16 @@ namespace MySurveyApp.Controllers
             s.Editstatusfromapp(un,wei);
 
         }
-       
-   
+
+        [HttpPost]
+        [Route("api/updatelabstatusfromapp")]
+        public void Post3(string un, float wei)
+        {
+            Status s = new Status();
+            s.updatelabstatusfromapp(un, wei);
+
+        }
+
 
 
 
@@ -64,7 +72,14 @@ namespace MySurveyApp.Controllers
             return M;
         }
 
+      
+        [HttpPost]
+        [Route("api/insertlabhourfromapp")]
+        public void Post4(string un, float wei)
+        {
+            Status s = new Status();
+            s.insertlabhourfromapp(un, wei);
 
-
+        }
     }
 }

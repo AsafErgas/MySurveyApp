@@ -668,12 +668,15 @@
                    position: relative;
                    left: 327px;
                   }
-                 #all5{
-                        margin-top: 140px;
+                 #all5
+                 {
+                    margin-top: 140px;
                     direction: rtl;
                     color: black;
-                        font-size: 160%;
-                            z-index: -1;
+                    font-size: 160%;
+                    z-index: -1;
+                    position: relative;
+                    left: 34%;
                   }
             #sb{
                     width: 50%;

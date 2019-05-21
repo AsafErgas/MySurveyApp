@@ -24,7 +24,23 @@ namespace MySurveyApp.Controllers
             return M;
         }
 
+        [HttpGet]
+        [Route("api/ReadstatuslabforApp")]
+        public IEnumerable<studlabdetails> Get2(string usern)
+        {
+            studlabdetails l = new studlabdetails();
+            List<studlabdetails> M = l.ReadstatuslabforApp(usern);
+            return M;
+        }
 
+        [HttpPost]
+        [Route("api/insertLabfromApp")]
+        public void Post(string un, string Lid,float wei)
+        {
+            studlabdetails l = new studlabdetails();
+            l.insertLabfromApp(un,Lid,wei);
+
+        }
 
 
 
