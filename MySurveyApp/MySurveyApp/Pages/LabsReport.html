@@ -1,0 +1,246 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <script src="JsBarcode.all.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://osvaldas.info/examples/main.js"></script>
+    <script src="http://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link href="css/style2.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script>
+
+     //   $(function () {
+        //    $('#nav li:has(ul)').doubleTapToGo();
+      //  });
+
+        $(document).ready(function () {
+            loadMyLabs();
+
+            return false;
+        });
+
+        var id = "";
+        function loadMyLabs() {
+            data = JSON.parse(localStorage.getItem('Data'));
+            id = data[0].Id;
+           
+            ajaxCall("GET", "../api/LabsReport/?lecId=" + id , "", getSuccess, error);
+
+        }
+
+
+
+
+        function getSuccess(data) {
+            try {
+                tbl = $('#allmyLabs').DataTable({
+                    data: data,
+                    pageLength: 5,
+                    columns: [
+
+
+                        {
+                            data: "LabId"
+                        },
+                        {
+                            data: "Labtopic"
+                        },
+
+
+                        {
+                            data: "Labdate", render: function (data, type, row, meta) {
+
+                                d = data.split("T");
+                                df = d[0].split("-").reverse().join("-");
+                                return df;
+
+                            }
+                        },
+
+                        {
+                            data: "Minperson"
+                        },
+                        {
+                            data: "Maxperson"
+                        },
+                        {
+                            data: "Labdetails"
+                        },
+
+                        {
+                            data: "Director"
+                        },
+                         {
+                             data: "LecId"
+                         },
+
+                        {
+                            data: "Labweight"
+                        },
+                        {
+                            data: "Lablocation"
+                        },
+
+                     
+                          {
+                              render: function (data, type, row, meta) {
+                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > רשימה </button>";
+
+                                  return editBtn;
+                              }
+                          }
+
+
+                    ]
+                });
+
+
+
+
+            }
+
+
+            catch (err) {
+                alert(err);
+            }
+
+
+        }
+
+
+
+        function buttonEvents() {
+            $(".editBtn").click(function () {
+                row = (this.parentNode).parentNode;
+                var data = tbl.row($(this).parents('tr')).data();
+
+                localStorage.setItem('LabRep', JSON.stringify(data));
+
+                window.location.href = "LabspecRep.html";
+
+
+            })
+        }
+
+        function error(err) {
+            swal("Error: " + err);
+        }
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+            <div id="ms" class="hidden-md hidden-sm hidden-xs">My<span id="ms2">survey</span></div>
+            <nav id="nav" role="navigation">
+
+                <ul class="clearfix">
+
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
+
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="Addstudent.html">עריכת רשימת סטודנטים</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="uploadLabspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="showLabs.html">צפייה במעבדות</a></li>
+
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
+
+                    </li>
+
+                </ul>
+                <div id="logout">
+                    <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a" href="Lecturloginpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">התנתק <br />מהמערכת</p> </a>
+                </div>
+            </nav>
+        </div>
+    </nav>
+    <div class="container">
+        <form id="pForm">
+
+
+
+
+            <h1 id="h-head2">:כל המעבדות</h1>
+            <br />
+            <div class="dtable">
+                <table id="allmyLabs" style="width:100%">
+                    <thead>
+                        <tr id="f">
+                            <th>labId</th>
+                            <th>labtopic</th>
+                            <th>labdate</th>
+                            <th>minpers  </th>
+                            <th>maxpers </th>
+                            <th>labdetails</th>
+                            <th>Director</th>
+                            <th>lecid</th>
+                            <th>labweight</th>
+                            <th>lablocation</th>
+
+                            <th>הצג רשומים למעבדה</th>
+                       
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style2.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <style>
+      
+
+        #btnExport {
+            top: 600px;
+            position: relative;
+        }
+    </style>
+    <script type="text/javascript">
+
+      
+
+        $(document).ready(function () {
+            
+            loadSettings();
+
+
+            return false;
+
+        });
+
+
+        var id = "";
+        function loadSettings() {
+            data = JSON.parse(localStorage.getItem('LabRep'));
+          
+            Lid = data.LabId;
+            ld = data.Labdate;
+            ld2 = ld.substring(10, 0);
+            document.getElementById('reg').innerHTML = Lid;
+            document.getElementById('reg2').innerHTML = ld2;
+            ajaxCall("GET", "../api/allRegForRep/?Lid=" + Lid, "", getSuccess, error);
+         
+        }
+
+      
+        function getSuccess(data) {
+       
+           
+                try {
+                    tbl = $('#Regstudent').DataTable({
+                        data: data,
+
+
+                        columns: [
+                            
+
+                            {
+                                data: "Username"
+                            }
+
+
+
+                        ]
+                    });
+
+                }
+
+
+                catch (err) {
+                    alert(err);
+                }
+            
+
+
+        }
+        function error(err) {
+            swal("Error: " + err);
+        }
+
+    </script>
+
+</head>
+<body>
+
+
+
+
+
+    <nav class="navbar navbar-default navbar-header">
+        <div class="row">
+            <div id="ms" class="hidden-md hidden-sm hidden-xs">My<span id="ms2">survey</span></div>
+            <nav id="nav" role="navigation">
+
+                <ul class="clearfix">
+
+                    <li>
+                        <a href=""><span>סטודנטים</span></a>
+                        <ul>
+
+                            <li><a href="AddstudentFile.html">רישום סטודנטים למערכת</a></li>
+                            <li><a href="Addstudent.html">עריכת רשימת סטודנטים</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""><span>דוחות</span></a>
+                        <ul>
+                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="">דו"ח שאלון</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span>מעבדות</span></a>
+                        <ul>
+                            <li><a href="uploadLabspage.html">הוספת מעבדה למערכת</a></li>
+                            <li><a href="showLabs.html">צפייה במעבדות</a></li>
+
+                        </ul>
+                    </li>
+                    <li id="sa">
+                        <a href="UploadSurvey.html">הוספת סקר</a>
+
+                    </li>
+
+                </ul>
+                <div id="logout">
+                    <a href="Labspage.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור <br />לדף הבית</p> </a>
+                </div>
+            </nav>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <form id="pForm">
+            <div>
+                
+                <h1 id="w4">רשימת סטודנטים אשר נרשמו למעבדה: </h1>
+                <div id="reg"></div>
+                <h1 id="w4">תאריך המעבדה: </h1>
+                <div id="reg2"></div>
+            </div>
+            <div id="ddtable" class="dtable">
+
+                <table id="Regstudent" style="width:100%">
+                    <thead>
+                        <tr id="f">
+                       
+                            <th>שם משתמש</th>
+                            
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+    
+            
+        </form>
+    </div>
+
+
+
+</body>
+</html>

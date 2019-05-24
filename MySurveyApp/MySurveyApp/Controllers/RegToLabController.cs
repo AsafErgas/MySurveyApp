@@ -37,6 +37,14 @@ namespace MySurveyApp.Controllers
             r.deletereglab(un,Lid);
 
         }
+        [HttpGet]
+        [Route("api/allRegForRep")]
+        public IEnumerable<RegToLab> GetforRep( string Lid)
+        {
+            RegToLab s = new RegToLab();
+            List<RegToLab> L = s.ReadRegStud(Lid);
+            return L;
+        }
 
     }
 }

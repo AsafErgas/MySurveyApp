@@ -2850,10 +2850,108 @@ public class DBservices
     }
     //XXXXXXXXXX-READ if user reg END-XXXXXXXXXXXX
 
+    //    XXXXXXXXX-READ Filter LABS for report - START-XXXXXXX
+    public List<Lab> ReadLabsReport(string conString, string tableName, string lecId)
+    {
+
+        SqlConnection con = null;
+        List<Lab> lc = new List<Lab>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE lecId= " + lecId;
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Lab L = new Lab();
+                L.LabId = (string)dr["labId"];
+                L.Labtopic = (string)dr["labtopic"];
+                L.Labdate = (DateTime)dr["labdate"];
+                L.Minperson = Convert.ToInt32(dr["minpers"]);
+                L.Maxperson = Convert.ToInt32(dr["maxpers"]);
+                L.Labdetails = (string)dr["labdetails"];
+                L.Director = (string)dr["Director"];
+                L.LecId = (string)dr["lecid"];
+                L.Labweight = Convert.ToSingle(dr["labweight"]);
+                L.Lablocation = (string)dr["lablocation"];
+                L.Finalcode = (string)dr["finalcode"];
+
+                lc.Add(L);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //    XXXXXXXXX-READ Filter Labs for report - END-XXXXXXX
+
+
+    //XXXXXXXXX-READ students for report - START-XXXXXXXXXXXXX
+
+    public List<RegToLab> ReadRegStud(string conString, string tableName,  string Lid)
+    {
+
+        SqlConnection con = null;
+        List<RegToLab> lc = new List<RegToLab>();
+        try
+        {
+            con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM " + tableName + " WHERE LabId= '" + Lid + "'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                RegToLab s = new RegToLab();
+                s.Username = (string)dr["UserName"];
+                s.LabId = (string)dr["LabId"];
+                s.Labweight = Convert.ToSingle(dr["LabWight"]);
 
 
 
 
+                lc.Add(s);
+            }
+
+            return lc;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+    }
+    //XXXXXXXXXX-READ students for report END-XXXXXXXXXXXX
 
     private SqlCommand CreateCommand(String CommandSTR, SqlConnection con)
 

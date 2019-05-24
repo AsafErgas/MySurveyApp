@@ -46,6 +46,12 @@ namespace MySurveyApp.Models
             List<RegToLab> lc = dbs.ifuserreg("PersonStringName", "StudentsLab", un,Lid);
             return lc;
         }
+        public List<RegToLab> ReadRegStud(string Lid)
+        {
+            DBservices dbs = new DBservices();
+            List<RegToLab> lc = dbs.ReadRegStud("PersonStringName", "StudentsLab",Lid);
+            return lc;
+        }
 
     }
 }

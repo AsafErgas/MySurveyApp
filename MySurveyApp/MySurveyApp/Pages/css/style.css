@@ -843,4 +843,16 @@
                       top: 30px;
                            font-family: 'Secular One', sans-serif;
               }
-           
+              
+              #reg{
+                      position: relative;
+                      top: -74px;
+                      font-size: x-large;
+                      left: 56%;
+                       }
+            #reg2{
+                          position: relative;
+                          top: -74px;
+                          font-size: x-large;
+                          left: 59%;
+                       }

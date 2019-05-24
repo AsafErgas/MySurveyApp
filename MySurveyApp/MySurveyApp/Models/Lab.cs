@@ -65,6 +65,13 @@ namespace MySurveyApp.Models
             List<Lab> lc = dbs.ReadAllLabs("PersonStringName", "Labs");
             return lc;
         }
+        
+            public List<Lab> ReadLabsReport(string lecId)
+        {
+            DBservices dbs = new DBservices();
+            List<Lab> lc = dbs.ReadLabsReport("PersonStringName", "Labs", lecId);
+            return lc;
+        }
         public int Editlab(string lid)
         {
             DBservices dbs = new DBservices();

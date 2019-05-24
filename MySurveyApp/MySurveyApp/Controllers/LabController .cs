@@ -74,5 +74,14 @@ namespace MySurveyApp.Controllers
             List<Lab> L = s.ReadRegLab(un);
             return L;
         }
+
+        [HttpGet]
+        [Route("api/LabsReport")]
+        public IEnumerable<Lab> GetLabrep(string lecId)
+        {
+            Lab s = new Lab();
+            List<Lab> L = s.ReadLabsReport(lecId);
+            return L;
+        }
     }
 }
