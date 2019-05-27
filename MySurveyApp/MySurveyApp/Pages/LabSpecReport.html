@@ -32,15 +32,15 @@
  
 
         $(document).ready(function () {
-            loadMyLabs();
+            loadThisLab();
 
             return false;
         });
 
         var id = "";
-        function loadMyLabs() {
-            data = JSON.parse(localStorage.getItem('Data'));
-            id = data[0].Id;
+        function loadThisLab() {
+            data = JSON.parse(localStorage.getItem('LabspecRep'));
+            id = data[0].LabId;
            
             ajaxCall("GET", "../api/LabsReport/?lecId=" + id , "", getSuccess, error);
 
@@ -102,7 +102,7 @@
                      
                           {
                               render: function (data, type, row, meta) {
-                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > דו''ח מעבדה </button>";
+                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > רשימה </button>";
 
                                   return editBtn;
                               }
@@ -127,14 +127,14 @@
 
 
 
-        function buttonEvents() {
+        function buttonEvents3() {
             $(".editBtn").click(function () {
                 row = (this.parentNode).parentNode;
                 var data = tbl.row($(this).parents('tr')).data();
 
-                localStorage.setItem('LabspecRep', JSON.stringify(data));
+                localStorage.setItem('LabRep', JSON.stringify(data));
 
-                window.location.href = "LabspecReport.html";
+                window.location.href = "LabspecRep.html";
 
 
             })
@@ -181,8 +181,8 @@
                     <li>
                         <a href=""><span>דוחות</span></a>
                         <ul>
-                            <li><a href="StudentReportgood.html">דו"ח התקדמות סטודנטים</a></li>
-                            <li><a href="LabsReport.html">דו"ח מעבדה</a></li>
+                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="">דו"ח מעבדה</a></li>
                             <li><a href="">דו"ח שאלון</a></li>
                         </ul>
                     </li>

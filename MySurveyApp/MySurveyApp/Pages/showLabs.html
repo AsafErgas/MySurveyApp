@@ -89,6 +89,15 @@
                         {
                             data: "Lablocation"
                         },
+
+
+                          {
+                              render: function (data, type, row, meta) {
+                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents3()' > רשימה </button>";
+
+                                  return editBtn;
+                              }
+                          },
                         
                         {
                             render: function (data, type, row, meta) {
@@ -151,6 +160,18 @@
 
             })
         }
+        function buttonEvents3() {
+            $(".editBtn").click(function () {
+                row = (this.parentNode).parentNode;
+                var data = tbl.row($(this).parents('tr')).data();
+
+                localStorage.setItem('LabList', JSON.stringify(data));
+
+                window.location.href = "LabspecList.html";
+
+
+            })
+        }
 
 
     </script>
@@ -183,8 +204,8 @@
                     <li>
                         <a href="" ><span>דוחות</span></a>
                         <ul>
-                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
-                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="StudentReportgood.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="LabsReport.html">דו"ח מעבדה</a></li>
                             <li><a href="">דו"ח שאלון</a></li>
                         </ul>
                     </li>
@@ -231,7 +252,7 @@
                             <th>lecid</th>
                             <th>labweight</th>
                             <th>lablocation</th>
-                           
+                            <th>הצג רשימת סטודנטים רשומים</th>
                             <th>קבל קוד סיום</th>
                             <th>ערוך</th>
                         </tr>

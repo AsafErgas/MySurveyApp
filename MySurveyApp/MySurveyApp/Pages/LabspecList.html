@@ -47,7 +47,7 @@
 
         var id = "";
         function loadSettings() {
-            data = JSON.parse(localStorage.getItem('LabRep'));
+            data = JSON.parse(localStorage.getItem('LabList'));
           
             Lid = data.LabId;
             ld = data.Labdate;
@@ -122,8 +122,8 @@
                     <li>
                         <a href=""><span>דוחות</span></a>
                         <ul>
-                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
-                            <li><a href="">דו"ח מעבדה</a></li>
+                            <li><a href="StudentReportgood.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="LabsReport.html">דו"ח מעבדה</a></li>
                             <li><a href="">דו"ח שאלון</a></li>
                         </ul>
                     </li>
@@ -142,8 +142,8 @@
 
                 </ul>
                 <div id="logout">
-                    <a href="Labspage.html"><i id="ico" class="fa fa-sign-out"></i></a>
-                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור <br />לדף הבית</p> </a>
+                    <a href="showLabs.html"><i id="ico" class="fa fa-sign-out"></i></a>
+                    <a id="a" href="showLabs.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור <br />למעבדות </p> </a>
                 </div>
             </nav>
         </div>

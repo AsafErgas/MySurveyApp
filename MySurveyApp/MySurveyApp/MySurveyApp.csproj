@@ -186,6 +186,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListofAttendController.cs" />
     <Compile Include="Controllers\RegToLabController.cs" />
     <Compile Include="Controllers\studlabdetailsController.cs" />
     <Compile Include="Controllers\studsurveydetailsController.cs" />
@@ -200,6 +201,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DBservices.cs" />
+    <Compile Include="Models\ListofAttend.cs" />
     <Compile Include="Models\RegToLab.cs" />
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\studlabdetails.cs" />
@@ -223,10 +225,11 @@
     <Content Include="Pages\images\Picture1.png" />
     <Content Include="Pages\images\Rupin icon.png" />
     <Content Include="Pages\js\prefixfree.min.js" />
+    <Content Include="Pages\LabSpecReport.html" />
     <Content Include="Pages\LabsReport.html" />
     <Content Include="Pages\QRcodePage.html" />
     <Content Include="Pages\showLabs.html" />
-    <Content Include="Pages\LabspecRep.html" />
+    <Content Include="Pages\LabspecList.html" />
     <Content Include="Pages\StudentReportgood.html" />
     <Content Include="Pages\uploadLabspage.html" />
     <Content Include="Pages\Lecturloginpage.html" />

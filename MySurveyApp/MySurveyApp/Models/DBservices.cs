@@ -2953,6 +2953,95 @@ public class DBservices
     }
     //XXXXXXXXXX-READ students for report END-XXXXXXXXXXXX
 
+
+    //XXXXXXXXX-INSERT ListofAttend- START-XXXXXXXXX
+
+    public int insertListofAttend(string Lid, string un, DateTime LD, string fc)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+
+        try
+        {
+            con = connect("PersonStringName"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        // helper method to build the insert string
+
+        String cStr = BuildInsertCommandListofAttend(Lid, un, LD, fc);
+        cmd = CreateCommand(cStr, con);
+
+
+
+        // create the command
+
+        try
+        {
+
+            //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
+
+            cmd = CreateCommand(cStr, con);
+
+            int numEffected = cmd.ExecuteNonQuery();
+
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+
+        }
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String
+    //--------------------------------------------------------------------
+    private String BuildInsertCommandListofAttend(string Lid, string un, DateTime LD, string fc)
+    {
+        String command;
+
+        string year = LD.Year.ToString();
+        string month = LD.Month.ToString();
+        string day = LD.Day.ToString();
+        string FF = month + '/' + day + '/' + year;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}')", Lid, un,FF.ToString(), fc);
+        String prefix = "INSERT INTO ListofAttend " + "(LabId, username, LabDate,finalcode) ";
+        command = prefix + sb.ToString();
+        return command;
+
+    }
+    //XXXXXXXXXXXX-INSERT ListofAttend  - END-XXXXXXXXXX
+
+
+
+
+
     private SqlCommand CreateCommand(String CommandSTR, SqlConnection con)
 
     {
