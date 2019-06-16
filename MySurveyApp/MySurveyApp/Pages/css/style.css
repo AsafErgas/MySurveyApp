@@ -520,8 +520,8 @@
 
                      #logout{
                           position: fixed;
-                          left: 95%;
-                          bottom:95%;
+                          left: 93%;
+                          bottom:94%;
    
 
                                   }
@@ -546,16 +546,23 @@
                          #pp{
                          position: fixed;
                          left: 90%;
-                         bottom: 93%;
+                         bottom: 92%;
+                         font-size: 120%;
+                          z-index:-1;
+                               }
+                             #pp5{
+                         position: fixed;
+                         left: 88%;
+                         bottom: 92%;
                          font-size: 120%;
                           z-index:-1;
                                }
                             #pp2{
-                         position: fixed;
-                         left: 92%;
-                         bottom: 93%;
+                        position: fixed;
+                         left: 90%;
+                         bottom: 92%;
                          font-size: 120%;
-                          z-index:1;
+                          z-index:-1;
                                }
       
         .container-fluid{
@@ -618,7 +625,20 @@
                 white-space: nowrap;
                 direction: rtl;
                 text-align:center;
-                    }#stable{
+                    }
+                 .dtablespec{
+                background-color:white;
+                width:77%;
+                  height:100%;
+                      display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                direction: rtl;
+                text-align:center;
+                    position: relative;
+    left: 53%;
+                    }
+             #stable{
                              position: relative;
     top: 120px;
     left: 31%;
@@ -732,7 +752,7 @@
             text-decoration: underline;
             margin-bottom: 50px;
             position: relative;
-            left: 37%;
+            left: 41%;
 }
          #hh{
 
@@ -856,3 +876,12 @@
                           font-size: x-large;
                           left: 59%;
                        }
+            #regi{
+                   text-align:center;
+            direction: rtl;
+            font-size: 180%;
+          margin-top:40px;
+            margin-bottom: 25px;
+            position: relative;
+            left: 41%;
+            }

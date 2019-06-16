@@ -225,7 +225,7 @@
     <Content Include="Pages\images\Picture1.png" />
     <Content Include="Pages\images\Rupin icon.png" />
     <Content Include="Pages\js\prefixfree.min.js" />
-    <Content Include="Pages\LabSpecReport.html" />
+    <Content Include="Pages\LabSpecRep.html" />
     <Content Include="Pages\LabsReport.html" />
     <Content Include="Pages\QRcodePage.html" />
     <Content Include="Pages\showLabs.html" />

@@ -45,6 +45,14 @@ namespace MySurveyApp.Controllers
             List<RegToLab> L = s.ReadRegStud(Lid);
             return L;
         }
+        [HttpPost]
+        [Route("api/addstudenttocounter")]
+        public void Post2(string lid)
+        {
+            RegToLab l = new RegToLab();
+            l.addstudenttocounter(lid);
+
+        }
 
     }
 }

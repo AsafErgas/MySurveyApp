@@ -8,7 +8,7 @@ namespace MySurveyApp.Models
     public class ListofAttend
     {
         public string LabId { get; set; }
-        public string username { get; set; }
+        public string Username { get; set; }
         public DateTime Labdate { get; set; }
         public string Finalcode { get; set; }
 
@@ -17,7 +17,7 @@ namespace MySurveyApp.Models
         {
 
             LabId = _labId;
-            username = un;
+            Username = un;
             Labdate = _labdate;
             Finalcode = fc;
 
@@ -32,6 +32,12 @@ namespace MySurveyApp.Models
         {
 
         }
-      
+        public List<ListofAttend> ReadAttend(string lid)
+        {
+            DBservices dbs = new DBservices();
+            List<ListofAttend> lc = dbs.ReadAttend("PersonStringName", "StudentsLab", lid);
+            return lc;
+        }
+
     }
 }

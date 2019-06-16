@@ -41,8 +41,16 @@ namespace MySurveyApp.Controllers
             l.insertLabfromApp(un,Lid,wei);
 
         }
+       
 
-
+        [HttpGet]
+        [Route("api/getpresent")]
+        public IEnumerable<studlabdetails> Get3(string lid)
+        {
+            studlabdetails l = new studlabdetails();
+            List<studlabdetails> M = l.getpresent(lid);
+            return M;
+        }
 
 
 

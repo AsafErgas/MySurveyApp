@@ -113,6 +113,12 @@ namespace MySurveyApp.Models
             int numAffected = dbs.Editcurrentnumofans(sid);
             return numAffected;
         }
+        public int currentnumdown(string lid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.currentnumdown(lid);
+            return numAffected;
+        }
 
 
 

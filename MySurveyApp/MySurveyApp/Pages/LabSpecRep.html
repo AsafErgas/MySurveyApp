@@ -29,7 +29,7 @@
     <script src="../Scripts/ajaxCalls.js"></script>
     <script>
 
- 
+
 
         $(document).ready(function () {
             loadThisLab();
@@ -39,10 +39,13 @@
 
         var id = "";
         function loadThisLab() {
+
             data = JSON.parse(localStorage.getItem('LabspecRep'));
-            id = data[0].LabId;
-           
-            ajaxCall("GET", "../api/LabsReport/?lecId=" + id , "", getSuccess, error);
+            id = data.LabId;
+            str = " דו''ח מעבדה מספר: " + id;
+            document.getElementById('h-head2').innerHTML = str;
+            ajaxCall("GET", "../api/allRegForRep/?Lid=" + id, "", getSuccess, error);
+            ajaxCall("GET", "../api/getpresent/?lid=" + id, "", getSuccess2, error2);
 
         }
 
@@ -51,62 +54,15 @@
 
         function getSuccess(data) {
             try {
-                tbl = $('#allmyLabs').DataTable({
+                tbl = $('#attend').DataTable({
                     data: data,
                     pageLength: 5,
                     columns: [
 
 
                         {
-                            data: "LabId"
-                        },
-                        {
-                            data: "Labtopic"
-                        },
-
-
-                        {
-                            data: "Labdate", render: function (data, type, row, meta) {
-
-                                d = data.split("T");
-                                df = d[0].split("-").reverse().join("-");
-                                return df;
-
-                            }
-                        },
-
-                        {
-                            data: "Minperson"
-                        },
-                        {
-                            data: "Maxperson"
-                        },
-                        {
-                            data: "Labdetails"
-                        },
-
-                        {
-                            data: "Director"
-                        },
-                         {
-                             data: "LecId"
-                         },
-
-                        {
-                            data: "Labweight"
-                        },
-                        {
-                            data: "Lablocation"
-                        },
-
-                     
-                          {
-                              render: function (data, type, row, meta) {
-                                  editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > רשימה </button>";
-
-                                  return editBtn;
-                              }
-                          }
+                            data: "Username"
+                        }
 
 
                     ]
@@ -127,23 +83,48 @@
 
 
 
-        function buttonEvents3() {
-            $(".editBtn").click(function () {
-                row = (this.parentNode).parentNode;
-                var data = tbl.row($(this).parents('tr')).data();
-
-                localStorage.setItem('LabRep', JSON.stringify(data));
-
-                window.location.href = "LabspecRep.html";
-
-
-            })
-        }
+  
 
         function error(err) {
             swal("Error: " + err);
         }
 
+        function getSuccess2(data) {
+            try {
+                tbl = $('#attend2').DataTable({
+                    data: data,
+                    pageLength: 5,
+                    columns: [
+
+
+                        {
+                            data: "Username"
+                        }
+
+
+                    ]
+                });
+
+
+
+
+            }
+
+
+            catch (err) {
+                alert(err);
+            }
+
+
+        }
+
+
+
+
+
+        function error2(err) {
+            swal("Error: " + err);
+        }
 
 
 
@@ -181,9 +162,9 @@
                     <li>
                         <a href=""><span>דוחות</span></a>
                         <ul>
-                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
-                            <li><a href="">דו"ח מעבדה</a></li>
-                            <li><a href="">דו"ח שאלון</a></li>
+                            <li><a href="StudentReportgood.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="LabsReport.html">דו"ח מעבדה</a></li>
+                          
                         </ul>
                     </li>
                     <li>
@@ -202,7 +183,7 @@
                 </ul>
                 <div id="logout">
                     <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
-                    <a id="a" href="Lecturloginpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">התנתק <br />מהמערכת</p> </a>
+                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור <br />לדף הבית</p> </a>
                 </div>
             </nav>
         </div>
@@ -213,25 +194,31 @@
 
 
 
-            <h1 id="h-head2">:כל המעבדות</h1>
+            <h1 id="h-head2">:דוח מעבדה</h1>
+            <h3 id="regi">כלל המשתמשים שנרשמו למעבדה:</h3>
+
             <br />
-            <div class="dtable">
-                <table id="allmyLabs" style="width:100%">
+            <div class="dtablespec">
+                <table id="attend" style="width:100%">
                     <thead>
                         <tr id="f">
-                            <th>labId</th>
-                            <th>labtopic</th>
-                            <th>labdate</th>
-                            <th>minpers  </th>
-                            <th>maxpers </th>
-                            <th>labdetails</th>
-                            <th>Director</th>
-                            <th>lecid</th>
-                            <th>labweight</th>
-                            <th>lablocation</th>
+                            <th>שם משתמש</th>
 
-                            <th>הצג דו"ח מעבדה</th>
-                       
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <h3 id="regi">כלל המשתמשים שסיימו את המעבדה:</h3>
+
+            <br />
+            <div class="dtablespec">
+                <table id="attend2" style="width:100%">
+                    <thead>
+                        <tr id="f">
+                            <th>שם משתמש</th>
+
+
                         </tr>
                     </thead>
                 </table>

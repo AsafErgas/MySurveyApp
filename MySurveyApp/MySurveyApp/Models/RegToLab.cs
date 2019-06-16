@@ -52,6 +52,12 @@ namespace MySurveyApp.Models
             List<RegToLab> lc = dbs.ReadRegStud("PersonStringName", "StudentsLab",Lid);
             return lc;
         }
+        public int addstudenttocounter(string lid)
+        {
+            DBservices dbs = new DBservices();
+            int numAffected = dbs.addstudenttocounter(lid);
+            return numAffected;
+        }
 
     }
 }

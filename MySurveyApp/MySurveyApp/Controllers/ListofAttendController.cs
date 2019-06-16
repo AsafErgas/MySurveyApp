@@ -19,6 +19,16 @@ namespace MySurveyApp.Controllers
 
         }
 
-       
+
+        [HttpGet]
+        [Route("api/allAttend")]
+        public IEnumerable<ListofAttend> GetAttend(string lid)
+        {
+            ListofAttend s = new ListofAttend();
+            List<ListofAttend> L = s.ReadAttend(lid);
+            return L;
+        }
+
+
     }
 }

@@ -19,8 +19,9 @@ namespace MySurveyApp.Models
         public string Lablocation { get; set; }
         public string Finalcode { get; set; }
 
+        public int Currentnum { get; set; }
 
-        public Lab(string _labId, string _labtopic, DateTime _labdate, int _min, int _max, string _labdetails, string _director,string l, float _labweight, string _lablocation, string fc)
+        public Lab(string _labId, string _labtopic, DateTime _labdate, int _min, int _max, string _labdetails, string _director,string l, float _labweight, string _lablocation, string fc, int cn)
         {
 
             LabId = _labId;
@@ -34,6 +35,7 @@ namespace MySurveyApp.Models
             Labweight = _labweight;
             Lablocation = _lablocation;
             Finalcode = fc;
+            Currentnum = cn;
 
         }
         public int insertlab()
@@ -96,5 +98,6 @@ namespace MySurveyApp.Models
             List<Lab> lc = dbs.ReadRegLab("PersonStringName", "Labs", un);
             return lc;
         }
+      
     }
 }

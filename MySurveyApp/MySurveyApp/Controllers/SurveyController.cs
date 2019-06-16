@@ -94,5 +94,13 @@ namespace MySurveyApp.Controllers
             s.Editcurrentnumofans(sid);
 
         }
+        [HttpPost]
+        [Route("api/currentnumdown")]
+        public void Put4(string lid)
+        {
+            Survey s = new Survey();
+            s.currentnumdown(lid);
+
+        }
     }
 }

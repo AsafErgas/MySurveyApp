@@ -56,7 +56,8 @@
                 LecId: $("#directorid").val(),
                 Labweight: $("#weight").val(),
                 Lablocation: $("#location").val(),
-                Finalcode: rand
+                Finalcode: rand,
+                Currentnum:0
             }
 
             ajaxCall("POST", "../api/lab", JSON.stringify(Lab), success, error);
@@ -140,7 +141,7 @@
                     swal("ת.ז חייבת לכלול 9 ספרות");
                     return;
                 }
-                if ((wei > 9) || (wei < 1) || (wei == '')) {
+                if ((wei > 599) || (wei < 1) || (wei == '')) {
                     swal("משקל מעבדה חייב להיות בין 10-1");
                     return;
                 }
@@ -197,9 +198,9 @@
                     <li>
                         <a href=""><span>דוחות</span></a>
                         <ul>
-                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
-                            <li><a href="">דו"ח מעבדה</a></li>
-                            <li><a href="">דו"ח שאלון</a></li>
+                            <li><a href="StudentReportgood.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="LabsReport.html">דו"ח מעבדה</a></li>
+                         
                         </ul>
                     </li>
                     <li>
@@ -218,7 +219,7 @@
                 </ul>
                 <div id="logout">
                     <a href="Lecturloginpage.html"><i id="ico" class="fa fa-sign-out"></i></a>
-                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור לדף <br />הבית</p> </a>
+                    <a id="a" href="Lecturpage.html" class="hidden-md hidden-sm hidden-xs">  <p id="pp">חזור  <br />לדף הבית</p> </a>
                 </div>
             </nav>
         </div>

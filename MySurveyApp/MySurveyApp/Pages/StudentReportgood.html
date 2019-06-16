@@ -33,25 +33,9 @@
     </style>
     <script type="text/javascript">
 
-        //google.charts.load('current', { 'packages': ['corechart'] });
 
-        //// Draw the chart and set the chart values
-        //function drawChart(x) {
-        //    didnt = x - count;
-        //    var data = google.visualization.arrayToDataTable([
-        //        ['sum', 'num of finishers'],
-        //        ['השלימו 10 שעות', count],
-        //        ['לא השלימו', didnt]
 
-        //    ]);
-
-        //    // Optional; add a title and set the width and height of the chart
-        //    var options = { 'title': 'הצגת סטודנטים שהשלימו 10 שעות', 'width': 550, 'height': 400 };
-
-        //    // Display the chart inside the <div> element with id="piechart"
-        //    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        //    chart.draw(data, options);
-        //}
+  
 
 
         $(document).ready(function () {
@@ -66,14 +50,15 @@
 
         var count = 0;
         function getSuccess(data) {
+
             ajaxCall("GET", "../api/studentcount", "", getSuccess2, error2);
             var sum = 0;
             for (var i = 0; i < data.length; i++) {
                 sum = data[i].Surveyammount + data[i].Labsammount;
-                if (sum >= 10) {
+                if (sum >= 600) {
                     count += 1
                 }
-
+                 
             }
 
             // keep the cars array in a global variable;
@@ -84,7 +69,7 @@
                     "rowCallback": function (row, data, index) {
                         sum = data.Surveyammount + data.Labsammount;
 
-                        if (sum >= 10) {
+                        if (sum >= 600) {
                             $('td', row).css('background-color', 'Green');
                         }
 
@@ -281,9 +266,9 @@
                     <li>
                         <a href=""><span>דוחות</span></a>
                         <ul>
-                            <li><a href="StudentReport - Copy.html">דו"ח התקדמות סטודנטים</a></li>
-                            <li><a href="">דו"ח מעבדה</a></li>
-                            <li><a href="">דו"ח שאלון</a></li>
+                            <li><a href="StudentReportgood.html">דו"ח התקדמות סטודנטים</a></li>
+                            <li><a href="LabsReport.html">דו"ח מעבדה</a></li>
+                      
                         </ul>
                     </li>
                     <li>

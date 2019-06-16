@@ -31,6 +31,13 @@ namespace MySurveyApp.Controllers
             s.insertstudent();
 
         }
+        [HttpPost]
+        [Route("api/addstudent")]
+        public void Post2([FromBody]Student s)
+        {
+            s.insertstudent();
+
+        }
         [HttpGet]
         [Route("api/allstudent")]
         public IEnumerable<Student> Get2()

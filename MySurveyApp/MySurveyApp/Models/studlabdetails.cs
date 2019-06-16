@@ -59,7 +59,12 @@ namespace MySurveyApp.Models
             int numAffected = dbs.insertLabfromApp(un,Lid,wei);
             return numAffected;
         }
-
+        public List<studlabdetails> getpresent(string lid)
+        {
+            DBservices dbs = new DBservices();
+            List<studlabdetails> lc = dbs.getpresent("PersonStringName", "studentlabsstatus", lid);
+            return lc;
+        }
 
 
     }

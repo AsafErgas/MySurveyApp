@@ -83,5 +83,8 @@ namespace MySurveyApp.Controllers
             List<Lab> L = s.ReadLabsReport(lecId);
             return L;
         }
+      
+      
+
     }
 }
