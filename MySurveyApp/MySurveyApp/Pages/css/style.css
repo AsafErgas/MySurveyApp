@@ -38,7 +38,7 @@
         .line{
             padding:10px;
         }
-
+     
         audio, canvas, video {
             display: inline-block;
             *display: inline;
@@ -652,6 +652,9 @@
                margin-top:4%;
                    margin-bottom: 50px;
             }
+         .tdd{
+             padding:15px 10px;
+         }
 
             #all{
                     position: relative;

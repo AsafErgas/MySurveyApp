@@ -12,21 +12,21 @@ namespace MySurveyApp.Models
         public string Password { get; set; }
         public string Token { get; set; }
         public bool Ise { get; set; }
+        public bool Isav { get; set; }
 
 
 
 
 
 
-
-        public Student(string _user, string _pass, string t, bool i)
+        public Student(string _user, string _pass, string t, bool i,bool isav)
         {
 
             Username = _user;
             Password = _pass;
             Token = t;
             Ise = i;
-
+            Isav = isav;
 
 
 

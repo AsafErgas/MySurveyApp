@@ -12,22 +12,22 @@ namespace MySurveyApp.Models
       
         public string SurveyId { get; set; }
         public float Surveyweight { get; set; }
-      
+        public string Topic { get; set; }
+        public string Det { get; set; }
 
 
 
 
 
-
-        public studsurveydetails(string _us ,string _sid ,float _sw )
+        public studsurveydetails(string _us ,string _sid ,float _sw,string t,string d )
         {
 
             Username = _us;
 
             SurveyId = _sid;
             Surveyweight = _sw;
-          
-         
+            Topic = t;
+            Det = d;
         
        
         

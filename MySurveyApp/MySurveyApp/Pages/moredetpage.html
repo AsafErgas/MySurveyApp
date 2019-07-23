@@ -41,47 +41,15 @@
         });
 
         function f1() {
-            Editsurvey();
+              window.location.href = "Lecturpage.html";
             return false;
         }
 
-        function Editsurvey() {
+      
 
-            Survey = {
-                SurveyId: $("#sid").val(),
-                Topic: $("#topic").val(),
-                Uploaddate: $("#uploaddate").val(),
-                Enddate: $("#enddate").val(),
-                Minperson: parseInt($("#minpers").val()),
-                Maxperson: parseInt($("#maxpers").val()),
-                Details: $("#details").val(),
-                Auther: $("#auther").val(),
-                Surveyweight: parseInt($("#weight").val()),
-                Lecturerid: $("#lecId").val(),
-                Link: $("#link").val(),
-                Isopensurvey: $("option[name='field']:checked").val(),
-                Verifcode: $("#vercode").val()
-
-            }
-            sid = Survey.SurveyId;
-           
-            ajaxCall("PUT", "../api/editsurvey/?sid=" + sid, JSON.stringify(Survey), success, error);
-        }
-
-
-        function success(data) {
-            swal("עריכה בוצעה", "השינויים נשמרו בהצלחה במערכת", "success");
-        }
-
-        function error(err) {
-            alert("error");
-        }
-        function back() {
-            window.location.href = "Lecturpage.html";
-        }
 
         function ShowSurvey() {
-            s = JSON.parse(localStorage.getItem('s'));
+            s = JSON.parse(localStorage.getItem('more'));
             $('#sid').val(s.SurveyId);
             $('#topic').val(s.Topic);
             $('#uploaddate').val(s.Uploaddate);
@@ -93,44 +61,23 @@
             $('#weight').val(s.Surveyweight);
             $('#lecId').val(s.Lecturerid);
             $('#link').val(s.Link);
-            $("select").val(s.Isopensurvey);
+         
             $('#vercode').val(s.Verifcode);
             document.getElementById("sid").disabled = true;
+            document.getElementById("topic").disabled = true;
+            document.getElementById("uploaddate").disabled = true;
+            document.getElementById("enddate").disabled = true;
+            document.getElementById("minpers").disabled = true;
+            document.getElementById("maxpers").disabled = true;
+            document.getElementById("details").disabled = true;
+            document.getElementById("auther").disabled = true;
+            document.getElementById("weight").disabled = true;
+            document.getElementById("lecId").disabled = true;
+            document.getElementById("link").disabled = true;
+            document.getElementById("vercode").disabled = true;
         }
 
-        function deletesurvey() {
-            
-
-
-            Survey = {
-                SurveyId: $("#sid").val(),
-                Topic: $("#topic").val(),
-                Uploaddate: $("#uploaddate").val(),
-                Enddate: $("#enddate").val(),
-                Minperson: parseInt($("#minpers").val()),
-                Maxperson: parseInt($("#maxpers").val()),
-                Details: $("#details").val(),
-                Auther: $("#auther").val(),
-                Surveyweight: parseInt($("#weight").val()),
-                Lecturerid: $("#lecId").val(),
-                Link: $("#link").val(),
-                Isopensurvey: $("option[name='field']:checked").val(),
-                Verifcode: $("#vercode").val()
-
-            }
-            surId= Survey.SurveyId;
-
-            ajaxCall("PUT", "../api/deletesurvey/?sid=" + surId, JSON.stringify(Survey), deleteSuccess, deleterror);
-
-           
-        }
-        function deleteSuccess(data) {
-            swal("מחיקה בוצעה", "הסקר נמחק בהצלחה מהמערכת", "error");
-        }
-
-        function deleterror(err) {
-            alert("error");
-        }
+      
     
         $(function () {
             $("#uploaddate").datepicker();
@@ -195,7 +142,7 @@
     <div id="all" class="form-style-5">
         <form id="pForm1">
             <fieldset>
-                <legend><span class="number">1</span> עריכת שאלון</legend>
+                <legend><span class="number">*</span> פרטי שאלון</legend>
                 <br />
                 <h3 class="upload"> קוד שאלון:</h3>
                 <input id="sid" type="text" name="field1" style="color:black" placeholder="קוד שאלון *">
@@ -217,28 +164,17 @@
                 <input id="lecId" type="text" name="field2" style="color:black" placeholder="תעודת זהות מחבר השאלון *">
                 <h3 class="upload"> משקל השאלון:</h3>
                 <input id="weight" type="text" name="field2" style="color:black" placeholder="משקל השאלון *">
-                <legend><span class="number">2</span> הכנס קישור לסקר:</legend>
+  
                 <h3 class="upload"> קישור לאתר qualtrics:</h3>
                 <input id="link" type="text" name="field2" style="color:black" placeholder="קישור לאתר qualtrics *">
                 <h3 class="upload">קוד אימות שאלון</h3>
                 <input id="vercode" type="text" name="field2" style="color:black" placeholder="קוד אימות שאלון *">
-                <label class="upload" for="job">האם לפתוח את הסקר לסטודנטים</label>
-
-                <select id="job" name="field4">
-
-                    <option value="0" name="field">לא לפתוח</option>
-                    <option value="1" name="field">לפתוח</option>
-
-                </select>
-            </fieldset>
            
-               <fieldset>
-                   <legend><span class="number">3</span>  לחץ אישור לשמירת שינויים או מחק שאלון </legend>
-            </fieldset>
+           </fieldset>
             <div class="row">
-                <i id="deletes" class='fas fa-trash-alt' onclick="deletesurvey()"></i>
+               
                 
-                <input id="sb" type="submit" value="אישור" />
+                <input id="sb" type="submit" value="חזור" />
               
             </div>
         </form>

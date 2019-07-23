@@ -69,60 +69,67 @@
                         {
                             data: "Details"
                         },
-                        {
-                            data: "Auther"
-                        },
-                             {
-                                 data: "Lecturerid"
-                             },
+                    //    {
+                      //      data: "Auther"
+                        //},
+                          //   {
+                            //     data: "Lecturerid"
+                             //},
 
-                              {
-                                  data: "Surveyweight"
-                              },
-                          {
-                              data: "Minperson"
-                          },
+                         //     {
+                           //       data: "Surveyweight"
+                           //   },
+                //          {
+                  //            data: "Minperson"
+                    //      },
 
-                        {
-                            data: "Maxperson"
-                        },
-                            {
-                                data: "Uploaddate", render: function (data, type, row, meta) {
-
-
-                                    d = data.split("T");
-                                    df=d[0].split("-").reverse().join("-");
-                                    return df;
-
-                                }
-                            },
-                         {
-                             data: "Enddate", render: function (data, type, row, meta) {
+                      //  {
+                        //    data: "Maxperson"
+                       // },
+                         //   {
+                           //     data: "Uploaddate", render: function (data, type, row, meta) {
 
 
-                                 d = data.split("T");
-                                 df = d[0].split("-").reverse().join("-");
-                                 return df;
+                            //        d = data.split("T");
+                                  //  df=d[0].split("-").reverse().join("-");
+                               //     return df;
 
-                             }
-                         },
+                           //     }
+                         //   },
+                       //  {
+                         //    data: "Enddate", render: function (data, type, row, meta) {
+
+
+                           //      d = data.split("T");
+                           //      df = d[0].split("-").reverse().join("-");
+                            //     return df;
+
+                          //   }
+                    //     },
                          
-                         {
-                             data: "Link"
-                         },
+                      //   {
+                       //      data: "Link"
+                     //    },
 
 
                       
-                         {
-                             data: "Isopensurvey"
-                         },
-                          {
-                              data: "Currentnumofpers"
-                          },
+                    //     {
+                     //        data: "Isopensurvey"
+                      //   },
+                      //    {
+                        //      data: "Currentnumofpers"
+                      //    },
                       
-                       {
-                           data: "Verifcode"
-                       },
+                    //   {
+                     //      data: "Verifcode"
+                    //   },
+                                {
+                                    render: function (data, type, row, meta) {
+                                        editBtn = "<button type='button' class='editBtn' onclick=' moredet()' > עוד פרטים </button>";
+
+                                        return editBtn;
+                                    }
+                                }
 
                         ]
                     });
@@ -148,6 +155,19 @@
 
 
         }
+         function moredet() {
+            $(".editBtn").click(function () {
+         var $tr = $(this).closest('tr');
+          var rowData = $('#opensurvey').DataTable().row($tr).data();
+        localStorage.setItem('more', JSON.stringify(rowData));
+                window.location.href = "moredetpage.html";
+        
+             
+
+            })
+        }
+
+  
 
         function buttonEvents() {
             $(".editBtn").click(function () {
@@ -182,61 +202,7 @@
                             {
                                 data: "Details"
                             },
-                            {
-                                data: "Auther"
-                            },
-                                 {
-                                     data: "Lecturerid"
-                                 },
-
-                                  {
-                                      data: "Surveyweight"
-                                  },
-                              {
-                                  data: "Minperson"
-                              },
-
-                            {
-                                data: "Maxperson"
-                            },
-                              {
-                                  data: "Uploaddate", render: function (data, type, row, meta) {
-
-
-                                      d = data.split("T");
-                                      df = d[0].split("-").reverse().join("-");
-                                      return df;
-
-                                  }
-                              },
-                             {
-                                 data: "Enddate", render: function (data, type, row, meta) {
-
-
-                                     d = data.split("T");
-                                     df = d[0].split("-").reverse().join("-");
-                                     return df;
-
-                                 }
-                             },
-
-
-
-                             {
-                                 data: "Link"
-                             },
-
-
-
-                             {
-                                 data: "Isopensurvey"
-                             },
-                              {
-                                  data: "Currentnumofpers"
-                              },
-                                {
-                                    data: "Verifcode"
-                                },
+                           
                                 {
                                     render: function (data, type, row, meta) {
                                         editBtn = "<button type='button' class='editBtn' onclick='buttonEvents()' > ערוך </button>";
@@ -352,25 +318,16 @@
                 <br />
                 <h1 id="h-s">:המחקרים הפתוחים שלי</h1>
                 <br />
-                <div class="dtable">
+             
+                <div  class="dtable">
                     <table id="opensurvey" style="width:100%">
                         <thead>
                             <tr id="f">
-                           
-                                <th>קוד מחקר</th>
-                                <th>נושא</th>
-                                <th>פרטי מחקר</th>
-                                <th>מחבר </th>
-                                <th>ת.ז מחבר המחקר</th>
-                                <th>משקל המחקר</th>
-                                <th>מס' מינ' של עונים</th>
-                                <th> מס' מקס' של עונים</th>
-                                <th>תאריך התחלה </th>
-                                <th>תאריך סיום  </th>
-                                <th>קישור למחקר</th>
-                                <th>פתוח לסטודנטים?</th>
-                                <th>מס' עדכני של עונים</th>
-                               <th>קוד אימות מחקר</th>
+
+                                <th class="tdd">קוד מחקר</th>
+                                <th class="tdd">נושא</th>
+                                <th class="tdd">פרטי מחקר</th>
+                                <th class="tdd">עוד פרטים</th>
                             </tr>
                         </thead>
                     </table>
@@ -389,17 +346,7 @@
                                 <th>קוד מחקר</th>
                                 <th>נושא</th>
                                 <th>פרטי המחקר</th>
-                                <th>מחבר </th>
-                                <th>ת.ז מחבר המחקר</th>
-                                <th>משקל המחקר</th>
-                                <th>מס' מינ' של עונים</th>
-                                <th> מס' מקס' של עונים</th>
-                                <th>תאריך התחלה </th>
-                                <th>תאריך סיום  </th>
-                                <th>קישור למחקר</th>
-                                <th>?פתוח לסטודנטים</th>
-                                <th>מס' עדכני של עונים</th>
-                                <th>קוד אימות מחקר</th>
+                                
                                 <th>ערוך מחקר</th>
                             </tr>
                         </thead>

@@ -32,7 +32,8 @@
     <script>
         $(document).ready(function () {
             ajaxCall("GET", "../api/allstudent", "", getSuccess, error2);
-             $("#pForm").submit(f1);
+            $("#pForm").submit(f1);
+           
              return false;
          });
 
@@ -43,8 +44,8 @@
          function Addstudent() {
              Student = {
                  Username: $("#uid").val(),
-                 Password: $("#pass").val()
-                
+                 Password: $("#pass").val(),
+              
 
              }
 
@@ -271,8 +272,8 @@
                 <legend><span class="number">1</span> הכנס פרטי משתמש</legend>
                 <input id="uid" type="text" name="field1" placeholder="שם משתמש *">
                 <input id="pass" type="text" name="field2" placeholder="סיסמא *">
-               
-                
+
+
             </fieldset>
             <fieldset>
                 <legend><span class="number">2</span> לחץ אישור להעלאת הסטודנט</legend>

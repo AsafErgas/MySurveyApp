@@ -949,11 +949,12 @@ public class DBservices
     private String BuildInsertCommand4(Student s)
     {
         String command;
-
+        bool av = true;
+        char t = '/';
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}')", s.Username, s.Password);
-        String prefix = "INSERT INTO Student " + "(username, password) ";
+        sb.AppendFormat("Values('{0}', '{1}','{2}','{3}')", s.Username, s.Password,t,av);
+        String prefix = "INSERT INTO Student " + "(username, password,token,isav) ";
         command = prefix + sb.ToString();
         return command;
     }
@@ -1174,7 +1175,7 @@ public class DBservices
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
 
-            String selectSTR = "SELECT * FROM " + tableName;
+            String selectSTR = "SELECT * FROM " + tableName + " where isav=1";
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -1224,8 +1225,10 @@ public class DBservices
         try
         {
             con = connect(conString); // create a connection to the database using the connection String defined in the web config file
+            
 
-            String selectSTR = "SELECT * FROM " + tableName + " WHERE username= '" + usern + "'";
+
+            String selectSTR = "SELECT * FROM " + tableName + " INNER JOIN Survey on studentsurveystatus.surveyId = Survey.surveyId where studentsurveystatus.username ='" + usern + "'";
             SqlCommand cmd = new SqlCommand(selectSTR, con);
 
             // get a reader
@@ -1237,8 +1240,8 @@ public class DBservices
                 s.Username = (string)dr["username"];
                 s.SurveyId = (string)dr["surveyId"];
                 s.Surveyweight = Convert.ToSingle(dr["surveyweight"]);
-
-
+                s.Topic= (string)dr["topic"];
+                s.Det= (string)dr["details"];
 
 
                 lc.Add(s);
@@ -1556,14 +1559,14 @@ public class DBservices
 
         // helper method to build the insert string
 
-        String cStr = BuildInsertCommand98(s, un);
-        String cStr2 = BuildInsertCommand99(s, un);
-        String cStr3 = BuildInsertCommand100(s, un);
+        //String cStr = BuildInsertCommand98(s, un);
+        //String cStr2 = BuildInsertCommand99(s, un);
+        //String cStr3 = BuildInsertCommand100(s, un);
         String cStr4 = BuildInsertCommand101(s, un);
 
-        cmd = CreateCommand(cStr, con);
-        cmd2 = CreateCommand(cStr2, con);
-        cmd3 = CreateCommand(cStr3, con);
+        //cmd = CreateCommand(cStr, con);
+        //cmd2 = CreateCommand(cStr2, con);
+        //cmd3 = CreateCommand(cStr3, con);
         cmd4 = CreateCommand(cStr4, con);
 
 
@@ -1575,17 +1578,17 @@ public class DBservices
 
             //int pizzaIdfromDB = (int)cmd.ExecuteScalar();
 
-            cmd = CreateCommand(cStr, con);
-            cmd2 = CreateCommand(cStr2, con);
-            cmd3 = CreateCommand(cStr3, con);
+            //cmd = CreateCommand(cStr, con);
+            //cmd2 = CreateCommand(cStr2, con);
+            //cmd3 = CreateCommand(cStr3, con);
             cmd4 = CreateCommand(cStr4, con);
 
-            int numEffected = cmd.ExecuteNonQuery();
-            int numEffected2 = cmd2.ExecuteNonQuery();
-            int numEffected3 = cmd3.ExecuteNonQuery();
+            //int numEffected = cmd.ExecuteNonQuery();
+            //int numEffected2 = cmd2.ExecuteNonQuery();
+            //int numEffected3 = cmd3.ExecuteNonQuery();
             int numEffected4 = cmd4.ExecuteNonQuery();
 
-            return numEffected + numEffected2 + numEffected3 + numEffected4;
+            return numEffected4;
         }
         catch (Exception ex)
         {
@@ -1613,32 +1616,34 @@ public class DBservices
     //--------------------------------------------------------------------
     // Build the Insert command String
     //--------------------------------------------------------------------
-    private String BuildInsertCommand98(Student s, string sid)
-    {
+    //private String BuildInsertCommand98(Student s, string sid)
+    //{
 
 
-        string command = "DELETE from studentstatus where username='" + sid + "'";
-        return command;
-    }
-    private String BuildInsertCommand99(Student s, string sid)
-    {
+    //    string command = "DELETE from studentstatus where username='" + sid + "'";
+    //    return command;
+    //}
+    //private String BuildInsertCommand99(Student s, string sid)
+    //{
 
 
-        string command = "DELETE from studentlabsstatus where username='" + sid + "'";
-        return command;
-    }
-    private String BuildInsertCommand100(Student s, string sid)
-    {
+    //    string command = "DELETE from studentlabsstatus where username='" + sid + "'";
+    //    return command;
+    //}
+    //private String BuildInsertCommand100(Student s, string sid)
+    //{
 
 
-        string command = "DELETE from studentsurveystatus where username='" + sid + "'";
-        return command;
-    }
+    //    string command = "DELETE from studentsurveystatus where username='" + sid + "'";
+    //    return command;
+    //}
     private String BuildInsertCommand101(Student s, string sid)
     {
+       
 
 
-        string command = "DELETE from Student where username='" + sid + "'";
+
+        string command = " UPDATE Student SET isav = 0  where username='" + sid + "'";
         return command;
     }
 
